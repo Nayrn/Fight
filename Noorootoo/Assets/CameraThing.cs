@@ -3,49 +3,62 @@ using System.Collections;
 
 public class CameraThing : MonoBehaviour {
 
-    private float m_horizontal;
-    private float m_vertical;
-    public float m_speed;
-    Rigidbody rigidBody;
+	public const float Y_CLAMP_MIN = 5.0f;
+	public const float Y_CLAMP_MAX = 50.0f;
 
-    private CursorLockMode lockMode;
+	public Transform lookAt;
+	public Transform camTransform;
 
-    public float horizontalSpeed = 2.0f;
+	private Camera cam;
+
+	private float distance = 10.0f;
+	private float xPos = 0.0f;
+	private float yPos = 0.0f;
+	public float xSensitivity = 4.0f;
+	public float ySensitivity = 1.0f;
+
+	private CursorLockMode lockMode;
+
+	public float horizontalSpeed = 2.0f;
 
 
-    // Use this for initialization
-    void Start ()
-    {
-        m_speed = 8.0f;
-        rigidBody = GetComponent<Rigidbody>();
-        lockMode = CursorLockMode.Locked;
-    }
+	// Use this for initialization
+	void Start()
+	{
+		camTransform = transform;
+		cam = Camera.main;
 
-    void FixedUpdate()
-    {
-        MoveTurn();
+		lockMode = CursorLockMode.Locked;
+	}
 
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            SwitchCursorMode();
-        }
-        
-        Cursor.lockState = lockMode;
+	void FixedUpdate()
+	{
+		MoveTurn();
 
-    }
+		if (Input.GetKeyDown(KeyCode.Z))
+		{
+			SwitchCursorMode();
+		}
+
+		Cursor.lockState = lockMode;
+
+	}
+
+	void LateUpdate()
+	{
+		Vector3 dir = new Vector3(0, 0, -distance);
+		Quaternion rotation = Quaternion.Euler(yPos, xPos, 0);
+		camTransform.position = lookAt.position + rotation * dir;
+
+		camTransform.LookAt(lookAt.position);
+	}
 
     void MoveTurn()
     {
-        m_horizontal = Input.GetAxis("Horizontal");
-        m_vertical = Input.GetAxis("Vertical");
+		xPos += Input.GetAxis("Mouse X");
+		yPos += Input.GetAxis("Mouse Y");
 
-        Vector3 movement = new Vector3(m_horizontal, 0.0f, m_vertical);
-        movement *= m_speed * Time.deltaTime;
-        rigidBody.transform.Translate(movement);
-
-
-        float h = horizontalSpeed * Input.GetAxis("Mouse X");
-        transform.Rotate(0, h, 0);
+		yPos = Mathf.Clamp(yPos, Y_CLAMP_MIN, Y_CLAMP_MAX);
     }
 
     void SwitchCursorMode()
