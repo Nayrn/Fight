@@ -14,20 +14,18 @@ public class Movement : MonoBehaviour
 {
 	public Rigidbody rb;
 	public JoystickNum Joystick;
-	private Camera cam;
+	public Camera cam;
 
 	public bool isGrounded;
 	public float speed;
 	public float jumpSpeed;
 
-
+	private float fallSpeed = -4;
 	// Use this for initialization
 	void Start()
 	{
 		rb = GetComponent<Rigidbody>();
 		isGrounded = true;
-
-		cam = Camera.main;
 	}
 
 	// Update is called once per frame
@@ -38,25 +36,25 @@ public class Movement : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		rb.velocity = new Vector3(Input.GetAxis(Joystick + "Horizontal") * speed, Physics.gravity.y, -Input.GetAxis(Joystick + "Vertical") * speed);
+		rb.transform.position += cam.transform.forward * -Input.GetAxis(Joystick + "Vertical") * speed * Time.deltaTime;
+		rb.transform.position += cam.transform.right * Input.GetAxis(Joystick + "Horizontal") * speed * Time.deltaTime;
 
 		float secondsLeft = 0.3f;
 		while (secondsLeft > 0)
 		{
-			if (isGrounded == true)
+			if (fallSpeed == 0 || (isGrounded == true && Input.GetButtonDown(Joystick + "Jump")))
 			{
-				if (Input.GetButton(Joystick + "Jump"))
+				isGrounded = false;
+				if (isGrounded == false && transform.position.y < 4f)
 				{
-					rb.AddForce(new Vector3(0, 50, 0), ForceMode.Acceleration);
-
-					if (transform.position.y > 2.0f)
-					{
-						isGrounded = false;
-
-					}
+					rb.transform.position += Vector3.up * Time.deltaTime;
+					fallSpeed = 0;
 				}
+				else
+					fallSpeed = -4;
 			}
 			secondsLeft -= Time.deltaTime;
+
 		}
 	}
 
