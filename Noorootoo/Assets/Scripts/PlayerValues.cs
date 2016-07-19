@@ -8,10 +8,18 @@ public class PlayerValues : MonoBehaviour {
 	public float m_Health;
 	public float m_Damage;
 
+	public bool isGrounded;
+	public float m_Speed;
+	public float m_JumpSpeed;
+
+	public float TurnSpeed;
+
+	[HideInInspector]
+	public float fallSpeed = -4;
 
 	// Use this for initialization
 	void Start () {
-	
+		m_Health = MAX_HEALTH;
 	}
 	
 	// Update is called once per frame

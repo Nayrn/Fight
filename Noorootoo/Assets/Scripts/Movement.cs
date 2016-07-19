@@ -16,16 +16,16 @@ public class Movement : MonoBehaviour
 	public JoystickNum Joystick;
 	public Camera cam;
 
-	public bool isGrounded;
-	public float speed;
-	public float jumpSpeed;
+	public PlayerValues Player;
+	private float xRot = 0;
 
-	private float fallSpeed = -4;
+	private Quaternion desiredDirection;
+
 	// Use this for initialization
 	void Start()
 	{
 		rb = GetComponent<Rigidbody>();
-		isGrounded = true;
+		Player.isGrounded = true;
 	}
 
 	// Update is called once per frame
@@ -36,22 +36,46 @@ public class Movement : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		rb.transform.position += cam.transform.forward * -Input.GetAxis(Joystick + "Vertical") * speed * Time.deltaTime;
-		rb.transform.position += cam.transform.right * Input.GetAxis(Joystick + "Horizontal") * speed * Time.deltaTime;
+		Vector3 cameraForward = cam.transform.forward;
+		cameraForward.y = 0.0f; cameraForward.Normalize();
+		Vector3 cameraRight = Vector3.Cross(cameraForward, Vector3.up);
+
+		Vector3 inputDirection = new Vector3(Input.GetAxis(Joystick + "Horizontal"), 0, -Input.GetAxis(Joystick + "Vertical"));
+
+		if(inputDirection.magnitude > 0.0f)
+		{
+			inputDirection.Normalize();
+			desiredDirection = Quaternion.LookRotation(inputDirection, Vector3.up);
+
+			Quaternion CameraDirection = Quaternion.LookRotation(cameraForward, Vector3.up);
+			desiredDirection = CameraDirection * desiredDirection;
+
+		}
+
+
+		if(Quaternion.Dot(desiredDirection, rb.transform.rotation) > 0.5f)
+		{
+			Vector3 forwardOffset = cameraForward * -Input.GetAxis(Joystick + "Vertical") * Player.m_Speed * Time.deltaTime;
+			Vector3 rightOffset = cameraRight * -Input.GetAxis(Joystick + "Horizontal") * Player.m_Speed * Time.deltaTime;
+			rb.MovePosition(rb.transform.position + forwardOffset + rightOffset);
+		}
+
+		rb.transform.rotation = Quaternion.RotateTowards(rb.transform.rotation, desiredDirection, Player.TurnSpeed * Time.deltaTime);
 
 		float secondsLeft = 0.3f;
 		while (secondsLeft > 0)
 		{
-			if (fallSpeed == 0 || (isGrounded == true && Input.GetButtonDown(Joystick + "Jump")))
+			if (Player.fallSpeed == 0 || (Player.isGrounded == true && Input.GetButton(Joystick + "Jump")))
 			{
-				isGrounded = false;
-				if (isGrounded == false && transform.position.y < 4f)
+				Player.isGrounded = false;
+				if (Player.isGrounded == false && transform.position.y < 4f)
 				{
-					rb.transform.position += Vector3.up * Time.deltaTime;
-					fallSpeed = 0;
+					rb.AddForce(0, 6, 0, ForceMode.Impulse);
+					//rb.transform.position += Vector3.up * 2;// Time.deltaTime;
+					//Player.fallSpeed = 0;
 				}
 				else
-					fallSpeed = -4;
+					Player.fallSpeed = -4;
 			}
 			secondsLeft -= Time.deltaTime;
 
@@ -62,7 +86,7 @@ public class Movement : MonoBehaviour
 	{
 		if (col.gameObject.tag == "Ground")
 		{
-			isGrounded = true;
+			Player.isGrounded = true;
 		}
 	}
 };

@@ -1,11 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum GameMode
+{
+	SinglePlayer,
+	MultiPlayer
+};
+
 public class CameraThing : MonoBehaviour {
 
 	public JoystickNum Joystick = JoystickNum.Keyboard;
-	private CursorLockMode lockMode;
 	private float AspectRatio;
+	public GameObject Player;
+
+	public GameMode Mode;
 
 	//-----SinglePlayer Camera Variables-----//
 	public const float Y_CLAMP_MIN = 5.0f;
@@ -15,6 +23,16 @@ public class CameraThing : MonoBehaviour {
 	private float yPos = 0.0f;
 	public float xSensitivity = 4.0f;
 	public float ySensitivity = 1.0f;
+
+	//-----SinglePlayer Target variables-----//
+
+	public const float MIN_CAMERA_DISTANCE = 3.0f;
+	public const float MAX_CAMERA_DISTANCE = 10.0f;
+
+	public Transform TargetObject;
+
+	private Vector3 TargetPosition;
+
 	//---------------------------------------//
 	//-----MultiPlayer Camera Variables------//
 
@@ -39,8 +57,8 @@ public class CameraThing : MonoBehaviour {
 
 	//---------------------------------------//
 
-	public Transform lookAt;
-	public Transform camTransform;
+	private Transform lookAt;
+	private Transform camTransform;
 
 	public Camera cam;
 
@@ -49,44 +67,60 @@ public class CameraThing : MonoBehaviour {
 	// Use this for initialization
 	void Start()
 	{
+		Mode = GameMode.SinglePlayer;
 		camTransform = transform;
+
+		lookAt = Player.transform;
 
 		AspectRatio = Screen.width / Screen.height;
 		TanFOV = Mathf.Tan(Mathf.Deg2Rad * cam.fieldOfView / 2.0f);
-
-		lockMode = CursorLockMode.Locked;
 	}
 
 	void FixedUpdate()
 	{
-		SinglePlayer();
-
-		if (Input.GetKeyDown(KeyCode.Z))
+		switch(Mode)
 		{
-			SwitchCursorMode();
+			case GameMode.SinglePlayer:
+				SinglePlayer();
+				break;
+			case GameMode.MultiPlayer:
+				MultiPlayer();
+				break;
+			default:
+				MultiPlayer();
+				break;
 		}
-
-		Cursor.lockState = lockMode;
 
 	}
 
 	void LateUpdate()
 	{
-		float tempFloat = cam.transform.position.y;
-		Vector3 dir = new Vector3(0, 0, -distance);
-		Quaternion rotation = Quaternion.Euler(yPos, xPos, 0);
-		camTransform.position = lookAt.position + rotation * dir;
-		camTransform.position = new Vector3(camTransform.position.x, tempFloat, camTransform.position.z);
-		
-		camTransform.LookAt(lookAt.position);
+		if (Mode == GameMode.SinglePlayer)
+		{
+			float tempFloat = cam.transform.position.y;
+
+			Vector3 dir = new Vector3(0, 0, -distance);
+			Quaternion rotation = Quaternion.Euler(yPos, xPos, 0);
+			camTransform.position = lookAt.position + rotation * dir;
+
+			if (Player.GetComponent<PlayerValues>().isGrounded == true)
+			{
+				tempFloat = cam.transform.position.y;
+			}
+
+			//camTransform.position = new Vector3(camTransform.position.x, tempFloat, camTransform.position.z);\
+			TargetPosition = Player.transform.position - TargetObject.transform.position;
+			camTransform.position = Vector3.Lerp(camTransform.position, m_PlayerOne.transform.position + TargetPosition.normalized * distance, Time.deltaTime);
+			camTransform.LookAt(lookAt.position);
+		}
 	}
 
     void SinglePlayer()
     {
 		if (Joystick == JoystickNum.Keyboard)
 		{
-			xPos += Input.GetAxis("Mouse X");
-			yPos += Input.GetAxis("Mouse Y");
+			xPos += Input.GetAxis("Mouse X") * xSensitivity;
+			yPos += Input.GetAxis("Mouse Y") * ySensitivity;
 		}
 		else
 		{
@@ -96,7 +130,7 @@ public class CameraThing : MonoBehaviour {
 
 		yPos = Mathf.Clamp(yPos, Y_CLAMP_MIN, Y_CLAMP_MAX);
     }
-	void Multiplayer()
+	void MultiPlayer()
 	{
 		Vector3 tempVec = m_PlayerTwo.position - m_PlayerOne.position;
 		middlePoint = m_PlayerOne.position + 0.5f * tempVec;
@@ -110,20 +144,5 @@ public class CameraThing : MonoBehaviour {
 
 		Vector3 direction = (cam.transform.position - middlePoint).normalized;
 		cam.transform.position = middlePoint + direction * (m_CameraDist + SCREEN_MARGIN);
-	}
-
-	void SwitchCursorMode()
-	{
-		switch (Cursor.lockState)
-		{
-			case CursorLockMode.Locked:
-				lockMode = CursorLockMode.None;
-				Cursor.visible = true;
-				break;
-			case CursorLockMode.None:
-				lockMode = CursorLockMode.Locked;
-				Cursor.visible = false;
-				break;
-		}
 	}
 }
