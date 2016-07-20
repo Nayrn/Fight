@@ -36,11 +36,6 @@ public class CameraThing : MonoBehaviour {
 	//---------------------------------------//
 	//-----MultiPlayer Camera Variables------//
 
-	public Transform m_PlayerOne;
-	public Transform m_PlayerTwo;
-	//public Transform m_PlayerThree;
-	//public Transform m_PlayerFour;
-
 	public const float SCREEN_MARGIN = 1.0f;
 
 	private Vector3 middlePoint;
@@ -109,9 +104,9 @@ public class CameraThing : MonoBehaviour {
 			}
 
 			//camTransform.position = new Vector3(camTransform.position.x, tempFloat, camTransform.position.z);\
-			TargetPosition = Player.transform.position - TargetObject.transform.position;
-			camTransform.position = Vector3.Lerp(camTransform.position, m_PlayerOne.transform.position + TargetPosition.normalized * distance, Time.deltaTime);
-			camTransform.LookAt(lookAt.position);
+			TargetPosition = (Player.transform.position + TargetObject.transform.position) / 2;
+			//camTransform.position = Vector3.Lerp(camTransform.position, Player.transform.position + TargetPosition.normalized * distance, Time.deltaTime);
+			camTransform.LookAt(Player.transform.position);
 		}
 	}
 
@@ -128,21 +123,11 @@ public class CameraThing : MonoBehaviour {
 			yPos += Input.GetAxis(Joystick + "CameraVertical") * ySensitivity;
 		}
 
+		xPos = Mathf.Clamp(xPos, 45, 45);
 		yPos = Mathf.Clamp(yPos, Y_CLAMP_MIN, Y_CLAMP_MAX);
     }
 	void MultiPlayer()
 	{
-		Vector3 tempVec = m_PlayerTwo.position - m_PlayerOne.position;
-		middlePoint = m_PlayerOne.position + 0.5f * tempVec;
 
-		Vector3 tempPos = cam.transform.position;
-		tempPos.x = middlePoint.x;
-		cam.transform.position = tempPos;
-
-		m_PlayerDistance = tempVec.magnitude;
-		m_CameraDist = (m_PlayerDistance / 2.0f / AspectRatio) / TanFOV;
-
-		Vector3 direction = (cam.transform.position - middlePoint).normalized;
-		cam.transform.position = middlePoint + direction * (m_CameraDist + SCREEN_MARGIN);
 	}
 }
