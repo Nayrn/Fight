@@ -1,12 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum GameMode
-{
-	SinglePlayer,
-	MultiPlayer
-};
-
 public class CameraThing : MonoBehaviour {
 
 	public JoystickNum Joystick = JoystickNum.Keyboard;

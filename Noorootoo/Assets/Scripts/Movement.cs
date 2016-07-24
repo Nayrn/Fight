@@ -55,7 +55,7 @@ public class Movement : MonoBehaviour
 
 		if(Quaternion.Dot(desiredDirection, rb.transform.rotation) > 0.5f)
 		{
-			Vector3 forwardOffset = cameraForward * -Input.GetAxis(Joystick + "Vertical") * Player.m_Speed * Time.deltaTime;
+			Vector3 forwardOffset = cameraForward  * -Input.GetAxis(Joystick + "Vertical") * Player.m_Speed * Time.deltaTime;
 			Vector3 rightOffset = cameraRight * -Input.GetAxis(Joystick + "Horizontal") * Player.m_Speed * Time.deltaTime;
 			rb.MovePosition(rb.transform.position + forwardOffset + rightOffset);
 		}
