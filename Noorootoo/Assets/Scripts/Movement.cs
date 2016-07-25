@@ -49,15 +49,16 @@ public class Movement : MonoBehaviour
 
 			Quaternion CameraDirection = Quaternion.LookRotation(cameraForward, Vector3.up);
 			desiredDirection = CameraDirection * desiredDirection;
-
 		}
 
 
-		if(Quaternion.Dot(desiredDirection, rb.transform.rotation) > 0.5f)
+		if(Quaternion.Dot(desiredDirection, rb.transform.rotation) > 0)
 		{
 			Vector3 forwardOffset = cameraForward  * -Input.GetAxis(Joystick + "Vertical") * Player.m_Speed * Time.deltaTime;
 			Vector3 rightOffset = cameraRight * -Input.GetAxis(Joystick + "Horizontal") * Player.m_Speed * Time.deltaTime;
 			rb.MovePosition(rb.transform.position + forwardOffset + rightOffset);
+		
+			cam.transform.rotation = Quaternion.RotateTowards(cam.transform.rotation, rb.transform.rotation, Time.deltaTime);
 		}
 
 		rb.transform.rotation = Quaternion.RotateTowards(rb.transform.rotation, desiredDirection, Player.TurnSpeed * Time.deltaTime);
@@ -69,11 +70,7 @@ public class Movement : MonoBehaviour
 			{
 				Player.isGrounded = false;
 				if (Player.isGrounded == false && transform.position.y < 4f)
-				{
 					rb.AddForce(0, 6, 0, ForceMode.Impulse);
-					//rb.transform.position += Vector3.up * 2;// Time.deltaTime;
-					//Player.fallSpeed = 0;
-				}
 				else
 					Player.fallSpeed = -4;
 			}
