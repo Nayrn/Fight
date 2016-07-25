@@ -16,7 +16,11 @@ public class Movement : MonoBehaviour
 	public JoystickNum Joystick;
 	public Camera cam;
 
-	public PlayerValues Player;
+    private bool isMoving;
+    public Animator anim;
+    public GameObject child;
+
+    public PlayerValues Player;
 	private float xRot = 0;
 
 	private Quaternion desiredDirection;
@@ -26,7 +30,9 @@ public class Movement : MonoBehaviour
 	{
 		rb = GetComponent<Rigidbody>();
 		Player.isGrounded = true;
-	}
+        anim = child.GetComponent<Animator>();
+        isMoving = false;
+    }
 
 	// Update is called once per frame
 	void Update()
@@ -36,7 +42,23 @@ public class Movement : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		Vector3 cameraForward = cam.transform.forward;
+        //-----Animation Code-----//
+        if (Input.GetAxis(Joystick + "Vertical") < 0 || Input.GetAxis(Joystick + "Vertical") > 0 || Input.GetAxis(Joystick + "Horizontal") < 0 || Input.GetAxis(Joystick + "Horizontal") > 0)
+        {
+
+            isMoving = true;
+            anim.SetBool("isMoving", true);
+
+        }
+        else
+        {
+            isMoving = false;
+            anim.SetBool("isMoving", false);
+        }
+
+        //-----Movement Code-----//
+
+        Vector3 cameraForward = cam.transform.forward;
 		cameraForward.y = 0.0f; cameraForward.Normalize();
 		Vector3 cameraRight = Vector3.Cross(cameraForward, Vector3.up);
 
@@ -62,6 +84,8 @@ public class Movement : MonoBehaviour
 
 		rb.transform.rotation = Quaternion.RotateTowards(rb.transform.rotation, desiredDirection, Player.TurnSpeed * Time.deltaTime);
 
+        //-----Jump Code -----//
+
 		float secondsLeft = 0.3f;
 		while (secondsLeft > 0)
 		{
@@ -69,11 +93,7 @@ public class Movement : MonoBehaviour
 			{
 				Player.isGrounded = false;
 				if (Player.isGrounded == false && transform.position.y < 4f)
-				{
 					rb.AddForce(0, 6, 0, ForceMode.Impulse);
-					//rb.transform.position += Vector3.up * 2;// Time.deltaTime;
-					//Player.fallSpeed = 0;
-				}
 				else
 					Player.fallSpeed = -4;
 			}
