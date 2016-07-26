@@ -18,19 +18,16 @@ public class Movement : MonoBehaviour
 
     private bool isMoving;
     public Animator anim;
-    public GameObject child;
 
     public PlayerValues Player;
-	private float xRot = 0;
-
 	private Quaternion desiredDirection;
 
+	float idleSwitch = 0;
 	// Use this for initialization
 	void Start()
 	{
 		rb = GetComponent<Rigidbody>();
 		Player.isGrounded = true;
-        anim = child.GetComponent<Animator>();
         isMoving = false;
     }
 
@@ -38,27 +35,25 @@ public class Movement : MonoBehaviour
 	void Update()
 	{
 		// use input manager
+		IdleSwitch();
 	}
 
 	void FixedUpdate()
 	{
         //-----Animation Code-----//
         if (Input.GetAxis(Joystick + "Vertical") < 0 || Input.GetAxis(Joystick + "Vertical") > 0 || Input.GetAxis(Joystick + "Horizontal") < 0 || Input.GetAxis(Joystick + "Horizontal") > 0)
-        {
-
             isMoving = true;
-            anim.SetBool("isMoving", true);
-
-        }
         else
-        {
             isMoving = false;
-            anim.SetBool("isMoving", false);
-        }
 
-        //-----Movement Code-----//
+		anim.SetFloat("MovingX", Input.GetAxis(Joystick + "Horizontal"));
+		anim.SetFloat("MovingZ", -Input.GetAxis(Joystick + "Vertical"));
 
-        Vector3 cameraForward = cam.transform.forward;
+		anim.SetBool("isMoving", isMoving);
+
+		//-----Movement Code-----//
+
+		Vector3 cameraForward = cam.transform.forward;
 		cameraForward.y = 0.0f; cameraForward.Normalize();
 		Vector3 cameraRight = Vector3.Cross(cameraForward, Vector3.up);
 
@@ -93,6 +88,8 @@ public class Movement : MonoBehaviour
 			if (Player.fallSpeed == 0 || (Player.isGrounded == true && Input.GetButton(Joystick + "Jump")))
 			{
 				Player.isGrounded = false;
+				anim.SetBool("isGrounded", Player.isGrounded);
+				anim.SetTrigger("JumpPressed");
 				if (Player.isGrounded == false && transform.position.y < 4f)
 					rb.AddForce(0, 6, 0, ForceMode.Impulse);
 				else
@@ -108,6 +105,22 @@ public class Movement : MonoBehaviour
 		if (col.gameObject.tag == "Ground")
 		{
 			Player.isGrounded = true;
+			anim.SetBool("isGrounded", Player.isGrounded);
+		}
+	}
+	
+	void IdleSwitch()
+	{
+		if(isMoving == false)
+		{
+			if (idleSwitch > 0)
+				idleSwitch -= Time.deltaTime;
+			else if (idleSwitch <= 0)
+			{
+				idleSwitch = Random.Range(3.0f, 8.0f);
+				anim.SetTrigger("IdleSwitch");
+
+			}
 		}
 	}
 };
