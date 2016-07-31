@@ -17,7 +17,7 @@ public class Movement : MonoBehaviour
 	public Camera cam;
 
     private bool isMoving;
-    public Animator anim;
+    public Animator PlayerAnimation;
 
     public PlayerValues Player;
 	private Quaternion desiredDirection;
@@ -46,10 +46,10 @@ public class Movement : MonoBehaviour
         else
             isMoving = false;
 
-		anim.SetFloat("MovingX", Input.GetAxis(Joystick + "Horizontal"));
-		anim.SetFloat("MovingZ", -Input.GetAxis(Joystick + "Vertical"));
+		PlayerAnimation.SetFloat("MovingX", Input.GetAxis(Joystick + "Horizontal"));
+		PlayerAnimation.SetFloat("MovingZ", -Input.GetAxis(Joystick + "Vertical"));
 
-		anim.SetBool("isMoving", isMoving);
+		PlayerAnimation.SetBool("isMoving", isMoving);
 
 		//-----Movement Code-----//
 
@@ -88,8 +88,8 @@ public class Movement : MonoBehaviour
 			if (Player.fallSpeed == 0 || (Player.isGrounded == true && Input.GetButton(Joystick + "Jump")))
 			{
 				Player.isGrounded = false;
-				anim.SetBool("isGrounded", Player.isGrounded);
-				anim.SetTrigger("JumpPressed");
+				PlayerAnimation.SetBool("isGrounded", Player.isGrounded);
+				PlayerAnimation.SetTrigger("JumpPressed");
 				if (Player.isGrounded == false && transform.position.y < 4f)
 					rb.AddForce(0, 6, 0, ForceMode.Impulse);
 				else
@@ -98,6 +98,9 @@ public class Movement : MonoBehaviour
 			secondsLeft -= Time.deltaTime;
 
 		}
+
+		if (Physics.Raycast(transform.position, Vector3.down, 1) == false)
+			PlayerAnimation.SetBool("isGrounded", false);
 	}
 
 	void OnCollisionEnter(Collision col)
@@ -105,7 +108,7 @@ public class Movement : MonoBehaviour
 		if (col.gameObject.tag == "Ground")
 		{
 			Player.isGrounded = true;
-			anim.SetBool("isGrounded", Player.isGrounded);
+			PlayerAnimation.SetBool("isGrounded", Player.isGrounded);
 		}
 	}
 	
@@ -118,7 +121,7 @@ public class Movement : MonoBehaviour
 			else if (idleSwitch <= 0)
 			{
 				idleSwitch = Random.Range(3.0f, 8.0f);
-				anim.SetTrigger("IdleSwitch");
+				PlayerAnimation.SetTrigger("IdleSwitch");
 
 			}
 		}

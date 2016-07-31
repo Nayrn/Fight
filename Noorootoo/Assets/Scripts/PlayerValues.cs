@@ -12,6 +12,10 @@ public class PlayerValues : MonoBehaviour {
 	public float m_Speed;
 	public float m_JumpSpeed;
 
+	public bool isAttacking = false;
+	public bool PrimaryAttack = false;
+	public bool SecondaryAttack = false;
+
 	public float TurnSpeed;
 
 	[HideInInspector]

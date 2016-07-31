@@ -13,7 +13,7 @@ public class CameraController : MonoBehaviour {
 	public GameObject TrackedObject;
 	public GameManager Game;
 
-	private bool Targeted = true;
+	public bool Targeted = true;
 
 	public JoystickNum Joystick = JoystickNum.Keyboard;
 	private Transform CameraPivot;
