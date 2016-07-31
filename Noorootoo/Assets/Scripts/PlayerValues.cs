@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerValues : MonoBehaviour {
 
@@ -12,23 +13,40 @@ public class PlayerValues : MonoBehaviour {
 	public float m_Speed;
 	public float m_JumpSpeed;
 
-	public bool isAttacking = false;
-	public bool PrimaryAttack = false;
-	public bool SecondaryAttack = false;
+    public bool isAttacking = false;
+    public bool PrimaryAttack = false;
+    public bool SecondaryAttack = false;
 
-	public float TurnSpeed;
-
+    public float TurnSpeed;
+    public Text healthText;
+    public Text KOText;
+    public Slider p1Slider;
 	[HideInInspector]
 	public float fallSpeed = -4;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
 		m_Health = MAX_HEALTH;
+        
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void Update ()
+    {
+      //m_Health--; for testing purposes, does work
+      int health = (int)m_Health;
+      healthText.text = health.ToString();
+      p1Slider.value = m_Health;        
+
+
+        if(m_Health < 1)
+        {
+            KOText.gameObject.SetActive(true);
+            Time.timeScale = 0;
+            // death or KO
+            m_Health = 1;
+        }
 	}
 
 	void OnCollisionEnter(Collision col)
