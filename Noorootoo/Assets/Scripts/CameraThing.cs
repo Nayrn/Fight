@@ -21,7 +21,7 @@ public class CameraThing : MonoBehaviour {
 	//-----SinglePlayer Target variables-----//
 
 	public const float MIN_CAMERA_DISTANCE = 3.0f;
-	public const float MAX_CAMERA_DISTANCE = 10.0f;
+	public const float MAX_CAMERA_DISTANCE = 5.0f;
 
 	public Transform TargetObject;
 
