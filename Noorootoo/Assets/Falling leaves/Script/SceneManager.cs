@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System;
+using UnityEngine.SceneManagement;
 
 public class SceneManager : MonoBehaviour {
 	public GameObject Parent;
@@ -19,7 +21,13 @@ public class SceneManager : MonoBehaviour {
 		NexPSGO = Parent.transform.GetChild (0).gameObject;
 		PSPlay ();
 	}
-	void Update () 
+
+    internal static void LoadScene(string scene, LoadSceneMode single)
+    {
+        throw new NotImplementedException();
+    }
+
+    void Update () 
 	{
 		int position = childname[currentPSGO].IndexOf("[");
 		if (position > 0)
