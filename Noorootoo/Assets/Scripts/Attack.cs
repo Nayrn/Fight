@@ -74,30 +74,30 @@ public class Attack : MonoBehaviour
             anim.SetBool("SecondaryAttack", true);
 
 			AnimatorStateInfo Anim = anim.GetCurrentAnimatorStateInfo(0);
-			if (Anim.IsName(SecondaryCombos[SecondaryCount]) && colliderTime == 0) ;
+			if (Anim.IsName(SecondaryCombos[SecondaryCount]) == true && colliderTime == 0) ;
 				colliderTime = Anim.length;
         }
     }
 
-    void OnCollisionEnter(Collision col)
-    {
-        if (col.gameObject.tag == "PrimaryAttack")
-        {
-            Player.m_Health = Player.m_Health - 10;
-            // hit animation
-            Debug.Log("col with hands");
-			anim.SetBool("isHit", true);
-        }
+    //void OnCollisionEnter(Collision col)
+    //{
+        //if (col.gameObject.tag == "RightHand")
+        //{
+            //Player.m_Health = Player.m_Health - 10;
+            //// hit animation
+            //Debug.Log("col with hands");
+			//anim.SetBool("isHit", true);
+        //}
 
-        if (col.gameObject.tag == "SecondaryAttack")
-        {
-            Player.m_Health = Player.m_Health - 20;
-            // hit animation
-            Debug.Log("col with feet");
-            anim.SetBool("isHit", true);
-        }
+        //if (col.gameObject.tag == "SecondaryAttack")
+        //{
+            //Player.m_Health = Player.m_Health - 20;
+            //// hit animation
+            //Debug.Log("col with feet");
+            //anim.SetBool("isHit", true);
+        //}
 
-    }
+    //}
 
     public void CollidersOn()
     {

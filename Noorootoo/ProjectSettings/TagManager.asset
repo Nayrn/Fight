@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - LeftFoot
+  - RightFoot
+  - LeftHand
+  - RightHand
+  - PrimaryAttack
+  - SecondaryAttack
   layers:
   - Default
   - TransparentFX

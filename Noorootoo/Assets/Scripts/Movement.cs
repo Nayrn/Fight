@@ -66,19 +66,13 @@ public class Movement : MonoBehaviour
 
 			Quaternion CameraDirection = Quaternion.LookRotation(cameraForward, Vector3.up);
 			desiredDirection = CameraDirection * desiredDirection;
-		}
 
+            Vector3 forwardOffset = cameraForward * -Input.GetAxis(Joystick + "Vertical") * Player.m_Speed * Time.deltaTime;
+            Vector3 rightOffset = cameraRight * -Input.GetAxis(Joystick + "Horizontal") * Player.m_Speed * Time.deltaTime;
+            rb.MovePosition(rb.transform.position + forwardOffset + rightOffset);
 
-		if(Quaternion.Dot(desiredDirection, rb.transform.rotation) > 0)
-		{
-			Vector3 forwardOffset = cameraForward  * -Input.GetAxis(Joystick + "Vertical") * Player.m_Speed * Time.deltaTime;
-			Vector3 rightOffset = cameraRight * -Input.GetAxis(Joystick + "Horizontal") * Player.m_Speed * Time.deltaTime;
-			rb.MovePosition(rb.transform.position + forwardOffset + rightOffset);
-		
-			cam.transform.rotation = Quaternion.RotateTowards(cam.transform.rotation, rb.transform.rotation, Time.deltaTime);
-		}
-
-		rb.transform.rotation = Quaternion.RotateTowards(rb.transform.rotation, desiredDirection, Player.TurnSpeed * Time.deltaTime);
+            rb.transform.rotation = Quaternion.RotateTowards(rb.transform.rotation, desiredDirection, Player.TurnSpeed * Time.deltaTime);
+        }
 
         //-----Jump Code -----//
 
