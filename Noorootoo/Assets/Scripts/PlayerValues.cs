@@ -15,6 +15,8 @@ public class PlayerValues : MonoBehaviour {
 	public float m_Speed;
 	public float m_JumpSpeed;
 
+	public Animator anim;
+
     public bool isAttacking = false;
     public bool PrimaryAttack = false;
     public bool SecondaryAttack = false;
@@ -55,17 +57,20 @@ public class PlayerValues : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col)
 	{
-		if (col.gameObject.tag == "LeftHand" || col.gameObject.tag == "RightHand")
+		if (col.gameObject.tag == "PrimaryAttack")
 		{
 			m_Health = m_Health - 10;
-          
-		}
 
-		if (col.gameObject.tag == "LeftFoot" || col.gameObject.tag == "RightFoot")
+			anim.SetTrigger("TempHit");
+			//anim.SetBool("isHit", true);
+		}
+		if (col.gameObject.tag == "SecondaryAttack")
 		{
-			m_Health = m_Health - 10;
-		}
+			m_Health = m_Health - 20;
 
+			anim.SetTrigger("TempHit");
+			//anim.SetBool("isHit", true);
+		}
 	}
 
     public void PlayClick()
