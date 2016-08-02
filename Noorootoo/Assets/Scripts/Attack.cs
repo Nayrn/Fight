@@ -88,7 +88,7 @@ public class Attack : MonoBehaviour
 			}
 			else if (Player.SecondaryAttack == true)
 			{
-				if (SecondaryCount < SecondaryCombos.Length)// && CurrentState.IsName(PrimaryCombos[PrimaryCount]))
+				if (SecondaryCount < SecondaryCombos.Length - 1)// && CurrentState.IsName(PrimaryCombos[PrimaryCount]))
 					SecondaryCount++;
 			}
 
