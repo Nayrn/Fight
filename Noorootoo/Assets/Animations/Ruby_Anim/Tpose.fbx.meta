@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 71b5b8b4623234a4583468ba3764d729
-timeCreated: 1470010358
+timeCreated: 1469516246
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
@@ -104,7 +104,6 @@ ModelImporter:
     100192: Ruby_Root
     100194: Sword1
     100196: //RootNode
-    100198: rubysword:polySurface1
     400000: Back_Head_Squash_JNT
     400002: Back_Lower_Body_Sqush_JNT
     400004: Back_Middle_Body_Sqush_JNT
@@ -204,16 +203,13 @@ ModelImporter:
     400192: Ruby_Root
     400194: Sword1
     400196: //RootNode
-    400198: rubysword:polySurface1
     4300000: Ruby__1_:polySurface5
     4300002: Ruby__1_:polySurface2
     4300004: Sword1
-    4300006: rubysword:polySurface1
     9500000: //RootNode
     13700000: Ruby__1_:polySurface2
     13700002: Ruby__1_:polySurface5
     13700004: Sword1
-    13700006: rubysword:polySurface1
   materials:
     importMaterials: 1
     materialName: 0
@@ -228,7 +224,7 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
