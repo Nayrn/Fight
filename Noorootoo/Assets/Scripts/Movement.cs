@@ -59,32 +59,20 @@ public class Movement : MonoBehaviour
 
 		Vector3 inputDirection = new Vector3(Input.GetAxis(Joystick + "Horizontal"), 0, -Input.GetAxis(Joystick + "Vertical"));
 
-		    if(inputDirection.magnitude > 0.0f)
-		    {
-		    	inputDirection.Normalize();
-		    	desiredDirection = Quaternion.LookRotation(inputDirection, Vector3.up);
+		if(inputDirection.magnitude > 0.0f)
+		{
+			inputDirection.Normalize();
+			desiredDirection = Quaternion.LookRotation(inputDirection, Vector3.up);
 
-		    	Quaternion CameraDirection = Quaternion.LookRotation(cameraForward, Vector3.up);
-		    	desiredDirection = CameraDirection * desiredDirection;
+			Quaternion CameraDirection = Quaternion.LookRotation(cameraForward, Vector3.up);
+			desiredDirection = CameraDirection * desiredDirection;
 
-//<<<<<<    < HEAD
-                Vector3 forwardOffset = cameraForward * -Input.GetAxis(Joystick + "Vertical") * Player.m_Speed * Time.deltaTime;
-                Vector3 rightOffset = cameraRight * -Input.GetAxis(Joystick + "Horizontal") * Player.m_Speed * Time.deltaTime;
-                rb.MovePosition(rb.transform.position + forwardOffset + rightOffset);
+            Vector3 forwardOffset = cameraForward * -Input.GetAxis(Joystick + "Vertical") * Player.m_Speed * Time.deltaTime;
+            Vector3 rightOffset = cameraRight * -Input.GetAxis(Joystick + "Horizontal") * Player.m_Speed * Time.deltaTime;
+            rb.MovePosition(rb.transform.position + forwardOffset + rightOffset);
 
-                rb.transform.rotation = Quaternion.RotateTowards(rb.transform.rotation, desiredDirection, Player.TurnSpeed * Time.deltaTime);
-            }
-//=======
-			Vector3 forwardOffset = cameraForward * -Input.GetAxis(Joystick + "Vertical") * Player.m_Speed * Time.deltaTime;
-			Vector3 rightOffset = cameraRight * -Input.GetAxis(Joystick + "Horizontal") * Player.m_Speed * Time.deltaTime;
-
-			//rb.velocity += forwardOffset + rightOffset;
-			rb.MovePosition(rb.transform.position + forwardOffset + rightOffset);
-
-			rb.transform.rotation = Quaternion.RotateTowards(rb.transform.rotation, desiredDirection, Player.TurnSpeed * Time.deltaTime);
-		}
-
-//>>>>>>> 29c59c7f466cc58ae3807a0535b1dc0fd5b594a9
+            rb.transform.rotation = Quaternion.RotateTowards(rb.transform.rotation, desiredDirection, Player.TurnSpeed * Time.deltaTime);
+        }
 
         //-----Jump Code -----//
 
@@ -108,7 +96,6 @@ public class Movement : MonoBehaviour
 		if (Physics.Raycast(transform.position, Vector3.down, 1) == false)
 			PlayerAnimation.SetBool("isGrounded", false);
 	}
-    
 
 	void OnCollisionEnter(Collision col)
 	{
@@ -119,7 +106,7 @@ public class Movement : MonoBehaviour
 		}
 	}
 	
-	private void IdleSwitch()
+	void IdleSwitch()
 	{
 		if(isMoving == false)
 		{
@@ -133,6 +120,4 @@ public class Movement : MonoBehaviour
 			}
 		}
 	}
-
 };
-

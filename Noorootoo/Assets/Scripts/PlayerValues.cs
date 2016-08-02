@@ -22,8 +22,8 @@ public class PlayerValues : MonoBehaviour {
     public bool SecondaryAttack = false;
 
     public float TurnSpeed;
-    public Text healthText;
-    public Text KOText;
+    //public Text healthText;
+    public Image KOImage;
     public Slider p1Slider;
     public Button play;
 	[HideInInspector]
@@ -41,13 +41,13 @@ public class PlayerValues : MonoBehaviour {
     {
       //m_Health--; for testing purposes, does work
       int health = (int)m_Health;
-      healthText.text = health.ToString();
+     // healthText.text = health.ToString();
       p1Slider.value = m_Health;
 
        
         if(m_Health <= 0)
         {
-            KOText.gameObject.SetActive(true);
+            KOImage.gameObject.SetActive(true);
             Time.timeScale = 0;
             // death or KO
             play.gameObject.SetActive(true);
