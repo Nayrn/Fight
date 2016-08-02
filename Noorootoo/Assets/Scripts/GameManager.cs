@@ -63,8 +63,8 @@ public class GameManager : MonoBehaviour {
 		}
 		else if(Mode == GameMode.MultiPlayer)
 		{
-			MainCamera.rect = new Rect(0, 0, 1, 0.5f);
-			Player2Camera.rect = new Rect(0, 0.5f, 1, 0.5f);
+			MainCamera.rect = new Rect(0, 0, 0.5f, 1);
+			Player2Camera.rect = new Rect(0.5f, 0, 0.5f, 1);
 		}
 	}
 }

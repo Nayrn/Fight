@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 
 public class PlayerValues : MonoBehaviour {
 
@@ -13,6 +15,8 @@ public class PlayerValues : MonoBehaviour {
 	public float m_Speed;
 	public float m_JumpSpeed;
 
+	public Animator anim;
+
     public bool isAttacking = false;
     public bool PrimaryAttack = false;
     public bool SecondaryAttack = false;
@@ -21,6 +25,7 @@ public class PlayerValues : MonoBehaviour {
     public Text healthText;
     public Text KOText;
     public Slider p1Slider;
+    public Button play;
 	[HideInInspector]
 	public float fallSpeed = -4;
 
@@ -37,29 +42,39 @@ public class PlayerValues : MonoBehaviour {
       //m_Health--; for testing purposes, does work
       int health = (int)m_Health;
       healthText.text = health.ToString();
-      p1Slider.value = m_Health;        
+      p1Slider.value = m_Health;
 
-
-        if(m_Health < 1)
+       
+        if(m_Health <= 0)
         {
             KOText.gameObject.SetActive(true);
             Time.timeScale = 0;
             // death or KO
-            m_Health = 1;
+            play.gameObject.SetActive(true);
+            m_Health = 0;
         }
 	}
 
-	void OnCollisionEnter(Collision col)
+	void OnTriggerEnter(Collider col)
 	{
-		if (col.gameObject.tag == "LeftHand" || col.gameObject.tag == "RightHand")
-		{
-			m_Health = m_Health - 20;
-		}
-
-		if (col.gameObject.tag == "LeftFoot" || col.gameObject.tag == "RightFoot")
+		if (col.gameObject.tag == "PrimaryAttack")
 		{
 			m_Health = m_Health - 10;
-		}
 
+			anim.SetTrigger("TempHit");
+			//anim.SetBool("isHit", true);
+		}
+		if (col.gameObject.tag == "SecondaryAttack")
+		{
+			m_Health = m_Health - 20;
+
+			anim.SetTrigger("TempHit");
+			//anim.SetBool("isHit", true);
+		}
 	}
+
+    public void PlayClick()
+    {
+       // SceneManager.LoadScene("MAIN SCENCE 2"); // CAUSES YELLING
+    }
 }
