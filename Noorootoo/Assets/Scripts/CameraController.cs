@@ -91,9 +91,16 @@ public class CameraController : MonoBehaviour {
 	}
 	void FreeView()
 	{
-		transform.RotateAround(CameraPivot.position, Vector3.up, Input.GetAxis(Joystick + "CameraHorizontal") * Sensitivity.x);
-		transform.RotateAround(CameraPivot.position, Vector3.right, -Input.GetAxis(Joystick + "CameraVertical") * Sensitivity.y);
-
+		if (Joystick == JoystickNum.Keyboard)
+		{
+			transform.RotateAround(CameraPivot.position, Vector3.up, Input.GetAxis("Mouse X") * Sensitivity.x);
+			transform.RotateAround(CameraPivot.position, Vector3.right, -Input.GetAxis("Mouse Y") * Sensitivity.y);
+		}
+		else
+		{
+			transform.RotateAround(CameraPivot.position, Vector3.up, Input.GetAxis(Joystick + "CameraHorizontal") * Sensitivity.x);
+			transform.RotateAround(CameraPivot.position, Vector3.right, -Input.GetAxis(Joystick + "CameraVertical") * Sensitivity.y);
+		}
 		transform.LookAt(FollowedObject.transform.position);
 	}
 }
