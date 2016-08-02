@@ -951,9 +951,9 @@ AnimatorStateTransition:
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 3
+  - m_ConditionMode: 6
     m_ConditionEvent: PrimaryCombo
-    m_EventTreshold: 1
+    m_EventTreshold: 2
   - m_ConditionMode: 1
     m_ConditionEvent: PrimaryAttack
     m_EventTreshold: 0
@@ -1218,9 +1218,9 @@ AnimatorStateTransition:
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 3
+  - m_ConditionMode: 6
     m_ConditionEvent: PrimaryCombo
-    m_EventTreshold: 0
+    m_EventTreshold: 1
   - m_ConditionMode: 1
     m_ConditionEvent: PrimaryAttack
     m_EventTreshold: 0
@@ -1269,9 +1269,9 @@ AnimatorStateTransition:
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 3
+  - m_ConditionMode: 6
     m_ConditionEvent: PrimaryCombo
-    m_EventTreshold: 2
+    m_EventTreshold: 3
   - m_ConditionMode: 1
     m_ConditionEvent: PrimaryAttack
     m_EventTreshold: 0
@@ -2149,17 +2149,17 @@ AnimatorStateMachine:
       second:
       - {fileID: 110983584}
     data:
-      first: {fileID: 110722820}
-      second:
-      - {fileID: 110993948}
-      - {fileID: 110927062}
-      - {fileID: 110924860}
-    data:
       first: {fileID: 110754594}
       second:
       - {fileID: 110975192}
       - {fileID: 110964374}
       - {fileID: 110909126}
+    data:
+      first: {fileID: 110722820}
+      second:
+      - {fileID: 110993948}
+      - {fileID: 110927062}
+      - {fileID: 110924860}
     data:
       first: {fileID: 110751850}
       second:

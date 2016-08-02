@@ -23,9 +23,9 @@ public class PlayerValues : MonoBehaviour {
 
     public float TurnSpeed;
     public Text healthText;
-    public Text KOText;
+    public Image KOText;
     public Slider p1Slider;
-    public Button play;
+   // public Button play;
 	[HideInInspector]
 	public float fallSpeed = -4;
 
@@ -50,7 +50,7 @@ public class PlayerValues : MonoBehaviour {
             KOText.gameObject.SetActive(true);
             Time.timeScale = 0;
             // death or KO
-            play.gameObject.SetActive(true);
+            //play.gameObject.SetActive(true);
             m_Health = 0;
         }
 	}
@@ -61,6 +61,7 @@ public class PlayerValues : MonoBehaviour {
 		{
 			m_Health = m_Health - 10;
 
+			col.enabled = false;
 			anim.SetTrigger("TempHit");
 			//anim.SetBool("isHit", true);
 		}
@@ -68,6 +69,7 @@ public class PlayerValues : MonoBehaviour {
 		{
 			m_Health = m_Health - 20;
 
+			col.enabled = false;
 			anim.SetTrigger("TempHit");
 			//anim.SetBool("isHit", true);
 		}

@@ -36,7 +36,7 @@ public class CameraController : MonoBehaviour {
 	{
 		//rotation + position lerp
 
-		transform.rotation.x
+		//transform.rotation.x
 	}
 
 	// Update is called once per frame

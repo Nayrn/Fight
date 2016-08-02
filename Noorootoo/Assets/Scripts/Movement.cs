@@ -86,8 +86,8 @@ public class Movement : MonoBehaviour
 				Player.isGrounded = false;
 				PlayerAnimation.SetBool("isGrounded", Player.isGrounded);
 				PlayerAnimation.SetTrigger("JumpPressed");
-				if (Player.isGrounded == false && transform.position.y < 4f)
-					rb.AddForce(0, 6, 0, ForceMode.Impulse);
+				if (Player.isGrounded == false)
+					rb.AddForce(0, 9, 0, ForceMode.Impulse);
 				else
 					Player.fallSpeed = -4;
 			}
@@ -95,7 +95,7 @@ public class Movement : MonoBehaviour
 
 		}
 
-		if (Physics.Raycast(transform.position, Vector3.down, 1) == false)
+		if (Physics.Raycast(transform.position, Vector3.down, 3) == false)
 			PlayerAnimation.SetBool("isGrounded", false);
 	}
 
