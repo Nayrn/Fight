@@ -55,11 +55,8 @@
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Movement.cs" />
      <Compile Include="Assets\Scripts\PlayerValues.cs" />
-<<<<<<< HEAD
      <Compile Include="Assets\Scripts\TimerThingyScript.cs" />
-=======
      <Compile Include="Assets\Scripts\menu.cs" />
->>>>>>> 29c59c7f466cc58ae3807a0535b1dc0fd5b594a9
      <None Include="Assets\EasyRoadsMeshGen\ReadMe.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

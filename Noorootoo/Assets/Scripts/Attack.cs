@@ -94,7 +94,7 @@ public class Attack : MonoBehaviour
 					colliderTime = CurrentState.length + leewayTime;
 			}
         }
-<<<<<<< HEAD
+//<<<<<<< HEAD
 
         if (Input.GetButtonDown(Joystick + "Kick") && Player.PrimaryAttack == false)   // Kick
         {
@@ -108,8 +108,8 @@ public class Attack : MonoBehaviour
 			if (Anim.IsName(SecondaryCombos[SecondaryCount]) == true && colliderTime == 0) ;
 				colliderTime = Anim.length;
         }
-=======
->>>>>>> 29c59c7f466cc58ae3807a0535b1dc0fd5b594a9
+//=======
+//>>>>>>> 29c59c7f466cc58ae3807a0535b1dc0fd5b594a9
     }
 
     //void OnCollisionEnter(Collision col)
