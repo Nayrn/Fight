@@ -21,14 +21,12 @@ public class menu : MonoBehaviour
         
     }
 
-    void OnMouseDown()
+    void OnClick()
     {
         if (bStart == true)
         {
             //when it says you can use scenemanager, it LIES
             Application.LoadLevel("MAIN SCENCE 2");
-            string scene = "MAIN SCENCE 2";
-            SceneManager.LoadScene(scene, LoadSceneMode.Single);
             
             Debug.Log("i SHOULD work");
         }

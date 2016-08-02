@@ -32,7 +32,12 @@ public class CameraController : MonoBehaviour {
 		UpdatePivotRotation();
 	}
 
+	void Update()
+	{
+		//rotation + position lerp
 
+		transform.rotation.x
+	}
 
 	// Update is called once per frame
 	void LateUpdate()
