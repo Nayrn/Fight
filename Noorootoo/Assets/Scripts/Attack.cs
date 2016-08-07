@@ -1,6 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public struct Move
+{
+    public string name;
+
+    public int damage;
+    public ElemTrait element;
+};
 
 public class Attack : MonoBehaviour
 {
@@ -11,7 +18,7 @@ public class Attack : MonoBehaviour
 	public string[] SecondaryCombos;
 	public int PrimaryCount = 0;
 	public int SecondaryCount = 0;
-
+	
 	private float leewayTime = 4.5f;
 
 	private AnimatorStateInfo CurrentState;
@@ -34,7 +41,7 @@ public class Attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		AttackUpdate();
+		ActionUpdate();
     }
 
     public void CollidersOn()
@@ -77,83 +84,114 @@ public class Attack : MonoBehaviour
 		}
     }
 
-	void AttackUpdate()
+	void ActionUpdate()
 	{
-		if (Input.GetButtonDown(Joystick + "Punch") && Player.SecondaryAttack == false)// punch
-		{
-			CurrentState = anim.GetCurrentAnimatorStateInfo(0);
-			//-----Setting attack to true OR increasing Attackcount-----//
-			if (!Player.PrimaryAttack)
-			{
-				Player.PrimaryAttack = true;
-				colliderTime = 3.0f;
+        //-----LIGHT ATTACK CODE-----//
+        if(Player.isGrounded && Input.GetButtonDown(Joystick + "Block"))
+        {
+            Player.isStasis = true;
+            Player.isBlocking = true;
 
-				++PrimaryCount;
-				// set colliders to active
-				CollidersOn();
-				// punch animation  
-				anim.SetBool("PrimaryAttack", Player.PrimaryAttack);
-			}
-			else if (Player.PrimaryAttack && CurrentState.IsName(PrimaryCombos[PrimaryCount]))
-			{
-				if (PrimaryCount < PrimaryCombos.Length)
-					PrimaryCount++;
-			}
-			//-----------------------------------------------------------//
-
-			//-----Setting the animation time and triggers if not at max combo-----//
-			if (PrimaryCount < PrimaryCombos.Length)
-			{
-				anim.SetInteger("PrimaryCombo", PrimaryCount);
-
-				if (CurrentState.IsName(PrimaryCombos[PrimaryCount]))
-					colliderTime = CurrentState.length + leewayTime;
-			}
-			else if(CurrentState.IsName(PrimaryCombos[PrimaryCombos.Length - 1]))
-				colliderTime = 0;
-
-			//-----Resetting the count to 0-----//
-			if (PrimaryCount == PrimaryCombos.Length && CurrentState.IsName(PrimaryCombos[PrimaryCombos.Length - 1]))// && CurrentState.IsName(SecondaryCombos[SecondaryCount]))
-				PrimaryCount = 0;
+			anim.SetBool("isBlocking", Player.isBlocking);
+			anim.SetTrigger("Block");
 		}
-		if (Input.GetButtonDown(Joystick + "Kick") && Player.PrimaryAttack == false)// punch
+		else if (Input.GetButtonUp(Joystick + "Block"))
 		{
-			//-----Getting current Animation state-----//
-			CurrentState = anim.GetCurrentAnimatorStateInfo(0);
+			Player.isStasis = false;
+			Player.isBlocking = false;
 
-			//-----Setting attack to true OR increasing Attackcount-----//
-			if (!Player.SecondaryAttack)
-			{
-				Player.SecondaryAttack = true;
-				colliderTime = 3.0f;
-
-				++SecondaryCount;
-				// set colliders to active
-				CollidersOn();
-				// punch animation  
-				anim.SetBool("SecondaryAttack", Player.SecondaryAttack);
-			}
-			else if (Player.SecondaryAttack && CurrentState.IsName(SecondaryCombos[SecondaryCount]))
-			{
-				if (SecondaryCount < SecondaryCombos.Length -1)
-					SecondaryCount++;
-			}
-			//-----------------------------------------------------------//
-
-			//-----Setting the animation time and triggers if not at max combo-----//
-			if (SecondaryCount < SecondaryCombos.Length)
-			{
-				anim.SetInteger("SecondaryCombo", SecondaryCount);
-
-				if (CurrentState.IsName(SecondaryCombos[SecondaryCount]))
-					colliderTime = CurrentState.length + leewayTime;
-			}
-			else if (CurrentState.IsName(SecondaryCombos[SecondaryCombos.Length - 1]))
-				colliderTime = 0;
-
-			//-----Resetting the count to 0-----//
-			if (SecondaryCount == SecondaryCombos.Length && CurrentState.IsName(SecondaryCombos[SecondaryCombos.Length - 1]))// && CurrentState.IsName(SecondaryCombos[SecondaryCount]))
-				SecondaryCount = 0;
+			anim.SetBool("isBlocking", Player.isBlocking);
 		}
+		else
+		{
+			//Airdodge
+		}
+
+		if (!Player.isBlocking)
+        {
+            if (Input.GetButtonDown(Joystick + "Primary") && Player.SecondaryAttack == false)// punch
+            {
+                CurrentState = anim.GetCurrentAnimatorStateInfo(0);
+                //-----Setting attack to true OR increasing Attackcount-----//
+                if (!Player.PrimaryAttack)
+                {
+                    Player.PrimaryAttack = true;
+                    colliderTime = 3.0f;
+
+                    ++PrimaryCount;
+                    // set colliders to active
+                    CollidersOn();
+                    // punch animation  
+                    anim.SetBool("PrimaryAttack", Player.PrimaryAttack);
+                }
+                else if (Player.PrimaryAttack && CurrentState.IsName(PrimaryCombos[PrimaryCount]))
+                {
+                    if (PrimaryCount < PrimaryCombos.Length)
+                        PrimaryCount++;
+
+
+                }
+                //-----------------------------------------------------------//
+
+                //-----Setting the animation time and triggers if not at max combo-----//
+                if (PrimaryCount < PrimaryCombos.Length)
+                {
+                    anim.SetInteger("PrimaryCombo", PrimaryCount);
+
+                    if (CurrentState.IsName(PrimaryCombos[PrimaryCount]))
+                        colliderTime = CurrentState.length + leewayTime;
+                }
+                else if (CurrentState.IsName(PrimaryCombos[PrimaryCombos.Length - 1]))
+                    colliderTime = 0;
+
+                //-----Resetting the count to 0-----//
+                if (PrimaryCount == PrimaryCombos.Length && CurrentState.IsName(PrimaryCombos[PrimaryCombos.Length - 1]))// && CurrentState.IsName(SecondaryCombos[SecondaryCount]))
+                    PrimaryCount = 0;
+            }
+
+
+            //-----HEAVY ATTACK CODE-----//
+
+
+            if (Input.GetButtonDown(Joystick + "Secondary") && Player.PrimaryAttack == false)// punch
+            {
+                //-----Getting current Animation state-----//
+                CurrentState = anim.GetCurrentAnimatorStateInfo(0);
+
+                //-----Setting attack to true OR increasing Attackcount-----//
+                if (!Player.SecondaryAttack)
+                {
+                    Player.SecondaryAttack = true;
+                    colliderTime = 3.0f;
+
+                    ++SecondaryCount;
+                    // set colliders to active
+                    CollidersOn();
+                    // punch animation  
+                    anim.SetBool("SecondaryAttack", Player.SecondaryAttack);
+                }
+                else if (Player.SecondaryAttack && CurrentState.IsName(SecondaryCombos[SecondaryCount]))
+                {
+                    if (SecondaryCount < SecondaryCombos.Length - 1)
+                        SecondaryCount++;
+                }
+                //-----------------------------------------------------------//
+
+                //-----Setting the animation time and triggers if not at max combo-----//
+                if (SecondaryCount < SecondaryCombos.Length)
+                {
+                    anim.SetInteger("SecondaryCombo", SecondaryCount);
+
+                    if (CurrentState.IsName(SecondaryCombos[SecondaryCount]))
+                        colliderTime = CurrentState.length + leewayTime;
+                }
+                else if (CurrentState.IsName(SecondaryCombos[SecondaryCombos.Length - 1]))
+                    colliderTime = 0;
+
+                //-----Resetting the count to 0-----//
+                if (SecondaryCount == SecondaryCombos.Length && CurrentState.IsName(SecondaryCombos[SecondaryCombos.Length - 1]))// && CurrentState.IsName(SecondaryCombos[SecondaryCount]))
+                    SecondaryCount = 0;
+            }
+        }
 	}
 }

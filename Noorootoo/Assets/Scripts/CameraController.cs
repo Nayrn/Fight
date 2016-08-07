@@ -9,7 +9,10 @@ public class CameraController : MonoBehaviour {
 	private float yOffsetMax = 18;
 	private float yOffsetMin = -0.5f;
 
-	public GameObject FollowedObject;
+    float _FVX = 0.0f;
+    float _FVY = 0.0f;
+
+    public GameObject FollowedObject;
 	public GameObject TrackedObject;
 	public GameManager Game;
 
@@ -21,9 +24,6 @@ public class CameraController : MonoBehaviour {
 	public Vector3 CameraOffset = new Vector3();
 	private Vector3 TargetOffset = new Vector3();
 	private Vector3 FreeOffset = new Vector3();
-
-	float xPos = 0;
-	float yPos = 0;
 
 	public Vector3 Sensitivity = new Vector3(4.0f, 3.0f, 1.0f);
 	// Use this for initialization
@@ -45,7 +45,7 @@ public class CameraController : MonoBehaviour {
 		//rotation + position lerp
 		CameraPivot.transform.position = FollowedObject.transform.position;// Vector3.Lerp(CameraPivot.transform.position, FollowedObject.transform.position, Time.deltaTime * 5);
 
-		if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetButtonDown(Joystick + "LockOn"))
 			Targeted = !Targeted;
 
 		if (Targeted == true)
@@ -96,16 +96,23 @@ public class CameraController : MonoBehaviour {
 	}
 	void FreeView()
 	{
+        
 		if (Joystick == JoystickNum.Keyboard)
 		{
-			transform.RotateAround(CameraPivot.position, Vector3.up, Input.GetAxis("Mouse X") * Sensitivity.x);
-			transform.RotateAround(CameraPivot.position, Vector3.right, Input.GetAxis("Mouse Y") * Sensitivity.y);
+            _FVX += Input.GetAxis("Mouse X") * Sensitivity.x;
+            _FVY += Input.GetAxis("Mouse Y") * Sensitivity.y;
 		}
 		else
 		{
-			transform.RotateAround(CameraPivot.position, Vector3.up, Input.GetAxis(Joystick + "CameraHorizontal") * Sensitivity.x);
-			transform.RotateAround(CameraPivot.position, Vector3.right, Input.GetAxis(Joystick + "CameraVertical") * Sensitivity.y);
-		}
+            _FVX += Input.GetAxis(Joystick + "CameraHorizontal") * Sensitivity.x;
+            _FVY += Input.GetAxis(Joystick + "CameraVertical") * Sensitivity.y;
+        }
+
+        _FVY = Mathf.Clamp(_FVY, 10, 55);
+
+        Vector3 direction = new Vector3(0, 0, -5);
+        Quaternion rotation = Quaternion.Euler(_FVY, _FVX, 0);
+        transform.position = FollowedObject.transform.position + rotation * direction;
 		transform.LookAt(FollowedObject.transform.position);
 	}
 }
