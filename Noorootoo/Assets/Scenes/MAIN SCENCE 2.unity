@@ -66,7 +66,8 @@ LightmapSettings:
     m_FinalGather: 0
     m_FinalGatherRayCount: 1024
     m_ReflectionCompression: 2
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000001, guid: 8669816db90981547ac4a4a47ebd2119,
+    type: 2}
   m_RuntimeCPUUsage: 25
 --- !u!196 &4
 NavMeshSettings:
@@ -5709,18 +5710,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Health: 0
-  m_Damage: 0
+  Attribute: 0
+  isStasis: 0
+  isBlocking: 0
   isGrounded: 0
+  DoubleJump: 1
   m_Speed: 0
-  m_JumpSpeed: 0
   anim: {fileID: 0}
   isAttacking: 0
   PrimaryAttack: 0
   SecondaryAttack: 0
   TurnSpeed: 0
-  KOImage: {fileID: 0}
+  healthText: {fileID: 0}
+  KOText: {fileID: 0}
   p1Slider: {fileID: 0}
-  play: {fileID: 0}
   fallSpeed: -4
 --- !u!1 &782645077
 GameObject:
@@ -12055,18 +12058,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Health: 100
-  m_Damage: 0
+  Attribute: 0
+  isStasis: 0
+  isBlocking: 0
   isGrounded: 0
+  DoubleJump: 1
   m_Speed: 5
-  m_JumpSpeed: 0
   anim: {fileID: 2087558974}
   isAttacking: 0
   PrimaryAttack: 0
   SecondaryAttack: 0
   TurnSpeed: 720
-  KOImage: {fileID: 1002301142}
+  healthText: {fileID: 0}
+  KOText: {fileID: 0}
   p1Slider: {fileID: 1314828884}
-  play: {fileID: 776003193}
   fallSpeed: -4
 --- !u!114 &1712766717
 MonoBehaviour:
