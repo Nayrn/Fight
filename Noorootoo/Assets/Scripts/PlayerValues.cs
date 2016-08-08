@@ -4,28 +4,74 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
 
+public enum ElemTrait
+{
+    FIRE,
+    WATER,
+    EARTH,
+    AIR,
+    SOUL,
+    UNASPECTED
+}
+
 public class PlayerValues : MonoBehaviour {
 
+    //-----CONST VARIABLES-----//
 	private const float MAX_HEALTH = 100;
 
+    //-----HEALTH VARIABLES-----//
+
+    //-----Status Variables, Damage to be moved to upcoming "Move Struct" in "Attack.cs"
 	public float m_Health;
-	public float m_Damage;
 
-	public bool isGrounded;
-	public float m_Speed;
-	public float m_JumpSpeed;
+    public ElemTrait Attribute;
 
-	public Animator anim;
+    public bool isStasis = false;
+    public bool isBlocking = false;
 
+
+    //-----SOUL VARIABLES-----//
+    public float m_soulAmount;
+
+    //----------MOVEMENT VARIABLES-----//
+
+    //-----Variable used in jump, is turned off if above 3u above the ground, or if Jump is pressed
+    [HideInInspector]
+    public bool isGrounded;
+    //-----DoubleJump variable used in determining how many jumps have been used up
+    //-----True if player HAS NOT used up their double jump
+    public bool DoubleJump = true;
+
+    //-----Speed variable, 5 roughly matches the speed ad which the animations play
+    //-----Characters skate if variable is higher
+    [HideInInspector]
+    public float m_Speed = 5;
+
+    //-----Access to the animator, allows for Hit animations and Death animations
+	public Animator anim = new Animator();
+
+
+    //----------ATTACK VARIABLES-----//
+
+
+    //-----Attack variables used in Attack.cs, stored here for cleanliness
     public bool isAttacking = false;
     public bool PrimaryAttack = false;
     public bool SecondaryAttack = false;
 
-    public float TurnSpeed;
-    //public Text healthText;
-    public Image KOImage;
+
+    //----------EXTRA VARIABLES-----//
+
+
+    //-----Turn Speed. Increase to hasten the rate at which a character turns on the spot. default is 780
+    public float TurnSpeed = 780.0f;
+
+    //-----UI pieces
+  
+    public Image KOText;
     public Slider p1Slider;
-    public Button play;
+    public Slider SoulSlider;
+   // public Button play;
 	[HideInInspector]
 	public float fallSpeed = -4;
 
@@ -33,48 +79,57 @@ public class PlayerValues : MonoBehaviour {
 	void Start ()
     {
 		m_Health = MAX_HEALTH;
-        
+        m_soulAmount = 0;
+        SoulSlider.maxValue = 100;
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-      //m_Health--; for testing purposes, does work
+   
       int health = (int)m_Health;
-     // healthText.text = health.ToString();
+      
       p1Slider.value = m_Health;
+      SoulSlider.value = m_soulAmount;
 
-       
-        if(m_Health <= 0)
+
+        if (m_Health <= 0)
         {
-            KOImage.gameObject.SetActive(true);
+            KOText.gameObject.SetActive(true);
             Time.timeScale = 0;
             // death or KO
-            play.gameObject.SetActive(true);
+            //play.gameObject.SetActive(true);
             m_Health = 0;
         }
+
+        //------TESTING, DOES WORK ------
+       
+          if(m_soulAmount > 100)
+          {
+              m_soulAmount = 100;
+          }            
+        
 	}
 
 	void OnTriggerEnter(Collider col)
 	{
-		if (col.gameObject.tag == "PrimaryAttack")
+		if (!isBlocking)
 		{
-			m_Health = m_Health - 10;
-
-			anim.SetTrigger("TempHit");
-			//anim.SetBool("isHit", true);
-		}
-		if (col.gameObject.tag == "SecondaryAttack")
-		{
-			m_Health = m_Health - 20;
-
-			anim.SetTrigger("TempHit");
-			//anim.SetBool("isHit", true);
+			if (col.gameObject.tag == "PrimaryAttack")
+			{
+				m_Health -=  10;
+                isAttacking = true;
+				col.enabled = false;
+				anim.SetTrigger("TempHit");
+               
+            }
+			if (col.gameObject.tag == "SecondaryAttack")
+			{
+				m_Health -= 20;
+                isAttacking = true;
+				col.enabled = false;
+				anim.SetTrigger("TempHit");			
+			}
 		}
 	}
-
-    public void PlayClick()
-    {
-       // SceneManager.LoadScene("MAIN SCENCE 2"); // CAUSES YELLING
-    }
 }

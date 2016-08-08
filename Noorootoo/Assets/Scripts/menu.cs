@@ -26,7 +26,7 @@ public class menu : MonoBehaviour
         if (bStart == true)
         {
             //when it says you can use scenemanager, it LIES
-            Application.LoadLevel("MAIN SCENCE 2");
+            SceneManager.LoadScene("main build", LoadSceneMode.Single);
             
             Debug.Log("i SHOULD work");
         }
