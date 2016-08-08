@@ -71,7 +71,8 @@ LightmapSettings:
     m_FinalGatherFiltering: 1
     m_FinalGatherRayCount: 1024
     m_ReflectionCompression: 2
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000001, guid: 8669816db90981547ac4a4a47ebd2119,
+    type: 2}
   m_RuntimeCPUUsage: 25
 --- !u!196 &4
 NavMeshSettings:
@@ -5682,7 +5683,10 @@ MonoBehaviour:
   healthText: {fileID: 0}
   KOText: {fileID: 0}
   p1Slider: {fileID: 0}
+<<<<<<< HEAD
   SoulSlider: {fileID: 0}
+=======
+>>>>>>> 766f9a05b49b7e6ee96db33102bf6b98268dfbcb
   fallSpeed: -4
 --- !u!1 &782645077
 GameObject:
@@ -11916,22 +11920,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4087cf492fa69ef4ab4b2bb980f96c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   m_Health: 0
+=======
+  m_Health: 100
+>>>>>>> 766f9a05b49b7e6ee96db33102bf6b98268dfbcb
   Attribute: 0
   isStasis: 0
   isBlocking: 0
   isGrounded: 0
   DoubleJump: 1
+<<<<<<< HEAD
   m_Speed: 4
+=======
+  m_Speed: 5
+>>>>>>> 766f9a05b49b7e6ee96db33102bf6b98268dfbcb
   anim: {fileID: 2087558974}
   isAttacking: 0
   PrimaryAttack: 0
   SecondaryAttack: 0
+<<<<<<< HEAD
   TurnSpeed: 0
   healthText: {fileID: 756310394}
   KOText: {fileID: 1002301142}
   p1Slider: {fileID: 1314828884}
   SoulSlider: {fileID: 51592582}
+=======
+  TurnSpeed: 720
+  healthText: {fileID: 0}
+  KOText: {fileID: 0}
+  p1Slider: {fileID: 1314828884}
+>>>>>>> 766f9a05b49b7e6ee96db33102bf6b98268dfbcb
   fallSpeed: -4
 --- !u!114 &1712766717
 MonoBehaviour:

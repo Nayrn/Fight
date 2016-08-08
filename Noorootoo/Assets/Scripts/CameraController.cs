@@ -51,8 +51,13 @@ public class CameraController : MonoBehaviour {
         if (Input.GetButtonDown(Joystick + "LockOn"))
 			Targeted = !Targeted;
 
+		//-----Swaps views if targeted is changed-----//
 		if (Targeted == true)
+		{
 			TargetView();
+			_FVX = 0;
+			_FVY = 0;
+		}
 		else
 			FreeView();
 	}
@@ -116,6 +121,9 @@ public class CameraController : MonoBehaviour {
         Vector3 direction = new Vector3(0, 0, -5);
         Quaternion rotation = Quaternion.Euler(_FVY, _FVX, 0);
         transform.position = FollowedObject.transform.position + rotation * direction;
+
+		Quaternion lookAt = Quaternion.LookRotation(FollowedObject.transform.position);
+		transform.rotation = Quaternion.Slerp(transform.rotation, lookAt, Time.deltaTime * 5.0f);
 		transform.LookAt(FollowedObject.transform.position);
 	}
 }
