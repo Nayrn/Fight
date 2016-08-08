@@ -16,7 +16,7 @@ public enum ElemTrait
 public class PlayerValues : MonoBehaviour {
 
     //-----CONST VARIABLES-----//
-	private const float MAX_HEALTH = 100;
+	private const float MAX_HEALTH = 450;
 
     //-----HEALTH VARIABLES-----//
 
