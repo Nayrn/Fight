@@ -11,6 +11,10 @@ TagManager:
   - RightHand
   - PrimaryAttack
   - SecondaryAttack
+  - Player1
+  - Player2
+  - PrimaryP2
+  - SecondaryP2
   layers:
   - Default
   - TransparentFX
