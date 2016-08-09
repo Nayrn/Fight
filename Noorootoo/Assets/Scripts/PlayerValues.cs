@@ -17,7 +17,9 @@ public enum ElemTrait
 public class PlayerValues : MonoBehaviour {
 
     //-----CONST VARIABLES-----//
-	private const float MAX_HEALTH = 100;
+	private const float MAX_HEALTH = 450;
+
+    //-----HEALTH VARIABLES-----//
 
     //-----Status Variables, Damage to be moved to upcoming "Move Struct" in "Attack.cs"
 	public float m_Health;
@@ -27,21 +29,13 @@ public class PlayerValues : MonoBehaviour {
     public bool isStasis = false;
     public bool isBlocking = false;
 
-	//Opponent Variable
-	public GameObject Opponent;
-
     //-----SOUL VARIABLES-----//
     public float m_soulAmount;
 
-	//-----CONTROLLER VARIABLES-----//
+    //----------MOVEMENT VARIABLES-----//
 
-	public JoystickNum Joystick = JoystickNum.Keyboard;
-	public bool Targeted = false;
-
-	//----------MOVEMENT VARIABLES-----//
-
-	//-----Variable used in jump, is turned off if above 3u above the ground, or if Jump is pressed
-	[HideInInspector]
+    //-----Variable used in jump, is turned off if above 3u above the ground, or if Jump is pressed
+    [HideInInspector]
     public bool isGrounded;
     //-----DoubleJump variable used in determining how many jumps have been used up
     //-----True if player HAS NOT used up their double jump
@@ -53,7 +47,7 @@ public class PlayerValues : MonoBehaviour {
     public float m_Speed = 5;
 
     //-----Access to the animator, allows for Hit animations and Death animations
-	public Animator PlayerAnimation = new Animator();
+	public Animator anim = new Animator();
 
 
     //----------ATTACK VARIABLES-----//
@@ -76,13 +70,20 @@ public class PlayerValues : MonoBehaviour {
     public Image KOText;
     public Slider p1Slider;
     public Slider SoulSlider;
+   // public Button play;
+	[HideInInspector]
+	public float fallSpeed = -4;
 
-	// Use this for initialization
-	void Start ()
+
+    private float staticTime = 0.0f;
+
+    // Use this for initialization
+    void Start ()
     {
 		m_Health = MAX_HEALTH;
         m_soulAmount = 0;
         SoulSlider.maxValue = 100;
+        Attribute = ElemTrait.UNASPECTED;
 	}
 	
 	// Update is called once per frame
@@ -111,6 +112,37 @@ public class PlayerValues : MonoBehaviour {
               m_soulAmount = 100;
           }            
         
+
+          //-----INPUT FOR ELEMENTS-------
+    
+            
+          //if(Input.GetKey(KeyCode.I)) // FIRE
+          //{
+              //Attribute = ElemTrait.FIRE;
+          //}
+
+          //if(Input.GetKey(KeyCode.L)) // EARTH
+          //{
+             //Attribute = ElemTrait.EARTH;
+          //}
+
+          //if(Input.GetKey(KeyCode.K)) //AIR
+          //{
+                //Attribute = ElemTrait.AIR;
+          //}
+
+          //if(Input.GetKey(KeyCode.J)) // WATER
+          //{
+            //Attribute = ElemTrait.WATER;
+          //}
+        //--------------------------------
+
+        if(isStasis)
+        {
+            staticTime -= Time.deltaTime;
+            if (staticTime <= 0.0f)
+                isStasis = false;
+        }
 	}
 
 	void OnTriggerEnter(Collider col)
@@ -119,19 +151,30 @@ public class PlayerValues : MonoBehaviour {
 		{
 			if (col.gameObject.tag == "PrimaryAttack")
 			{
-				m_Health -=  1;
+				m_Health -=  10;
                 isAttacking = true;
 				col.enabled = false;
-				PlayerAnimation.SetTrigger("TempHit");
+				anim.SetTrigger("TempHit");
                
             }
 			if (col.gameObject.tag == "SecondaryAttack")
 			{
-				m_Health -= 5;
+				m_Health -= 20;
                 isAttacking = true;
 				col.enabled = false;
-				PlayerAnimation.SetTrigger("TempHit");			
+				anim.SetTrigger("TempHit");			
 			}
 		}
 	}
+
+   ElemTrait Strength(ElemTrait elem)
+    {
+        return elem;
+    }
+
+    public void MakePlayerStatic(float time)
+    {
+        isStasis = true;
+        staticTime = time;
+    }
 }

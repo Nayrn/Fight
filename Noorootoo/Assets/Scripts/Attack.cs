@@ -103,7 +103,7 @@ public class Attack : MonoBehaviour
 		}
 		else
 		{
-			//Airdodge
+			//Airdoge
 		}
 
 		if (!Player.isBlocking)

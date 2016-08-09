@@ -6,42 +6,55 @@ public class CollisionSoul : MonoBehaviour
     public PlayerValues player1;
     public PlayerValues player2;
 
-    public bool p1IsHit;
-    public bool p2IsHit;
 	// Use this for initialization
 	void Start ()
     {
-        p1IsHit = false;
-        p2IsHit = false;
+     
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        Debug.Log(player2.m_soulAmount);
- 
-
+      
 	}
 
     void OnTriggerEnter(Collider col)
     {
-        // fill up soul for p1
+        // fill up soul for p1 and stop p2 movement
         if (col.gameObject.tag == "PrimaryAttack")
         {
-            p2IsHit = true;
             player1.m_soulAmount = player1.m_soulAmount + 16.0f;
+
+            //-----WAS TRYING TO KEEP THE PLAYER STILL  
+            player2.MakePlayerStatic(0.5f);
+            //player1.MakePlayerStatic(2.5f);
         }
- 
+     
+        
 
-
-        //fill up soul for p2
-        if (col.gameObject.tag == "PrimaryP2")
+        if (col.gameObject.tag == "SecondaryAttack")
         {
-            p1IsHit = true;
-            player2.m_soulAmount = player2.m_soulAmount + 16.0f;
+            player1.m_soulAmount = player1.m_soulAmount + 16.0f;
+            player2.isStasis = true;
         }
+        
 
 
+
+        //fill up soul for p2 and stop p1 movements
+        if (col.gameObject.tag == "PrimaryP2")
+        {           
+            player2.m_soulAmount = player2.m_soulAmount + 16.0f;
+            player1.isStasis = true;
+        }
+      
+        if (col.gameObject.tag == "SecondaryP2")
+        {
+            player2.m_soulAmount = player2.m_soulAmount + 16.0f;
+            player1.isStasis = true;    
+        }
 
     }
+
+
 }
