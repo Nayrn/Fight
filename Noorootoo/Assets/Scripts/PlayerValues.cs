@@ -166,15 +166,4 @@ public class PlayerValues : MonoBehaviour {
 			}
 		}
 	}
-
-   ElemTrait Strength(ElemTrait elem)
-    {
-        return elem;
-    }
-
-    public void MakePlayerStatic(float time)
-    {
-        isStasis = true;
-        staticTime = time;
-    }
 }
