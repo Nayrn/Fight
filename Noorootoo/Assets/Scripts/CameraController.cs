@@ -4,21 +4,20 @@ using System;
 
 public class CameraController : MonoBehaviour {
 
+	private PlayerValues Player;
+
 	private float xOffsetMax = 50;
 	private float xOffsetMin = -50;
 	private float yOffsetMax = 18;
 	private float yOffsetMin = -0.5f;
 
-    float _FVX = 0.0f;
-    float _FVY = 0.0f;
+    float freeViewX = 0.0f;
+    float freeViewY = 0.0f;
 
     public GameObject FollowedObject;
 	public GameObject TrackedObject;
 	public GameManager Game;
 
-	public bool Targeted = true;
-
-	public JoystickNum Joystick = JoystickNum.Keyboard;
 	private Transform CameraPivot;
 
 	public Vector3 CameraOffset = new Vector3();
@@ -30,16 +29,13 @@ public class CameraController : MonoBehaviour {
 	void Start () {
 		CameraPivot = transform.parent;
 		UpdatePivotRotation();
+
+		Player = FollowedObject.GetComponent<PlayerValues>();
 	}
 
 	void Update()
 	{
-        //rotation + position lerp
 
-
-       // transform.rotation.x;
-
-		//transform.rotation.x
 	}
 
 	// Update is called once per frame
@@ -47,16 +43,17 @@ public class CameraController : MonoBehaviour {
 	{
 		//rotation + position lerp
 		CameraPivot.transform.position = FollowedObject.transform.position;// Vector3.Lerp(CameraPivot.transform.position, FollowedObject.transform.position, Time.deltaTime * 5);
+		CameraPivot.transform.LookAt(TrackedObject.transform.position);
 
-        if (Input.GetButtonDown(Joystick + "LockOn"))
-			Targeted = !Targeted;
-
+		if (Input.GetButtonDown(Player.Joystick + "LockOn"))
+		{
+			Player.Targeted = !Player.Targeted;
+			Player.PlayerAnimation.SetBool("isTargeted", Player.Targeted);
+		}
 		//-----Swaps views if targeted is changed-----//
-		if (Targeted == true)
+		if (Player.Targeted == true)
 		{
 			TargetView();
-			_FVX = 0;
-			_FVY = 0;
 		}
 		else
 			FreeView();
@@ -66,27 +63,27 @@ public class CameraController : MonoBehaviour {
 	{
 		Vector3 dir = TrackedObject.transform.position - FollowedObject.transform.position;
 		dir.y = 0.0f;
-		dir.Normalize();
+		//dir.Normalize();
 
 		Quaternion rot = Quaternion.LookRotation(dir);
 
 		Quaternion offsetRot = Quaternion.AngleAxis(CameraOffset.x, Vector3.up);
 		offsetRot *= Quaternion.AngleAxis(CameraOffset.y, Vector3.right);
 
-		CameraPivot.rotation = Quaternion.Lerp(CameraPivot.rotation, rot * offsetRot, Time.deltaTime * 3.0f);
+		transform.rotation = Quaternion.Lerp(transform.rotation, rot * offsetRot, Time.deltaTime * 3.0f);
 	}
 
 	void TargetView()
 	{
-		if (Joystick == JoystickNum.Keyboard)
+		if (Player.Joystick == JoystickNum.Keyboard)
 		{
 			CameraOffset.x += Input.GetAxis("Mouse X") * Sensitivity.x;
 			CameraOffset.y += Input.GetAxis("Mouse Y") * Sensitivity.y;
 		}
 		else
 		{
-			CameraOffset.x += Input.GetAxis(Joystick + "CameraHorizontal") * Sensitivity.x;
-			CameraOffset.y += Input.GetAxis(Joystick + "CameraVertical") * Sensitivity.y;
+			CameraOffset.x += Input.GetAxis(Player.Joystick + "CameraHorizontal") * Sensitivity.x;
+			CameraOffset.y += Input.GetAxis(Player.Joystick + "CameraVertical") * Sensitivity.y;
 		}
 
 		CameraOffset.x = Mathf.Clamp(CameraOffset.x, xOffsetMin, xOffsetMax);
@@ -96,30 +93,29 @@ public class CameraController : MonoBehaviour {
 		Vector3 Midpoint = (TrackedObject.transform.position - FollowedObject.transform.position) / 2;
 		Vector3 MidpointDirection = ((FollowedObject.transform.position + Midpoint) - transform.position).normalized;
 
-		//transform.position = Vector3.Lerp(transform.position, CameraPivot.position + CameraOffset, Time.deltaTime);
+		UpdatePivotRotation();
+
 		Quaternion lookAt = Quaternion.LookRotation(MidpointDirection);
 		transform.rotation = Quaternion.Slerp(transform.rotation, lookAt, Time.deltaTime * 5.0f);
-
-		UpdatePivotRotation();
 	}
 	void FreeView()
 	{
         
-		if (Joystick == JoystickNum.Keyboard)
+		if (Player.Joystick == JoystickNum.Keyboard)
 		{
-            _FVX += Input.GetAxis("Mouse X") * Sensitivity.x;
-            _FVY += Input.GetAxis("Mouse Y") * Sensitivity.y;
+            freeViewX += Input.GetAxis("Mouse X") * Sensitivity.x;
+            freeViewY += Input.GetAxis("Mouse Y") * Sensitivity.y;
 		}
 		else
 		{
-            _FVX += Input.GetAxis(Joystick + "CameraHorizontal") * Sensitivity.x;
-            _FVY += Input.GetAxis(Joystick + "CameraVertical") * Sensitivity.y;
+            freeViewX += Input.GetAxis(Player.Joystick + "CameraHorizontal") * Sensitivity.x;
+            freeViewY += Input.GetAxis(Player.Joystick + "CameraVertical") * Sensitivity.y;
         }
 
-        _FVY = Mathf.Clamp(_FVY, 10, 55);
+        freeViewY = Mathf.Clamp(freeViewY, 10, 55);
 
-        Vector3 direction = new Vector3(0, 0, -5);
-        Quaternion rotation = Quaternion.Euler(_FVY, _FVX, 0);
+		Vector3 direction = new Vector3(0, 0, -5);
+        Quaternion rotation = Quaternion.Euler(freeViewY, freeViewX, 0);
         transform.position = FollowedObject.transform.position + rotation * direction;
 
 		Quaternion lookAt = Quaternion.LookRotation(FollowedObject.transform.position);

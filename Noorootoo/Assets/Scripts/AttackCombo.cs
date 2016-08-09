@@ -4,10 +4,13 @@ using System.Collections;
 public class AttackCombo : StateMachineBehaviour
 {
 	public Collider strikeBox;
+	private PlayerValues Player;
 
 	// OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
 	override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 	{
+		Player = animator.GetComponentInParent<PlayerValues>();
+
 		if (strikeBox.enabled == true)
 			return;
 		else
@@ -15,10 +18,10 @@ public class AttackCombo : StateMachineBehaviour
 	}
 
 	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-	//override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-	//{
-	//
-	//}
+	override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+	{
+		Player = animator.GetComponentInParent<PlayerValues>();
+	}
 
 	// OnStateExit is called when a transition ends and the state machine finishes evaluating this state
 	override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

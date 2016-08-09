@@ -12,21 +12,18 @@ public enum JoystickNum
 
 public class Movement : MonoBehaviour
 {
+	public PlayerValues Player;
+
 	public Rigidbody rb;
-	public JoystickNum Joystick;
 	public Camera cam;
 
     private bool isMoving;
-    public Animator PlayerAnimation;
-
-    public PlayerValues Player;
 	private Quaternion desiredDirection;
 
 	float idleSwitch = 0;
 	// Use this for initialization
 	void Start()
 	{
-		rb = GetComponent<Rigidbody>();
 		Player.isGrounded = true;
         isMoving = false;
     }
@@ -43,15 +40,30 @@ public class Movement : MonoBehaviour
 		if (!Player.isStasis)
 		{
 			//-----Animation Code-----//
-			if (Input.GetAxis(Joystick + "Vertical") < 0 || Input.GetAxis(Joystick + "Vertical") > 0 || Input.GetAxis(Joystick + "Horizontal") < 0 || Input.GetAxis(Joystick + "Horizontal") > 0)
+			if ((Input.GetAxis(Player.Joystick + "Vertical") < 0 || Input.GetAxis(Player.Joystick + "Vertical") > 0 || Input.GetAxis(Player.Joystick + "Horizontal") < 0 || Input.GetAxis(Player.Joystick + "Horizontal") > 0) && Player.isGrounded)
+			{
 				isMoving = true;
+
+				Player.PlayerAnimation.SetLayerWeight(1, 1);
+			}
 			else
+			{
 				isMoving = false;
+				Player.PlayerAnimation.SetLayerWeight(1, 0);
+			}
 
-			PlayerAnimation.SetFloat("MovingX", Input.GetAxis(Joystick + "Horizontal"));
-			PlayerAnimation.SetFloat("MovingZ", -Input.GetAxis(Joystick + "Vertical"));
+			if (Player.Targeted)
+			{
+				Player.PlayerAnimation.SetFloat("MovingX", Input.GetAxis(Player.Joystick + "Horizontal"));
+				Player.PlayerAnimation.SetFloat("MovingZ", -Input.GetAxis(Player.Joystick + "Vertical"));
+			}
+			else
+			{
+				Player.PlayerAnimation.SetFloat("MovingX", Mathf.Abs(Input.GetAxis(Player.Joystick + "Horizontal")));
+				Player.PlayerAnimation.SetFloat("MovingZ", Mathf.Abs(Input.GetAxis(Player.Joystick + "Vertical")));
+			}
 
-			PlayerAnimation.SetBool("isMoving", isMoving);
+			Player.PlayerAnimation.SetBool("isMoving", isMoving);
 
 			//-----Movement Code-----//
 
@@ -59,7 +71,7 @@ public class Movement : MonoBehaviour
 			cameraForward.y = 0.0f; cameraForward.Normalize();
 			Vector3 cameraRight = Vector3.Cross(cameraForward, Vector3.up);
 
-			Vector3 inputDirection = new Vector3(Input.GetAxis(Joystick + "Horizontal"), 0, -Input.GetAxis(Joystick + "Vertical"));
+			Vector3 inputDirection = new Vector3(Input.GetAxis(Player.Joystick + "Horizontal"), 0, -Input.GetAxis(Player.Joystick + "Vertical"));
 
 			if (inputDirection.magnitude > 0.0f)
 			{
@@ -69,13 +81,18 @@ public class Movement : MonoBehaviour
 				Quaternion CameraDirection = Quaternion.LookRotation(cameraForward, Vector3.up);
 				desiredDirection = CameraDirection * desiredDirection;
 
-				Vector3 forwardOffset = cameraForward * -Input.GetAxis(Joystick + "Vertical") * Player.m_Speed * Time.deltaTime;
-				Vector3 rightOffset = cameraRight * -Input.GetAxis(Joystick + "Horizontal") * Player.m_Speed * Time.deltaTime;
+				Vector3 forwardOffset = cameraForward * -Input.GetAxis(Player.Joystick + "Vertical") * Player.m_Speed * Time.deltaTime;
+				Vector3 rightOffset = cameraRight * -Input.GetAxis(Player.Joystick + "Horizontal") * Player.m_Speed * Time.deltaTime;
 
 
 				rb.MovePosition(rb.transform.position + forwardOffset + rightOffset);
 
 				rb.transform.rotation = Quaternion.RotateTowards(rb.transform.rotation, desiredDirection, Player.TurnSpeed * Time.deltaTime);
+
+				if(Player.Targeted)
+				{
+					rb.transform.LookAt(new Vector3(Player.Opponent.transform.position.x, transform.position.y, Player.Opponent.transform.position.z));
+				}
 			}
 
 			//-----Jump Code -----//
@@ -83,11 +100,13 @@ public class Movement : MonoBehaviour
 			//float secondsLeft = 0.3f;
 			//while (secondsLeft > 0)
 			//{
-			if ((Player.isGrounded == true && Input.GetButton(Joystick + "Jump")))
+			if ((Player.isGrounded == true && Input.GetButton(Player.Joystick + "Jump")))
 			{
+				Player.PlayerAnimation.SetLayerWeight(1, 0);
+				Player.PlayerAnimation.SetLayerWeight(2, 0);
 				Player.isGrounded = false;
-				PlayerAnimation.SetBool("isGrounded", Player.isGrounded);
-				PlayerAnimation.SetTrigger("JumpPressed");
+				Player.PlayerAnimation.SetBool("isGrounded", Player.isGrounded);
+				Player.PlayerAnimation.SetTrigger("JumpPressed");
 				if (Player.isGrounded == false)
 					rb.AddForce(0, 9, 0, ForceMode.Impulse);
 			}
@@ -98,10 +117,10 @@ public class Movement : MonoBehaviour
 			if (Physics.Raycast(transform.position, Vector3.down, 3) == false && Player.isGrounded == true)
 			{
 				Player.isGrounded = false;
-				PlayerAnimation.SetTrigger("FallTrigger");
+				Player.PlayerAnimation.SetTrigger("FallTrigger");
 			}
 			else if(Physics.Raycast(transform.position, Vector3.down, 0.5f) == true)
-				PlayerAnimation.SetBool("isGrounded", true);
+				Player.PlayerAnimation.SetBool("isGrounded", true);
 		}
 		else
 		{
@@ -112,10 +131,7 @@ public class Movement : MonoBehaviour
 	void OnCollisionEnter(Collision col)
 	{
 		if (col.gameObject.tag == "Ground")
-		{
-			Player.isGrounded = true;
-			PlayerAnimation.SetBool("isGrounded", Player.isGrounded);
-		}
+			Player.PlayerAnimation.SetBool("isGrounded", true);
 	}
 	
 	void IdleSwitch()
@@ -127,7 +143,7 @@ public class Movement : MonoBehaviour
 			else if (idleSwitch <= 0)
 			{
 				idleSwitch = Random.Range(3.0f, 8.0f);
-				PlayerAnimation.SetTrigger("IdleSwitch");
+				Player.PlayerAnimation.SetTrigger("IdleSwitch");
 
 			}
 		}

@@ -63,17 +63,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AttackCombo.cs" />
     <Compile Include="Assets\Falling leaves\Script\AutoDestory.cs" />
     <Compile Include="Assets\Falling leaves\Script\CameraOrbit.cs" />
     <Compile Include="Assets\Falling leaves\Script\SceneManager.cs" />
     <Compile Include="Assets\Scripts\Attack.cs" />
+    <Compile Include="Assets\Scripts\AttackCombo.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\CameraThing.cs" />
+    <Compile Include="Assets\Scripts\CollisionSoul.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\JumpScript.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
     <Compile Include="Assets\Scripts\PlayerValues.cs" />
     <Compile Include="Assets\Scripts\TimerThingyScript.cs" />
+    <Compile Include="Assets\Scripts\endMenu.cs" />
     <Compile Include="Assets\Scripts\menu.cs" />
   </ItemGroup>
   <ItemGroup>

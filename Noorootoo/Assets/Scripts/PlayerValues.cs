@@ -17,9 +17,7 @@ public enum ElemTrait
 public class PlayerValues : MonoBehaviour {
 
     //-----CONST VARIABLES-----//
-	private const float MAX_HEALTH = 450;
-
-    //-----HEALTH VARIABLES-----//
+	private const float MAX_HEALTH = 100;
 
     //-----Status Variables, Damage to be moved to upcoming "Move Struct" in "Attack.cs"
 	public float m_Health;
@@ -29,14 +27,21 @@ public class PlayerValues : MonoBehaviour {
     public bool isStasis = false;
     public bool isBlocking = false;
 
+	//Opponent Variable
+	public GameObject Opponent;
 
     //-----SOUL VARIABLES-----//
     public float m_soulAmount;
 
-    //----------MOVEMENT VARIABLES-----//
+	//-----CONTROLLER VARIABLES-----//
 
-    //-----Variable used in jump, is turned off if above 3u above the ground, or if Jump is pressed
-    [HideInInspector]
+	public JoystickNum Joystick = JoystickNum.Keyboard;
+	public bool Targeted = false;
+
+	//----------MOVEMENT VARIABLES-----//
+
+	//-----Variable used in jump, is turned off if above 3u above the ground, or if Jump is pressed
+	[HideInInspector]
     public bool isGrounded;
     //-----DoubleJump variable used in determining how many jumps have been used up
     //-----True if player HAS NOT used up their double jump
@@ -48,7 +53,7 @@ public class PlayerValues : MonoBehaviour {
     public float m_Speed = 5;
 
     //-----Access to the animator, allows for Hit animations and Death animations
-	public Animator anim = new Animator();
+	public Animator PlayerAnimation = new Animator();
 
 
     //----------ATTACK VARIABLES-----//
@@ -71,9 +76,6 @@ public class PlayerValues : MonoBehaviour {
     public Image KOText;
     public Slider p1Slider;
     public Slider SoulSlider;
-   // public Button play;
-	[HideInInspector]
-	public float fallSpeed = -4;
 
 	// Use this for initialization
 	void Start ()
@@ -117,18 +119,18 @@ public class PlayerValues : MonoBehaviour {
 		{
 			if (col.gameObject.tag == "PrimaryAttack")
 			{
-				m_Health -=  10;
+				m_Health -=  1;
                 isAttacking = true;
 				col.enabled = false;
-				anim.SetTrigger("TempHit");
+				PlayerAnimation.SetTrigger("TempHit");
                
             }
 			if (col.gameObject.tag == "SecondaryAttack")
 			{
-				m_Health -= 20;
+				m_Health -= 5;
                 isAttacking = true;
 				col.enabled = false;
-				anim.SetTrigger("TempHit");			
+				PlayerAnimation.SetTrigger("TempHit");			
 			}
 		}
 	}
