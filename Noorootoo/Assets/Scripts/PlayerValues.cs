@@ -29,7 +29,6 @@ public class PlayerValues : MonoBehaviour {
     public bool isStasis = false;
     public bool isBlocking = false;
 
-
     //-----SOUL VARIABLES-----//
     public float m_soulAmount;
 
@@ -75,12 +74,16 @@ public class PlayerValues : MonoBehaviour {
 	[HideInInspector]
 	public float fallSpeed = -4;
 
-	// Use this for initialization
-	void Start ()
+
+    private float staticTime = 0.0f;
+
+    // Use this for initialization
+    void Start ()
     {
 		m_Health = MAX_HEALTH;
         m_soulAmount = 0;
         SoulSlider.maxValue = 100;
+        Attribute = ElemTrait.UNASPECTED;
 	}
 	
 	// Update is called once per frame
@@ -109,6 +112,37 @@ public class PlayerValues : MonoBehaviour {
               m_soulAmount = 100;
           }            
         
+
+          //-----INPUT FOR ELEMENTS-------
+    
+            
+          //if(Input.GetKey(KeyCode.I)) // FIRE
+          //{
+              //Attribute = ElemTrait.FIRE;
+          //}
+
+          //if(Input.GetKey(KeyCode.L)) // EARTH
+          //{
+             //Attribute = ElemTrait.EARTH;
+          //}
+
+          //if(Input.GetKey(KeyCode.K)) //AIR
+          //{
+                //Attribute = ElemTrait.AIR;
+          //}
+
+          //if(Input.GetKey(KeyCode.J)) // WATER
+          //{
+            //Attribute = ElemTrait.WATER;
+          //}
+        //--------------------------------
+
+        if(isStasis)
+        {
+            staticTime -= Time.deltaTime;
+            if (staticTime <= 0.0f)
+                isStasis = false;
+        }
 	}
 
 	void OnTriggerEnter(Collider col)
@@ -132,4 +166,15 @@ public class PlayerValues : MonoBehaviour {
 			}
 		}
 	}
+
+   ElemTrait Strength(ElemTrait elem)
+    {
+        return elem;
+    }
+
+    public void MakePlayerStatic(float time)
+    {
+        isStasis = true;
+        staticTime = time;
+    }
 }
