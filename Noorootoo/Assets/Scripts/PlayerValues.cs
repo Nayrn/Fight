@@ -10,14 +10,13 @@ public enum ElemTrait
     WATER,
     EARTH,
     AIR,
-    SOUL,
-    UNASPECTED
+    SOUL
 }
 
 public class PlayerValues : MonoBehaviour {
 
     //-----CONST VARIABLES-----//
-	private const float MAX_HEALTH = 450;
+	private const float MAX_HEALTH = 100;
 
     //-----HEALTH VARIABLES-----//
 
@@ -28,10 +27,6 @@ public class PlayerValues : MonoBehaviour {
 
     public bool isStasis = false;
     public bool isBlocking = false;
-
-    //-----SOUL VARIABLES-----//
-    public float m_soulAmount;
-
     //----------MOVEMENT VARIABLES-----//
 
     //-----Variable used in jump, is turned off if above 3u above the ground, or if Jump is pressed
@@ -66,37 +61,32 @@ public class PlayerValues : MonoBehaviour {
     public float TurnSpeed = 780.0f;
 
     //-----UI pieces
-  
+    public Text healthText;
     public Image KOText;
     public Slider p1Slider;
-    public Slider SoulSlider;
    // public Button play;
 	[HideInInspector]
 	public float fallSpeed = -4;
-
-
-    private float staticTime = 0.0f;
-
+    public float m_soulAmount;
+    private float staticTime;
+    public Slider soulSlider;
     // Use this for initialization
     void Start ()
     {
 		m_Health = MAX_HEALTH;
-        m_soulAmount = 0;
-        SoulSlider.maxValue = 100;
-        Attribute = ElemTrait.UNASPECTED;
+        
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-   
+      //m_Health--; for testing purposes, does work
       int health = (int)m_Health;
-      
+      healthText.text = health.ToString();
       p1Slider.value = m_Health;
-      SoulSlider.value = m_soulAmount;
-
-
-        if (m_Health <= 0)
+      soulSlider.value = m_soulAmount;
+       
+        if(m_Health <= 0)
         {
             KOText.gameObject.SetActive(true);
             Time.timeScale = 0;
@@ -105,43 +95,14 @@ public class PlayerValues : MonoBehaviour {
             m_Health = 0;
         }
 
-        //------TESTING, DOES WORK ------
-       
-          if(m_soulAmount > 100)
-          {
-              m_soulAmount = 100;
-          }            
-        
-
-          //-----INPUT FOR ELEMENTS-------
-    
-            
-          //if(Input.GetKey(KeyCode.I)) // FIRE
-          //{
-              //Attribute = ElemTrait.FIRE;
-          //}
-
-          //if(Input.GetKey(KeyCode.L)) // EARTH
-          //{
-             //Attribute = ElemTrait.EARTH;
-          //}
-
-          //if(Input.GetKey(KeyCode.K)) //AIR
-          //{
-                //Attribute = ElemTrait.AIR;
-          //}
-
-          //if(Input.GetKey(KeyCode.J)) // WATER
-          //{
-            //Attribute = ElemTrait.WATER;
-          //}
-        //--------------------------------
 
         if(isStasis)
         {
             staticTime -= Time.deltaTime;
-            if (staticTime <= 0.0f)
+            if(staticTime <= 0.0f)
+            {
                 isStasis = false;
+            }
         }
 	}
 
@@ -152,25 +113,21 @@ public class PlayerValues : MonoBehaviour {
 			if (col.gameObject.tag == "PrimaryAttack")
 			{
 				m_Health -=  10;
-                isAttacking = true;
+
 				col.enabled = false;
 				anim.SetTrigger("TempHit");
-               
-            }
+				//anim.SetBool("isHit", true);
+			}
 			if (col.gameObject.tag == "SecondaryAttack")
 			{
 				m_Health -= 20;
-                isAttacking = true;
+
 				col.enabled = false;
-				anim.SetTrigger("TempHit");			
+				anim.SetTrigger("TempHit");
+				//anim.SetBool("isHit", true);
 			}
 		}
 	}
-
-   ElemTrait Strength(ElemTrait elem)
-    {
-        return elem;
-    }
 
     public void MakePlayerStatic(float time)
     {
