@@ -14,7 +14,6 @@ public class Movement : MonoBehaviour
 {
 	public PlayerValues Player;
 
-	public Rigidbody rb;
 	public Camera cam;
 
     private bool isMoving;
@@ -51,7 +50,6 @@ public class Movement : MonoBehaviour
 				isMoving = false;
 				Player.PlayerAnimation.SetLayerWeight(1, 0);
 			}
-
 			if (Player.Targeted)
 			{
 				Player.PlayerAnimation.SetFloat("MovingX", Input.GetAxis(Player.Joystick + "Horizontal"));
@@ -65,7 +63,7 @@ public class Movement : MonoBehaviour
 
 			Player.PlayerAnimation.SetBool("isMoving", isMoving);
 
-			//-----Movement Code-----//
+			//-----FREE MOVEMENT CODE-----//
 
 			Vector3 cameraForward = cam.transform.forward;
 			cameraForward.y = 0.0f; cameraForward.Normalize();
@@ -85,13 +83,13 @@ public class Movement : MonoBehaviour
 				Vector3 rightOffset = cameraRight * -Input.GetAxis(Player.Joystick + "Horizontal") * Player.m_Speed * Time.deltaTime;
 
 
-				rb.MovePosition(rb.transform.position + forwardOffset + rightOffset);
+				Player.rb.MovePosition(Player.rb.transform.position + forwardOffset + rightOffset);
 
-				rb.transform.rotation = Quaternion.RotateTowards(rb.transform.rotation, desiredDirection, Player.TurnSpeed * Time.deltaTime);
+				Player.rb.transform.rotation = Quaternion.RotateTowards(Player.rb.transform.rotation, desiredDirection, Player.TurnSpeed * Time.deltaTime);
 
 				if(Player.Targeted)
 				{
-					rb.transform.LookAt(new Vector3(Player.Opponent.transform.position.x, transform.position.y, Player.Opponent.transform.position.z));
+					Player.rb.transform.LookAt(new Vector3(Player.Opponent.transform.position.x, transform.position.y, Player.Opponent.transform.position.z));
 				}
 			}
 
@@ -100,26 +98,39 @@ public class Movement : MonoBehaviour
 			//float secondsLeft = 0.3f;
 			//while (secondsLeft > 0)
 			//{
-			if ((Player.isGrounded == true && Input.GetButton(Player.Joystick + "Jump")))
+			if (Input.GetButtonDown(Player.Joystick + "Jump"))
 			{
-				Player.PlayerAnimation.SetLayerWeight(1, 0);
-				Player.PlayerAnimation.SetLayerWeight(2, 0);
-				Player.isGrounded = false;
-				Player.PlayerAnimation.SetBool("isGrounded", Player.isGrounded);
-				Player.PlayerAnimation.SetTrigger("JumpPressed");
-				if (Player.isGrounded == false)
-					rb.AddForce(0, 9, 0, ForceMode.Impulse);
+				if (Player.isGrounded == true)
+				{
+					Player.PlayerAnimation.SetLayerWeight(1, 0);
+					Player.isGrounded = false;
+					Player.PlayerAnimation.SetBool("isGrounded", Player.isGrounded);
+					Player.PlayerAnimation.SetTrigger("JumpPressed");
+					if (Player.isGrounded == false)
+						Player.rb.AddForce(0, 9, 0, ForceMode.Impulse);
+				}
+				else if (Player.isGrounded == false && Player.DoubleJump == true)
+				{
+					//Update to only activate on Normal Jump loop
+
+					Player.DoubleJump = false;
+
+					Player.PlayerAnimation.SetTrigger("DoubleJump");
+
+					Player.rb.velocity = new Vector3(Player.rb.velocity.x, 0, Player.rb.velocity.z);
+					Player.rb.AddForce(0, 9, 0, ForceMode.Impulse);
+				}
 			}
-			//secondsLeft -= Time.deltaTime;
+				//secondsLeft -= Time.deltaTime;
 
-			//}
+				//}
 
-			if (Physics.Raycast(transform.position, Vector3.down, 3) == false && Player.isGrounded == true)
+				if (Physics.Raycast(transform.position, Vector3.down, 3) == false && Player.isGrounded == true)
 			{
 				Player.isGrounded = false;
 				Player.PlayerAnimation.SetTrigger("FallTrigger");
 			}
-			else if(Physics.Raycast(transform.position, Vector3.down, 0.5f) == true)
+			else if(Physics.Raycast(transform.position, Vector3.down, 0.8f) == true)
 				Player.PlayerAnimation.SetBool("isGrounded", true);
 		}
 		else

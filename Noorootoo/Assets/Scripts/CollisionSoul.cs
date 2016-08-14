@@ -26,7 +26,7 @@ public class CollisionSoul : MonoBehaviour
             player1.m_soulAmount = player1.m_soulAmount + 16.0f;
 
             //-----WAS TRYING TO KEEP THE PLAYER STILL  
-            player2.MakePlayerStatic(0.5f);
+            player2.MakePlayerStunned(0.5f);
             //player1.MakePlayerStatic(2.5f);
         }
      

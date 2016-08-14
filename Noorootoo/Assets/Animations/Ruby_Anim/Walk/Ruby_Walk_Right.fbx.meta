@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 3b87a0a8b708a414284dc85eddf2d50b
-timeCreated: 1470701231
-licenseType: Pro
+timeCreated: 1470988051
+licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
@@ -101,6 +101,23 @@ ModelImporter:
     100186: Right_Upper_Body_Sqush_JNT
     100188: Ruby_Root
     100190: //RootNode
+    100192: rubysword:Swish_Sword_JNT_1
+    100194: rubysword:Swish_Sword_JNT_2
+    100196: rubysword:Swish_Sword_JNT_3
+    100198: rubysword:Sword_end_2
+    100200: rubysword:Sword_end_3
+    100202: rubysword:Sword_end_4
+    100204: rubysword:Sword_End_5
+    100206: rubysword:Sword_end_JNT_1
+    100208: rubysword:Sword_end_nub
+    100210: rubysword:Sword_JNT_1
+    100212: rubysword:Sword_JNT_2
+    100214: rubysword:Upper_Sword_JNT_1
+    100216: rubysword:Upper_Sword_JNT_2
+    100218: rubysword:Upper_Sword_JNT_3
+    100220: rubysword:Upper_Sword_JNT_4
+    100222: rubysword:Upper_Sword_JNT_5
+    100224: rubysword:Upper_Sword_JNT_nub
     400000: Back_Head_Squash_JNT
     400002: Back_Lower_Body_Sqush_JNT
     400004: Back_Middle_Body_Sqush_JNT
@@ -197,6 +214,23 @@ ModelImporter:
     400186: Right_Upper_Body_Sqush_JNT
     400188: Ruby_Root
     400190: //RootNode
+    400192: rubysword:Swish_Sword_JNT_1
+    400194: rubysword:Swish_Sword_JNT_2
+    400196: rubysword:Swish_Sword_JNT_3
+    400198: rubysword:Sword_end_2
+    400200: rubysword:Sword_end_3
+    400202: rubysword:Sword_end_4
+    400204: rubysword:Sword_End_5
+    400206: rubysword:Sword_end_JNT_1
+    400208: rubysword:Sword_end_nub
+    400210: rubysword:Sword_JNT_1
+    400212: rubysword:Sword_JNT_2
+    400214: rubysword:Upper_Sword_JNT_1
+    400216: rubysword:Upper_Sword_JNT_2
+    400218: rubysword:Upper_Sword_JNT_3
+    400220: rubysword:Upper_Sword_JNT_4
+    400222: rubysword:Upper_Sword_JNT_5
+    400224: rubysword:Upper_Sword_JNT_nub
     7400000: Walk_Right
     9500000: //RootNode
   materials:

@@ -19,11 +19,14 @@ public class PlayerValues : MonoBehaviour {
     //-----CONST VARIABLES-----//
 	private const float MAX_HEALTH = 100;
 
+	public Rigidbody rb;
+
     //-----Status Variables, Damage to be moved to upcoming "Move Struct" in "Attack.cs"
 	public float m_Health;
 
     public ElemTrait Attribute;
 
+	public bool isStunned = false;
     public bool isStasis = false;
     public bool isBlocking = false;
 
@@ -41,7 +44,6 @@ public class PlayerValues : MonoBehaviour {
 	//----------MOVEMENT VARIABLES-----//
 
 	//-----Variable used in jump, is turned off if above 3u above the ground, or if Jump is pressed
-	[HideInInspector]
     public bool isGrounded;
     //-----DoubleJump variable used in determining how many jumps have been used up
     //-----True if player HAS NOT used up their double jump
@@ -63,6 +65,11 @@ public class PlayerValues : MonoBehaviour {
     public bool isAttacking = false;
     public bool PrimaryAttack = false;
     public bool SecondaryAttack = false;
+
+	//-----Frozen y variables-----//
+	public Vector3 FrozenY;
+	[HideInInspector]
+	public bool AerialBool = false;
 
 
     //----------EXTRA VARIABLES-----//
@@ -95,12 +102,12 @@ public class PlayerValues : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-   
-      int health = (int)m_Health;
-      
-      p1Slider.value = m_Health;
-      SoulSlider.value = m_soulAmount;
+		//Locking the Y position if using an Aerial attack
+		if(AerialBool)
+			transform.position = FrozenY;
 
+		p1Slider.value = m_Health;
+		SoulSlider.value = m_soulAmount;
 
         if (m_Health <= 0)
         {
@@ -119,35 +126,33 @@ public class PlayerValues : MonoBehaviour {
           }            
         
 
+		  /*
           //-----INPUT FOR ELEMENTS-------
     
             
-          //if(Input.GetKey(KeyCode.I)) // FIRE
-          //{
-              //Attribute = ElemTrait.FIRE;
-          //}
+          if(Input.GetKey(KeyCode.I)) // FIRE
+          {
+            //Attribute = ElemTrait.FIRE;
+          }
+          if(Input.GetKey(KeyCode.L)) // EARTH
+          {
+           //Attribute = ElemTrait.EARTH;
+          }
+          if(Input.GetKey(KeyCode.K)) //AIR
+          {
+              //Attribute = ElemTrait.AIR;
+          }
+          if(Input.GetKey(KeyCode.J)) // WATER
+          {
+          //Attribute = ElemTrait.WATER;
+          }
+		  */
 
-          //if(Input.GetKey(KeyCode.L)) // EARTH
-          //{
-             //Attribute = ElemTrait.EARTH;
-          //}
-
-          //if(Input.GetKey(KeyCode.K)) //AIR
-          //{
-                //Attribute = ElemTrait.AIR;
-          //}
-
-          //if(Input.GetKey(KeyCode.J)) // WATER
-          //{
-            //Attribute = ElemTrait.WATER;
-          //}
-        //--------------------------------
-
-        if(isStasis)
+        if(isStunned)
         {
             staticTime -= Time.deltaTime;
             if (staticTime <= 0.0f)
-                isStasis = false;
+                isStunned = false;
         }
 	}
 
@@ -178,9 +183,9 @@ public class PlayerValues : MonoBehaviour {
         return elem;
     }
 
-    public void MakePlayerStatic(float time)
+    public void MakePlayerStunned(float time)
     {
-        isStasis = true;
+        isStunned = true;
         staticTime = time;
     }
 }

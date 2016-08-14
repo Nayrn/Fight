@@ -7,12 +7,13 @@ public struct Move
 
     public int damage;
     public ElemTrait element;
+
+	public Collider strikeBox;
 };
 
 public class Attack : MonoBehaviour
 {
 	public PlayerValues Player;
-
 	public GameObject[] colliders;
 
 	public string[] PrimaryCombos;
@@ -63,22 +64,18 @@ public class Attack : MonoBehaviour
 			if (colliderTime > 0 && (Player.PrimaryAttack == true || Player.SecondaryAttack == true))
 				colliderTime -= Time.deltaTime;
 			else if (colliderTime <= 0.0f)
+				colliderTime = 0;
+			
+			if(colliderTime == 0)
 			{
 				for (int i = 0; i < colliders.Length; i++)
 					colliders[i].GetComponent<BoxCollider>().enabled = false;
 
-				colliderTime = 0;
-
-				Player.PlayerAnimation.SetLayerWeight(2, 0);
-
 				Player.SecondaryAttack = false;
 				Player.PrimaryAttack = false;
+
 				PrimaryCount = 0;
 				SecondaryCount = 0;
-
-				//turn animation off
-				Player.PlayerAnimation.SetBool("SecondaryAttack", Player.SecondaryAttack);
-				Player.PlayerAnimation.SetBool("PrimaryAttack", Player.PrimaryAttack);
 			}
 		}
     }
@@ -111,25 +108,31 @@ public class Attack : MonoBehaviour
 			//-----LIGHT ATTACK CODE-----//
 			if (Input.GetButtonDown(Player.Joystick + "Primary") && Player.SecondaryAttack == false)// punch
             {
-				Player.PlayerAnimation.SetLayerWeight(2, 1);
+				//Setting Attack bool to true
+				Player.PrimaryAttack = true;
 
-				if (Player.isGrounded)
+				//Enabling colliders
+				CollidersOn();
+
+				//Activating the animation trigger
+				Player.PlayerAnimation.SetTrigger("PrimaryTrigger");
+
+				//Get the current state and set the time
+				CurrentState = Player.PlayerAnimation.GetCurrentAnimatorStateInfo(0);
+				colliderTime = CurrentState.normalizedTime % 1;
+
+				//Aerial stasis
+				if (!Player.isGrounded)
 				{
-					Player.PrimaryAttack = true;
-
-					CollidersOn();
-
-					Player.PlayerAnimation.SetTrigger("PrimaryTrigger");
-
-					CurrentState = Player.PlayerAnimation.GetCurrentAnimatorStateInfo(0);
-
-					colliderTime = CurrentState.normalizedTime % 1;
+					//if (!Player.AerialBool)
+					//{
+					//	Player.FrozenY = transform.position;
+					//	Player.AerialBool = true;
+					//}
+					//else
+					//	Player.FrozenY = transform.position;
 				}
-				else
-				{
-					//Aerial attacks
-				}
-            }
+			}
 
 
 			//-----HEAVY ATTACK CODE-----//
@@ -137,19 +140,20 @@ public class Attack : MonoBehaviour
 
 			if (Input.GetButtonDown(Player.Joystick + "Secondary") && Player.PrimaryAttack == false)// punch
 			{
-				Player.PlayerAnimation.SetLayerWeight(2, 1);
+				Player.SecondaryAttack = true;
 
-				if (Player.isGrounded)
+				CollidersOn();
+
+				Player.PlayerAnimation.SetTrigger("SecondaryTrigger");
+
+				CurrentState = Player.PlayerAnimation.GetCurrentAnimatorStateInfo(0);
+
+				colliderTime = CurrentState.normalizedTime % 1;
+
+				if(!Player.isGrounded)
 				{
-					Player.SecondaryAttack = true;
 
-					CollidersOn();
-
-					Player.PlayerAnimation.SetTrigger("SecondaryTrigger");
-
-					CurrentState = Player.PlayerAnimation.GetCurrentAnimatorStateInfo(0);
-
-					colliderTime = CurrentState.normalizedTime % 1;
+				}
 					/*
 					//-----Getting current Animation state-----//
 					CurrentState = Player.PlayerAnimation.GetCurrentAnimatorStateInfo(0);
@@ -188,11 +192,7 @@ public class Attack : MonoBehaviour
 					if (SecondaryCount == SecondaryCombos.Length && CurrentState.IsName(SecondaryCombos[SecondaryCombos.Length - 1]))// && CurrentState.IsName(SecondaryCombos[SecondaryCount]))
 						SecondaryCount = 0;
 					*/
-				}
-				else
-				{
-					//Aerial smash
-				}
+
 			}
         }
 	}

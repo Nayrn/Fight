@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44692546, g: 0.49678695, b: 0.5750854, a: 1}
+  m_IndirectSpecularColor: {r: 0.44692492, g: 0.4967869, b: 0.57508546, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -259,6 +259,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000014215145242, guid: ad9f82993f7a11849bb9aa7537309609,
+        type: 2}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 932125624}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ad9f82993f7a11849bb9aa7537309609, type: 2}
   m_IsPrefabParent: 0
@@ -16305,8 +16310,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4087cf492fa69ef4ab4b2bb980f96c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  Constraints: 0
   m_Health: 0
   Attribute: 0
+  isStunned: 0
   isStasis: 0
   isBlocking: 0
   Opponent: {fileID: 0}
@@ -16324,6 +16332,7 @@ MonoBehaviour:
   KOText: {fileID: 0}
   p1Slider: {fileID: 0}
   SoulSlider: {fileID: 0}
+  fallSpeed: -4
 --- !u!1 &782645077
 GameObject:
   m_ObjectHideFlags: 0
@@ -19910,6 +19919,11 @@ GameObject:
   m_PrefabParentObject: {fileID: 1000012306841232, guid: ad9f82993f7a11849bb9aa7537309609,
     type: 2}
   m_PrefabInternal: {fileID: 3339941}
+--- !u!54 &932125624 stripped
+Rigidbody:
+  m_PrefabParentObject: {fileID: 54000011907761740, guid: ad9f82993f7a11849bb9aa7537309609,
+    type: 2}
+  m_PrefabInternal: {fileID: 3339941}
 --- !u!1001 &933808781
 Prefab:
   m_ObjectHideFlags: 0
@@ -20163,7 +20177,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 949038447}
-  - 95: {fileID: 949038446}
   m_Layer: 0
   m_Name: Ruby_Ultimate_Tpose
   m_TagString: Untagged
@@ -20171,24 +20184,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!95 &949038446
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 95000011464382742, guid: 6744995274784154fada32bd0193175e,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 949038445}
-  m_Enabled: 0
-  m_Avatar: {fileID: 9000000, guid: 0833c443999930b4d9b93924c70264bf, type: 3}
-  m_Controller: {fileID: 9100000, guid: 518ce5c341be40a43b45fb227fed8b72, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!4 &949038447
 Transform:
   m_ObjectHideFlags: 0
@@ -38561,8 +38556,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4087cf492fa69ef4ab4b2bb980f96c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 1956790203}
+  Constraints: 0
   m_Health: 0
   Attribute: 0
+  isStunned: 0
   isStasis: 0
   isBlocking: 0
   Opponent: {fileID: 932125620}
@@ -38580,6 +38578,7 @@ MonoBehaviour:
   KOText: {fileID: 828309317}
   p1Slider: {fileID: 1621481363}
   SoulSlider: {fileID: 828296181}
+  fallSpeed: -4
 --- !u!114 &1956790202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38593,7 +38592,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1956790201}
-  rb: {fileID: 1956790203}
   cam: {fileID: 1314268532}
 --- !u!54 &1956790203
 Rigidbody:
@@ -38609,8 +38607,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 112
-  m_CollisionDetection: 0
+  m_Constraints: 80
+  m_CollisionDetection: 2
 --- !u!23 &1956790204
 MeshRenderer:
   m_ObjectHideFlags: 0
