@@ -39,11 +39,11 @@ public class Movement : MonoBehaviour
 		if (!Player.isStasis)
 		{
 			//-----Animation Code-----//
-			if ((Input.GetAxis(Player.Joystick + "Vertical") < 0 || Input.GetAxis(Player.Joystick + "Vertical") > 0 || Input.GetAxis(Player.Joystick + "Horizontal") < 0 || Input.GetAxis(Player.Joystick + "Horizontal") > 0) && Player.isGrounded)
+			if ((Input.GetAxis(Player.Joystick + "Vertical") < 0 || Input.GetAxis(Player.Joystick + "Vertical") > 0 || Input.GetAxis(Player.Joystick + "Horizontal") < 0 || Input.GetAxis(Player.Joystick + "Horizontal") > 0))
 			{
 				isMoving = true;
 
-				Player.PlayerAnimation.SetLayerWeight(1, 1);
+				//Player.PlayerAnimation.SetLayerWeight(1, 1);
 			}
 			else
 			{
@@ -102,14 +102,13 @@ public class Movement : MonoBehaviour
 			{
 				if (Player.isGrounded == true)
 				{
-					Player.PlayerAnimation.SetLayerWeight(1, 0);
 					Player.isGrounded = false;
 					Player.PlayerAnimation.SetBool("isGrounded", Player.isGrounded);
 					Player.PlayerAnimation.SetTrigger("JumpPressed");
 					if (Player.isGrounded == false)
 						Player.rb.AddForce(0, 9, 0, ForceMode.Impulse);
 				}
-				else if (Player.isGrounded == false && Player.DoubleJump == true)
+				else if (!Player.isGrounded && Player.DoubleJump && !Player.isAttacking)
 				{
 					//Update to only activate on Normal Jump loop
 
@@ -125,13 +124,13 @@ public class Movement : MonoBehaviour
 
 				//}
 
-				if (Physics.Raycast(transform.position, Vector3.down, 3) == false && Player.isGrounded == true)
-			{
-				Player.isGrounded = false;
-				Player.PlayerAnimation.SetTrigger("FallTrigger");
-			}
-			else if(Physics.Raycast(transform.position, Vector3.down, 0.8f) == true)
-				Player.PlayerAnimation.SetBool("isGrounded", true);
+			//if (Physics.Raycast(transform.position, Vector3.down, 3) == false && Player.isGrounded == true)
+			//{
+			//	Player.isGrounded = false;
+			//	Player.PlayerAnimation.SetTrigger("FallTrigger");
+			//}
+			//if(Physics.Raycast(transform.position, Vector3.down, 0.8f) == true)
+			//	Player.PlayerAnimation.SetBool("isGrounded", true);
 		}
 		else
 		{
@@ -144,6 +143,14 @@ public class Movement : MonoBehaviour
 		if (col.gameObject.tag == "Ground")
 			Player.PlayerAnimation.SetBool("isGrounded", true);
 	}
+    void OnCollisionExit(Collision col)
+    {
+        if (col.gameObject.tag == "Ground")
+        {
+            Player.isGrounded = false;
+            Player.PlayerAnimation.SetTrigger("FallTrigger");
+        }
+    }
 	
 	void IdleSwitch()
 	{

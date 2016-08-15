@@ -13,6 +13,7 @@ public class CameraController : MonoBehaviour {
 
     float freeViewX = 0.0f;
     float freeViewY = 0.0f;
+    Vector3 direction = new Vector3(0, 0, -5);
 
     public GameObject FollowedObject;
 	public GameObject TrackedObject;
@@ -61,6 +62,11 @@ public class CameraController : MonoBehaviour {
 
 	private void UpdatePivotRotation()
 	{
+        Vector3 newPos = (FollowedObject.transform.position - TrackedObject.transform.position).normalized * 5;
+
+        newPos = new Vector3(newPos.x, newPos.y + 3, newPos.z);
+        transform.position = CameraPivot.transform.position + newPos;
+
 		Vector3 dir = TrackedObject.transform.position - FollowedObject.transform.position;
 		dir.y = 0.0f;
 		//dir.Normalize();
@@ -114,7 +120,6 @@ public class CameraController : MonoBehaviour {
 
         freeViewY = Mathf.Clamp(freeViewY, 10, 55);
 
-		Vector3 direction = new Vector3(0, 0, -5);
         Quaternion rotation = Quaternion.Euler(freeViewY, freeViewX, 0);
         transform.position = FollowedObject.transform.position + rotation * direction;
 
