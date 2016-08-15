@@ -41,7 +41,12 @@ public class PlayerValues : MonoBehaviour {
 	public JoystickNum Joystick = JoystickNum.Keyboard;
 	public bool Targeted = false;
 
-	//----------MOVEMENT VARIABLES-----//
+    //----------MOVEMENT VARIABLES-----//
+
+    //-----Gravity variable, use to slow/speed up gravity
+    [HideInInspector]
+    public float gravityEdit = 1;
+
 
 	//-----Variable used in jump, is turned off if above 3u above the ground, or if Jump is pressed
     public bool isGrounded;
@@ -54,7 +59,7 @@ public class PlayerValues : MonoBehaviour {
     [HideInInspector]
     public float m_Speed = 5;
 
-    //-----Access to the animator, allows for Hit animations and Death animations
+    //-----Access to the animator, used for all animations
 	public Animator PlayerAnimation = new Animator();
 
 
@@ -100,8 +105,10 @@ public class PlayerValues : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	void FixedUpdate ()
     {
+        rb.AddForce(Physics.gravity * rb.mass * gravityEdit);
+
 		//Locking the Y position if using an Aerial attack
 		if(AerialBool)
 			transform.position = FrozenY;

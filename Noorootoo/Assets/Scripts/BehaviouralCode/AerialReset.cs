@@ -18,7 +18,8 @@ public class AerialReset : StateMachineBehaviour {
 	{
 		PlayerValues pv = animator.GetComponentInParent<PlayerValues>();
 
-		pv.AerialBool = false;
+        pv.gravityEdit = 1;
+        pv.AerialBool = false;
 	}
 
 	// OnStateMove is called right after Animator.OnAnimatorMove(). Code that processes and affects root motion should be implemented here

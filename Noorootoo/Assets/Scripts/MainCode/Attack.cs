@@ -32,7 +32,8 @@ public class Attack : MonoBehaviour
         colliderTime = 0.5f;
         Player.SecondaryAttack = false;
         Player.PrimaryAttack = false;
-		for (int i = 0; i < colliders.Length; i++ )
+        Player.isAttacking = false;
+        for (int i = 0; i < colliders.Length; i++ )
 			colliders[i].GetComponent<BoxCollider>().enabled = false;
     }
 
@@ -41,21 +42,6 @@ public class Attack : MonoBehaviour
     {
 		ActionUpdate();
     }
-
-    public void CollidersOn()
-    {
-		if (Player.PrimaryAttack)
-		{
-			colliders[0].GetComponent<BoxCollider>().enabled = true;
-			colliders[0].tag = "PrimaryAttack";
-		}
-		else if (Player.SecondaryAttack)
-		{
-			colliders[0].GetComponent<BoxCollider>().enabled = true;
-			colliders[0].tag = "SecondaryAttack";
-		}
-		// switch colliders on for this amount of time
-	}
 
     void FixedUpdate()
     {
@@ -73,8 +59,9 @@ public class Attack : MonoBehaviour
 
 				Player.SecondaryAttack = false;
 				Player.PrimaryAttack = false;
+                Player.isAttacking = false;
 
-				PrimaryCount = 0;
+                PrimaryCount = 0;
 				SecondaryCount = 0;
 			}
 		}
@@ -85,7 +72,6 @@ public class Attack : MonoBehaviour
         //-----BLOCK CODE-----//
         if(Player.isGrounded && Input.GetButtonDown(Player.Joystick + "Block"))
         {
-            Player.isStasis = true;
             Player.isBlocking = true;
 
 			Player.PlayerAnimation.SetBool("isBlocking", Player.isBlocking);
@@ -93,11 +79,10 @@ public class Attack : MonoBehaviour
 		}
 		else if (Input.GetButtonUp(Player.Joystick + "Block"))
 		{
-			Player.isStasis = false;
-			Player.isBlocking = false;
+            Player.isBlocking = false;
 
-			Player.PlayerAnimation.SetBool("isBlocking", Player.isBlocking);
-		}
+            Player.PlayerAnimation.SetBool("isBlocking", Player.isBlocking);
+        }
 		else
 		{
 			//Airdoge
@@ -108,8 +93,9 @@ public class Attack : MonoBehaviour
 			//-----LIGHT ATTACK CODE-----//
 			if (Input.GetButtonDown(Player.Joystick + "Primary") && Player.SecondaryAttack == false)// punch
             {
-				//Setting Attack bool to true
-				Player.PrimaryAttack = true;
+                //Setting Attack bool to true
+                Player.isAttacking = true;
+                Player.PrimaryAttack = true;
 
 				//Enabling colliders
 				CollidersOn();
@@ -124,14 +110,16 @@ public class Attack : MonoBehaviour
 				//Aerial stasis
 				if (!Player.isGrounded)
 				{
-					//if (!Player.AerialBool)
-					//{
-					//	Player.FrozenY = transform.position;
-					//	Player.AerialBool = true;
-					//}
-					//else
-					//	Player.FrozenY = transform.position;
-				}
+                    Player.gravityEdit = 0.5f;
+
+                    //if (!Player.AerialBool)
+                    //{
+                    //	Player.FrozenY = transform.position;
+                    //	Player.AerialBool = true;
+                    //}
+                    //else
+                    //	Player.FrozenY = transform.position;
+                }
 			}
 
 
@@ -140,7 +128,8 @@ public class Attack : MonoBehaviour
 
 			if (Input.GetButtonDown(Player.Joystick + "Secondary") && Player.PrimaryAttack == false)// punch
 			{
-				Player.SecondaryAttack = true;
+                Player.isAttacking = true;
+                Player.SecondaryAttack = true;
 
 				CollidersOn();
 
@@ -152,7 +141,7 @@ public class Attack : MonoBehaviour
 
 				if(!Player.isGrounded)
 				{
-
+                    Player.gravityEdit = 0.5f;
 				}
 					/*
 					//-----Getting current Animation state-----//
@@ -196,4 +185,28 @@ public class Attack : MonoBehaviour
 			}
         }
 	}
+
+    public void CollidersOn()
+    {
+        if (Player.PrimaryAttack)
+        {
+            colliders[0].GetComponent<BoxCollider>().enabled = true;
+            colliders[0].tag = "PrimaryAttack";
+        }
+        else if (Player.SecondaryAttack)
+        {
+            colliders[0].GetComponent<BoxCollider>().enabled = true;
+            colliders[0].tag = "SecondaryAttack";
+        }
+        // switch colliders on for this amount of time
+    }
+
+    public void CollidersOff()
+    {
+        if (Player.PrimaryAttack)
+            colliders[0].GetComponent<BoxCollider>().enabled = false;
+        else if (Player.SecondaryAttack)
+            colliders[0].GetComponent<BoxCollider>().enabled = false;
+        // switch colliders on for this amount of time
+    }
 }

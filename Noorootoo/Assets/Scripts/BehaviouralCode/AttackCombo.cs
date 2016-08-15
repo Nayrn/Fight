@@ -3,19 +3,17 @@ using System.Collections;
 
 public class AttackCombo : StateMachineBehaviour
 {
-	public Collider strikeBox;
 	private PlayerValues Player;
+    private Attack Attack;
 
 	// OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
 	override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 	{
 		Player = animator.GetComponentInParent<PlayerValues>();
+        Attack = animator.GetComponentInParent<Attack>();
 
-		if (strikeBox.enabled == true)
-			return;
-		else
-			strikeBox.enabled = true;
-	}
+        Attack.CollidersOn();
+    }
 
 	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
 	override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -26,10 +24,7 @@ public class AttackCombo : StateMachineBehaviour
 	// OnStateExit is called when a transition ends and the state machine finishes evaluating this state
 	override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 	{
-		if (strikeBox.enabled == false)
-			return;
-		else
-			strikeBox.enabled = false;
+        Attack.CollidersOff();
 	}
 
 	// OnStateMove is called right after Animator.OnAnimatorMove(). Code that processes and affects root motion should be implemented here
