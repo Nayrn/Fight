@@ -30,10 +30,10 @@ public class AttackOff : StateMachineBehaviour {
 	//}
 
 	// OnStateMachineEnter is called when entering a statemachine via its Entry Node
-	override public void OnStateMachineEnter(Animator animator, int stateMachinePathHash)
-	{
-	
-	}
+	//override public void OnStateMachineEnter(Animator animator, int stateMachinePathHash)
+	//{
+	//
+	//}
 
 	// OnStateMachineExit is called when exiting a statemachine via its Exit Node
 	override public void OnStateMachineExit(Animator animator, int stateMachinePathHash)

@@ -43,11 +43,6 @@ public class PlayerValues : MonoBehaviour {
 
     //----------MOVEMENT VARIABLES-----//
 
-    //-----Gravity variable, use to slow/speed up gravity
-    [HideInInspector]
-    public float gravityEdit = 1;
-
-
 	//-----Variable used in jump, is turned off if above 3u above the ground, or if Jump is pressed
     public bool isGrounded;
     //-----DoubleJump variable used in determining how many jumps have been used up
@@ -71,14 +66,10 @@ public class PlayerValues : MonoBehaviour {
     public bool PrimaryAttack = false;
     public bool SecondaryAttack = false;
 
-	//-----Frozen y variables-----//
-	public Vector3 FrozenY;
-	[HideInInspector]
-	public bool AerialBool = false;
+	//----------EXTRA VARIABLES-----//
 
-
-    //----------EXTRA VARIABLES-----//
-
+	//-----Gravity Variables
+	public float gravityEdit = 1;
 
     //-----Turn Speed. Increase to hasten the rate at which a character turns on the spot. default is 780
     public float TurnSpeed = 780.0f;
@@ -88,11 +79,8 @@ public class PlayerValues : MonoBehaviour {
     public Image KOText;
     public Slider p1Slider;
     public Slider SoulSlider;
-   // public Button play;
-	[HideInInspector]
-	public float fallSpeed = -4;
 
-
+    //-----Stun Timer
     private float staticTime = 0.0f;
 
     // Use this for initialization
@@ -107,11 +95,7 @@ public class PlayerValues : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate ()
     {
-        rb.AddForce(Physics.gravity * rb.mass * gravityEdit);
-
-		//Locking the Y position if using an Aerial attack
-		if(AerialBool)
-			transform.position = FrozenY;
+        rb.AddForce(Physics.gravity * gravityEdit * rb.mass);
 
 		p1Slider.value = m_Health;
 		SoulSlider.value = m_soulAmount;
@@ -169,7 +153,7 @@ public class PlayerValues : MonoBehaviour {
 		{
 			if (col.gameObject.tag == "PrimaryAttack")
 			{
-				m_Health -=  1;
+				m_Health -=  5;
                 isAttacking = true;
 				col.enabled = false;
 				PlayerAnimation.SetTrigger("TempHit");
@@ -177,7 +161,7 @@ public class PlayerValues : MonoBehaviour {
             }
 			if (col.gameObject.tag == "SecondaryAttack")
 			{
-				m_Health -= 5;
+				m_Health -= 10;
                 isAttacking = true;
 				col.enabled = false;
 				PlayerAnimation.SetTrigger("TempHit");			

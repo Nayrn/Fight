@@ -64,7 +64,7 @@ public class CameraController : MonoBehaviour {
 	{
         Vector3 newPos = (FollowedObject.transform.position - TrackedObject.transform.position).normalized * 5;
 
-        newPos = new Vector3(newPos.x, newPos.y + 3, newPos.z);
+        newPos = new Vector3(newPos.x, newPos.y + 2, newPos.z);
         transform.position = CameraPivot.transform.position + newPos;
 
 		Vector3 dir = TrackedObject.transform.position - FollowedObject.transform.position;
