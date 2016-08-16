@@ -8,6 +8,7 @@ public class PauseGame : MonoBehaviour
 
     public GameObject pausePanel;
     public Text pauseText;
+    public Image pauseTitle;
 
     // Use this for initialization
     void Start()
@@ -34,12 +35,14 @@ public class PauseGame : MonoBehaviour
         {
             pausePanel.SetActive(true);
             pauseText.gameObject.SetActive(true);
+            pauseTitle.gameObject.SetActive(true);
             Time.timeScale = 0;
         }
         else
         {
             pausePanel.SetActive(false);
             pauseText.gameObject.SetActive(false);
+            pauseTitle.gameObject.SetActive(false);
             Time.timeScale = 1;
         }
     }

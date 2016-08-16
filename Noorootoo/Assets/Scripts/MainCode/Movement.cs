@@ -40,16 +40,11 @@ public class Movement : MonoBehaviour
 		{
 			//-----Animation Code-----//
 			if ((Input.GetAxis(Player.Joystick + "Vertical") < 0 || Input.GetAxis(Player.Joystick + "Vertical") > 0 || Input.GetAxis(Player.Joystick + "Horizontal") < 0 || Input.GetAxis(Player.Joystick + "Horizontal") > 0))
-			{
 				isMoving = true;
-
-				//Player.PlayerAnimation.SetLayerWeight(1, 1);
-			}
 			else
-			{
 				isMoving = false;
-				Player.PlayerAnimation.SetLayerWeight(1, 0);
-			}
+
+
 			if (Player.Targeted)
 			{
 				Player.PlayerAnimation.SetFloat("MovingX", Input.GetAxis(Player.Joystick + "Horizontal"));
