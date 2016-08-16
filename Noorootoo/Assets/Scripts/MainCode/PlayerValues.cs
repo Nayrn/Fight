@@ -79,7 +79,8 @@ public class PlayerValues : MonoBehaviour {
     public Image KOText;
     public Slider p1Slider;
     public Slider SoulSlider;
-
+    public ParticleSystem particle;
+    public ParticleSystem dust;
     //-----Stun Timer
     private float staticTime = 0.0f;
 
@@ -144,6 +145,11 @@ public class PlayerValues : MonoBehaviour {
             staticTime -= Time.deltaTime;
             if (staticTime <= 0.0f)
                 isStunned = false;
+        }
+
+        if(isGrounded)
+        {
+            dust.Play();
         }
 	}
 

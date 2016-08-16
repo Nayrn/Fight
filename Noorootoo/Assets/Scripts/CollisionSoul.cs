@@ -58,7 +58,7 @@ public class CollisionSoul : MonoBehaviour
         {
             //player1.m_soulAmount = player1.m_soulAmount + 16.0f;
             soulUp = true;
-
+            player2.particle.Play();
             //-----WAS TRYING TO KEEP THE PLAYER STILL  
             player2.MakePlayerStunned(0.5f);
         }
@@ -79,6 +79,7 @@ public class CollisionSoul : MonoBehaviour
         {
             soulUp2 = true;
             player1.MakePlayerStunned(0.5f);
+            player1.particle.Play();
         }
       
         if (col.gameObject.tag == "SecondaryP2")

@@ -30,6 +30,7 @@ public class AIScript : MonoBehaviour
     public bool canAttack()
     {
         p1.m_Health = p1.m_Health - 0.5f;
+        p1.particle.Play();
         return true;
     }
 }
