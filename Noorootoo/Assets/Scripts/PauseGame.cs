@@ -18,28 +18,29 @@ public class PauseGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && paused == false)
+        if (Input.GetKeyDown(KeyCode.Space) && paused == false)
         {
             paused = true;
-            Debug.Log("I should work here");
+            Debug.Log("Now you pause it");
+
         }
-        if (Input.GetKeyDown(KeyCode.Escape) && paused == true)
+        else if (Input.GetKeyDown(KeyCode.Space) && paused == true)
         {
             paused = false;
-            Debug.Log("I should work here");
+            Debug.Log("and now you don't");
         }
 
         if (paused == true)
         {
-            Time.timeScale = 0;
             pausePanel.SetActive(true);
             pauseText.gameObject.SetActive(true);
+            Time.timeScale = 0;
         }
         else
         {
-            Time.timeScale = 1;
             pausePanel.SetActive(false);
             pauseText.gameObject.SetActive(false);
+            Time.timeScale = 1;
         }
     }
 }
