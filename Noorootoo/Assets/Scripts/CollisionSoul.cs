@@ -60,7 +60,7 @@ public class CollisionSoul : MonoBehaviour
             soulUp = true;
 
             //-----WAS TRYING TO KEEP THE PLAYER STILL  
-            player2.MakePlayerStatic(0.5f);
+            player2.MakePlayerStunned(0.5f);
         }
      
         
@@ -68,7 +68,7 @@ public class CollisionSoul : MonoBehaviour
         if (col.gameObject.tag == "SecondaryAttack")
         {
             soulUp = true;
-            player2.MakePlayerStatic(0.5f);
+            player2.MakePlayerStunned(0.5f);
         }
         
 
@@ -78,13 +78,13 @@ public class CollisionSoul : MonoBehaviour
         if (col.gameObject.tag == "PrimaryP2")
         {
             soulUp2 = true;
-            player1.MakePlayerStatic(0.5f);
+            player1.MakePlayerStunned(0.5f);
         }
       
         if (col.gameObject.tag == "SecondaryP2")
         {
             soulUp2 = true;
-            player1.MakePlayerStatic(0.5f);
+            player1.MakePlayerStunned(0.5f);
         }
 
     }
