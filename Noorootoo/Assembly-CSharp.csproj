@@ -45,19 +45,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\AttackCombo.cs" />
      <Compile Include="Assets\Falling leaves\Script\AutoDestory.cs" />
      <Compile Include="Assets\Falling leaves\Script\CameraOrbit.cs" />
      <Compile Include="Assets\Falling leaves\Script\SceneManager.cs" />
-     <Compile Include="Assets\Scripts\Attack.cs" />
-     <Compile Include="Assets\Scripts\CameraController.cs" />
+     <Compile Include="Assets\JumpState.cs" />
+     <Compile Include="Assets\Scripts\BehaviouralCode\AerialReset.cs" />
+     <Compile Include="Assets\Scripts\BehaviouralCode\AttackCombo.cs" />
+     <Compile Include="Assets\Scripts\BehaviouralCode\AttackOff.cs" />
+     <Compile Include="Assets\Scripts\BehaviouralCode\BlockEnd.cs" />
+     <Compile Include="Assets\Scripts\BehaviouralCode\BlockStart.cs" />
+     <Compile Include="Assets\Scripts\BehaviouralCode\JumpScript.cs" />
      <Compile Include="Assets\Scripts\CameraThing.cs" />
+     <Compile Include="Assets\Scripts\CollisionSoul.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
-     <Compile Include="Assets\Scripts\Movement.cs" />
-     <Compile Include="Assets\Scripts\PlayerValues.cs" />
+     <Compile Include="Assets\Scripts\MainCode\Attack.cs" />
+     <Compile Include="Assets\Scripts\MainCode\CameraController.cs" />
+     <Compile Include="Assets\Scripts\MainCode\Movement.cs" />
+     <Compile Include="Assets\Scripts\MainCode\PlayerValues.cs" />
+     <Compile Include="Assets\Scripts\MainCode\menu.cs" />
+     <Compile Include="Assets\Scripts\PauseGame.cs" />
      <Compile Include="Assets\Scripts\TimerThingyScript.cs" />
      <Compile Include="Assets\Scripts\endMenu.cs" />
-     <Compile Include="Assets\Scripts\menu.cs" />
      <None Include="Assets\EasyRoadsMeshGen\ReadMe.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

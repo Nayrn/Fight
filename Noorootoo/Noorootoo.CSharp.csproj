@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.4.0f3</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -65,22 +63,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AttackCombo.cs" />
     <Compile Include="Assets\Falling leaves\Script\AutoDestory.cs" />
     <Compile Include="Assets\Falling leaves\Script\CameraOrbit.cs" />
     <Compile Include="Assets\Falling leaves\Script\SceneManager.cs" />
-    <Compile Include="Assets\Scripts\AIScript.cs" />
-    <Compile Include="Assets\Scripts\Attack.cs" />
-    <Compile Include="Assets\Scripts\CameraController.cs" />
+    <Compile Include="Assets\JumpState.cs" />
+    <Compile Include="Assets\Scripts\BehaviouralCode\AerialReset.cs" />
+    <Compile Include="Assets\Scripts\BehaviouralCode\AttackCombo.cs" />
+    <Compile Include="Assets\Scripts\BehaviouralCode\AttackOff.cs" />
+    <Compile Include="Assets\Scripts\BehaviouralCode\BlockEnd.cs" />
+    <Compile Include="Assets\Scripts\BehaviouralCode\BlockStart.cs" />
+    <Compile Include="Assets\Scripts\BehaviouralCode\JumpScript.cs" />
     <Compile Include="Assets\Scripts\CameraThing.cs" />
     <Compile Include="Assets\Scripts\CollisionSoul.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\LevelSelection.cs" />
-    <Compile Include="Assets\Scripts\Movement.cs" />
-    <Compile Include="Assets\Scripts\PlayerValues.cs" />
+    <Compile Include="Assets\Scripts\MainCode\Attack.cs" />
+    <Compile Include="Assets\Scripts\MainCode\CameraController.cs" />
+    <Compile Include="Assets\Scripts\MainCode\Movement.cs" />
+    <Compile Include="Assets\Scripts\MainCode\PlayerValues.cs" />
+    <Compile Include="Assets\Scripts\MainCode\menu.cs" />
     <Compile Include="Assets\Scripts\TimerThingyScript.cs" />
     <Compile Include="Assets\Scripts\endMenu.cs" />
-    <Compile Include="Assets\Scripts\menu.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\EasyRoadsMeshGen\ReadMe.txt" />
