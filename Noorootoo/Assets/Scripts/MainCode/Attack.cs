@@ -83,11 +83,14 @@ public class Attack : MonoBehaviour
 
             Player.PlayerAnimation.SetBool("isBlocking", Player.isBlocking);
         }
-		else
-		{
+		else if(!Player.isGrounded && Input.GetButtonDown(Player.Joystick + "Block"))
+        {
 			//Airdoge
 		}
 
+        //-----------------------//
+        //-----ATTACK SCRIPT-----//
+        //-----------------------//
 		if (!Player.isBlocking)
         {
 			//-----LIGHT ATTACK CODE-----//
@@ -97,9 +100,6 @@ public class Attack : MonoBehaviour
                 Player.isAttacking = true;
                 Player.PrimaryAttack = true;
 
-				//Enabling colliders
-				CollidersOn();
-
 				//Activating the animation trigger
 				Player.PlayerAnimation.SetTrigger("PrimaryTrigger");
 
@@ -107,19 +107,10 @@ public class Attack : MonoBehaviour
 				CurrentState = Player.PlayerAnimation.GetCurrentAnimatorStateInfo(0);
 				colliderTime = CurrentState.normalizedTime % 1;
 
-				//Aerial stasis
-				if (!Player.isGrounded)
+                if(!Player.isGrounded)
 				{
-                    Player.gravityEdit = 0.5f;
 
-                    //if (!Player.AerialBool)
-                    //{
-                    //	Player.FrozenY = transform.position;
-                    //	Player.AerialBool = true;
-                    //}
-                    //else
-                    //	Player.FrozenY = transform.position;
-                }
+				}
 			}
 
 
@@ -131,57 +122,11 @@ public class Attack : MonoBehaviour
                 Player.isAttacking = true;
                 Player.SecondaryAttack = true;
 
-				CollidersOn();
-
 				Player.PlayerAnimation.SetTrigger("SecondaryTrigger");
 
 				CurrentState = Player.PlayerAnimation.GetCurrentAnimatorStateInfo(0);
 
 				colliderTime = CurrentState.normalizedTime % 1;
-
-				if(!Player.isGrounded)
-				{
-                    Player.gravityEdit = 0.5f;
-				}
-					/*
-					//-----Getting current Animation state-----//
-					CurrentState = Player.PlayerAnimation.GetCurrentAnimatorStateInfo(0);
-
-					//-----Setting attack to true OR increasing Attackcount-----//
-					if (!Player.SecondaryAttack)
-					{
-						Player.SecondaryAttack = true;
-						colliderTime = 3.0f;
-
-						++SecondaryCount;
-						// set colliders to active
-						CollidersOn();
-						//Kick Animation 
-						Player.PlayerAnimation.SetTrigger("SecondaryTrigger");
-					}
-					else if (Player.SecondaryAttack && CurrentState.IsName(SecondaryCombos[SecondaryCount]))
-					{
-						++SecondaryCount;
-						CollidersOn();
-						Player.PlayerAnimation.SetTrigger("SecondaryTrigger");
-					}
-						//-----------------------------------------------------------//
-
-					//-----Setting the animation time and triggers if not at max combo-----//
-					if (SecondaryCount < SecondaryCombos.Length)
-					{
-
-						if (CurrentState.IsName(SecondaryCombos[SecondaryCount]))
-							colliderTime = CurrentState.length + leewayTime;
-					}
-					else if (CurrentState.IsName(SecondaryCombos[SecondaryCombos.Length - 1]))
-						colliderTime = 0;
-
-					//-----Resetting the count to 0-----//
-					if (SecondaryCount == SecondaryCombos.Length && CurrentState.IsName(SecondaryCombos[SecondaryCombos.Length - 1]))// && CurrentState.IsName(SecondaryCombos[SecondaryCount]))
-						SecondaryCount = 0;
-					*/
-
 			}
         }
 	}

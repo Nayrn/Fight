@@ -95,9 +95,6 @@ public class Movement : MonoBehaviour
 
 			//-----Jump Code -----//
 
-			//float secondsLeft = 0.3f;
-			//while (secondsLeft > 0)
-			//{
 			if (Input.GetButtonDown(Player.Joystick + "Jump"))
 			{
 				if (Player.isGrounded == true)
@@ -124,11 +121,13 @@ public class Movement : MonoBehaviour
 
 				//}
 
-			//if (Physics.Raycast(transform.position, Vector3.down, 3) == false && Player.isGrounded == true)
-			//{
-			//	Player.isGrounded = false;
-			//	Player.PlayerAnimation.SetTrigger("FallTrigger");
-			//}
+			if (Physics.Raycast(transform.position, Vector3.down, 3) == false && Player.isGrounded == true)
+			{
+				Player.isGrounded = false;
+                Player.PlayerAnimation.SetBool("isGrounded", false);
+
+				Player.PlayerAnimation.SetTrigger("FallTrigger");
+			}
 			//if(Physics.Raycast(transform.position, Vector3.down, 0.8f) == true)
 			//	Player.PlayerAnimation.SetBool("isGrounded", true);
 		}
@@ -143,14 +142,6 @@ public class Movement : MonoBehaviour
 		if (col.gameObject.tag == "Ground")
 			Player.PlayerAnimation.SetBool("isGrounded", true);
 	}
-    void OnCollisionExit(Collision col)
-    {
-        if (col.gameObject.tag == "Ground")
-        {
-            Player.isGrounded = false;
-            Player.PlayerAnimation.SetTrigger("FallTrigger");
-        }
-    }
 	
 	void IdleSwitch()
 	{
