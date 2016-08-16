@@ -60,8 +60,7 @@ public class PlayerValues : MonoBehaviour {
     //-----Turn Speed. Increase to hasten the rate at which a character turns on the spot. default is 780
     public float TurnSpeed = 780.0f;
 
-    //-----UI pieces
-    public Text healthText;
+    //-----UI 
     public Image KOText;
     public Slider p1Slider;
    // public Button play;
@@ -82,7 +81,6 @@ public class PlayerValues : MonoBehaviour {
     {
       //m_Health--; for testing purposes, does work
       int health = (int)m_Health;
-      healthText.text = health.ToString();
       p1Slider.value = m_Health;
       soulSlider.value = m_soulAmount;
        
