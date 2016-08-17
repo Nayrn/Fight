@@ -137,11 +137,22 @@ public class Attack : MonoBehaviour
         {
             colliders[0].GetComponent<BoxCollider>().enabled = true;
             colliders[0].tag = "PrimaryAttack";
+
+            if(this.Player.gameObject.tag == "Player2")
+            {
+                colliders[0].tag = "PrimaryP2";
+            }
         }
         else if (Player.SecondaryAttack)
         {
             colliders[0].GetComponent<BoxCollider>().enabled = true;
             colliders[0].tag = "SecondaryAttack";
+
+
+            if (this.Player.gameObject.tag == "Player2")
+            {
+                colliders[0].tag = "SecondaryP2";
+            }
         }
         // switch colliders on for this amount of time
     }

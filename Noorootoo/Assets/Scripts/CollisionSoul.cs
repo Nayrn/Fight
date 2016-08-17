@@ -19,17 +19,17 @@ public class CollisionSoul : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        Debug.Log(soulUp2);
 
-        
-       
 
-        if (soulUp == true)
-        {
-            soulTime -= Time.deltaTime;
-            player1.m_soulAmount = player1.m_soulAmount + 20.0f * Time.deltaTime;     
-        }
 
-        
+         if (soulUp == true)
+         {
+             soulTime -= Time.deltaTime;
+             player1.m_soulAmount = player1.m_soulAmount + 20.0f * Time.deltaTime;     
+         }
+
+
         if (soulTime < 0)
         {
             soulUp = false;
@@ -37,29 +37,45 @@ public class CollisionSoul : MonoBehaviour
         }
 
 
+
+        if (soulTime2 < 0)
+        {
+            soulUp2 = false;
+            soulTime = 0.5f;
+        }
+
         if (soulUp2 == true)
         {
             soulTime2 -= Time.deltaTime;
-            player2.m_soulAmount = player2.m_soulAmount + 20.0f * Time.deltaTime;
+            player2.m_soulAmount = player2.m_soulAmount + 30.0f * Time.deltaTime;
         }
 
 
-        if (soulTime < 0)
+        if (soulTime2 < 0)
         {
             soulUp2 = false;
             soulTime = 0.5f;
         }
     }
 
+    void FixedUpdate()
+    {
+        
+
+
+    }
+
+    
+
     void OnTriggerEnter(Collider col)
     {
+
+       
         // fill up soul for p1 and stop p2 movement
         if (col.gameObject.tag == "PrimaryAttack")
         {
-            //player1.m_soulAmount = player1.m_soulAmount + 16.0f;
             soulUp = true;
             player2.particle.Play();
-            //-----WAS TRYING TO KEEP THE PLAYER STILL  
             player2.MakePlayerStunned(0.5f);
         }
      
@@ -86,6 +102,7 @@ public class CollisionSoul : MonoBehaviour
         {
             soulUp2 = true;
             player1.MakePlayerStunned(0.5f);
+            player1.particle.Play();
         }
 
     }
