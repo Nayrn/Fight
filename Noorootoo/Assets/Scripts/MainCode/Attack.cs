@@ -133,6 +133,7 @@ public class Attack : MonoBehaviour
 
     public void CollidersOn()
     {
+		Debug.Log("Colliders On");
         if (Player.PrimaryAttack)
         {
             colliders[0].GetComponent<BoxCollider>().enabled = true;
@@ -159,7 +160,8 @@ public class Attack : MonoBehaviour
 
     public void CollidersOff()
     {
-        if (Player.PrimaryAttack)
+		Debug.Log("Colliders Off");
+		if (Player.PrimaryAttack)
             colliders[0].GetComponent<BoxCollider>().enabled = false;
         else if (Player.SecondaryAttack)
             colliders[0].GetComponent<BoxCollider>().enabled = false;

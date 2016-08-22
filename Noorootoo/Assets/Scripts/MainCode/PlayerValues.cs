@@ -163,14 +163,17 @@ public class PlayerValues : MonoBehaviour {
                 isAttacking = true;
 				col.enabled = false;
 				PlayerAnimation.SetTrigger("TempHit");
-               
-            }
+				Debug.Log("Colliders Off from hit");
+
+			}
 			if (col.gameObject.tag == "SecondaryAttack")
 			{
 				m_Health -= 10;
                 isAttacking = true;
 				col.enabled = false;
-				PlayerAnimation.SetTrigger("TempHit");			
+				PlayerAnimation.SetTrigger("TempHit");
+
+				Debug.Log("Colliders Off from hit");
 			}
 		}
 	}

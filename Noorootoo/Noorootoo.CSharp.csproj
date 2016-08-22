@@ -63,30 +63,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AerialPlunge.cs" />
     <Compile Include="Assets\Falling leaves\Script\AutoDestory.cs" />
     <Compile Include="Assets\Falling leaves\Script\CameraOrbit.cs" />
     <Compile Include="Assets\Falling leaves\Script\SceneManager.cs" />
-    <Compile Include="Assets\JumpState.cs" />
-    <Compile Include="Assets\Scripts\AIScript.cs" />
+    <Compile Include="Assets\Scripts\BehaviouralCode\AerialPlunge.cs" />
     <Compile Include="Assets\Scripts\BehaviouralCode\AerialStasis.cs" />
     <Compile Include="Assets\Scripts\BehaviouralCode\AttackCombo.cs" />
     <Compile Include="Assets\Scripts\BehaviouralCode\AttackOff.cs" />
+    <Compile Include="Assets\Scripts\BehaviouralCode\AttackState.cs" />
     <Compile Include="Assets\Scripts\BehaviouralCode\BlockEnd.cs" />
     <Compile Include="Assets\Scripts\BehaviouralCode\BlockStart.cs" />
     <Compile Include="Assets\Scripts\BehaviouralCode\JumpScript.cs" />
+    <Compile Include="Assets\Scripts\BehaviouralCode\JumpState.cs" />
     <Compile Include="Assets\Scripts\CameraThing.cs" />
-    <Compile Include="Assets\Scripts\CollisionSoul.cs" />
-    <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\LevelSelection.cs" />
+    <Compile Include="Assets\Scripts\MainCode\AIScript.cs" />
     <Compile Include="Assets\Scripts\MainCode\Attack.cs" />
     <Compile Include="Assets\Scripts\MainCode\CameraController.cs" />
+    <Compile Include="Assets\Scripts\MainCode\CollisionSoul.cs" />
+    <Compile Include="Assets\Scripts\MainCode\GameManager.cs" />
+    <Compile Include="Assets\Scripts\MainCode\LevelSelection.cs" />
     <Compile Include="Assets\Scripts\MainCode\Movement.cs" />
+    <Compile Include="Assets\Scripts\MainCode\PauseGame.cs" />
     <Compile Include="Assets\Scripts\MainCode\PlayerValues.cs" />
+    <Compile Include="Assets\Scripts\MainCode\TimerThingyScript.cs" />
+    <Compile Include="Assets\Scripts\MainCode\endMenu.cs" />
     <Compile Include="Assets\Scripts\MainCode\menu.cs" />
-    <Compile Include="Assets\Scripts\PauseGame.cs" />
-    <Compile Include="Assets\Scripts\TimerThingyScript.cs" />
-    <Compile Include="Assets\Scripts\endMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\EasyRoadsMeshGen\ReadMe.txt" />
