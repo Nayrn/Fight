@@ -21,12 +21,14 @@ public class menu : MonoBehaviour
         
     }
 
-    void OnClick()
+    public void OnClick()
     {
         if (bStart == true)
         {
             //when it says you can use scenemanager, it LIES
-            SceneManager.LoadScene("Main Build 2", LoadSceneMode.Single);
+            Application.LoadLevel("Main Build 2");
+
+            //SceneManager.LoadScene("Main Build 2", LoadSceneMode.Single);
             
             Debug.Log("i SHOULD work");
         }
