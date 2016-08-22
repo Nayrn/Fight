@@ -313,7 +313,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: cf71d1b8a4a11cd43a99b127c4c0e8b1, type: 3}
+  m_Motion: {fileID: 7400000, guid: af2042511dadb95489264acabff05f0e, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -409,7 +409,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 958bbca2a422574458dafd6dd09b0a27, type: 3}
+  m_Motion: {fileID: 7400000, guid: fceb00a7619d43b409cb1a7ee7efb5c9, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -436,7 +436,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400002, guid: 08eac0f1ca5de6948aea681db1f54f5c, type: 3}
+  m_Motion: {fileID: 7400000, guid: 882e377ea93d88d4f976adc074fdce13, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -684,9 +684,8 @@ AnimatorStateMachine:
       first: {fileID: 0}
       second: []
     data:
-      first: {fileID: 1107000011996237762}
-      second:
-      - {fileID: 1109000011736419940}
+      first: {fileID: 110733008}
+      second: []
     data:
       first: {fileID: 110754594}
       second:
@@ -696,9 +695,6 @@ AnimatorStateMachine:
       second:
       - {fileID: 1109000012288716492}
       - {fileID: 1109000011545445954}
-    data:
-      first: {fileID: 110733008}
-      second: []
     data:
       first: {fileID: 110786894}
       second:
@@ -710,6 +706,10 @@ AnimatorStateMachine:
       first: {fileID: 1107000012875377092}
       second:
       - {fileID: 1109000011109909064}
+    data:
+      first: {fileID: 1107000011996237762}
+      second:
+      - {fileID: 1109000011736419940}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 684, y: -168, z: 0}
   m_EntryPosition: {x: 420, y: -48, z: 0}
@@ -825,6 +825,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7c3c22ae95056d4db1229f67bc03a38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114000010701342512
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e4b72d94fb79a04880dc76d1e57dd83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114000010854701406
@@ -2174,10 +2185,10 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.105555564
+  m_TransitionDuration: 0.09156948
   m_TransitionOffset: 0
-  m_ExitTime: 0.58333427
-  m_HasExitTime: 1
+  m_ExitTime: 0.758159
+  m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -2910,7 +2921,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Heavy_Attack_one
-  m_Speed: 1
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101000011403686604}
@@ -3033,7 +3044,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Running_Heavy_Attack_one
-  m_Speed: 1
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101000010654379842}
@@ -3084,7 +3095,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Attack_two
-  m_Speed: 1
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101000014170757030}
@@ -3177,7 +3188,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 4d76d8ea2d867f840a5132219da255ef, type: 3}
+  m_Motion: {fileID: 7400000, guid: 3babcf028e02f244980d0b270c5327d8, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -3240,7 +3251,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Attack_one
-  m_Speed: 1
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101000012225240714}
@@ -3289,7 +3300,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Heavy_Attack_two
-  m_Speed: 1
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101000010024811452}
@@ -3349,7 +3360,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: d138c6995bb07db4593c9301a3c6b645, type: 3}
+  m_Motion: {fileID: 7400000, guid: d2b6dcedcc877a84d884ac6354c53898, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -3386,11 +3397,12 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Plunging_Land
-  m_Speed: 1
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101000013144651122}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: 114000010701342512}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
