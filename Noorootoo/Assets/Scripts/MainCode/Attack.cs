@@ -102,15 +102,6 @@ public class Attack : MonoBehaviour
 
 				//Activating the animation trigger
 				Player.PlayerAnimation.SetTrigger("PrimaryTrigger");
-
-				//Get the current state and set the time
-				CurrentState = Player.PlayerAnimation.GetCurrentAnimatorStateInfo(0);
-				colliderTime = CurrentState.normalizedTime % 1;
-
-                if(!Player.isGrounded)
-				{
-
-				}
 			}
 
 
@@ -123,10 +114,6 @@ public class Attack : MonoBehaviour
                 Player.SecondaryAttack = true;
 
 				Player.PlayerAnimation.SetTrigger("SecondaryTrigger");
-
-				CurrentState = Player.PlayerAnimation.GetCurrentAnimatorStateInfo(0);
-
-				colliderTime = CurrentState.normalizedTime % 1;
 			}
         }
 	}

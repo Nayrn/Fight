@@ -539,7 +539,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000013544225148
 GameObject:
   m_ObjectHideFlags: 1
@@ -841,7 +841,7 @@ MonoBehaviour:
   gravityEdit: 1
   TurnSpeed: 0
   KOText: {fileID: 0}
-  p1Slider: {fileID: 0}
+  PlayerSlider: {fileID: 0}
   SoulSlider: {fileID: 0}
   particle: {fileID: 0}
   dust: {fileID: 0}
@@ -1476,7 +1476,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 22
 --- !u!114 &114000013539651226
 MonoBehaviour:
   m_ObjectHideFlags: 1
