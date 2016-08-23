@@ -44,5 +44,8 @@ public class AttackState : StateMachineBehaviour {
 		pAttack = animator.GetComponentInParent<Attack>();
 
 		pAttack.CollidersOff();
+
+		animator.ResetTrigger("PrimaryTrigger");
+		animator.ResetTrigger("SecondaryTrigger");
 	}
 }

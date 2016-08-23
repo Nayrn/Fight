@@ -77,10 +77,10 @@ public class PlayerValues : MonoBehaviour {
     //-----UI pieces
   
     public Image KOText;
-    public Slider p1Slider;
+    public Slider PlayerSlider;
     public Slider SoulSlider;
-    //public ParticleSystem particle;
-    //public ParticleSystem dust;
+    public ParticleSystem particle;
+    public ParticleSystem dust;
     //-----Stun Timer
     private float staticTime = 0.0f;
 
@@ -98,7 +98,7 @@ public class PlayerValues : MonoBehaviour {
     {
         rb.AddForce(Physics.gravity * gravityEdit * rb.mass);
 
-		p1Slider.value = m_Health;
+		PlayerSlider.value = m_Health;
 		SoulSlider.value = m_soulAmount;
 
         if (m_Health <= 0)
