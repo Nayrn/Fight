@@ -79,8 +79,8 @@ public class PlayerValues : MonoBehaviour {
     public Image KOText;
     public Slider p1Slider;
     public Slider SoulSlider;
-    //public ParticleSystem particle;
-    //public ParticleSystem dust;
+    public ParticleSystem particle;
+    public ParticleSystem dust;
     //-----Stun Timer
     private float staticTime = 0.0f;
 
