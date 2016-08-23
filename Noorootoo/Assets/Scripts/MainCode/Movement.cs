@@ -98,7 +98,7 @@ public class Movement : MonoBehaviour
 					Player.PlayerAnimation.SetBool("isGrounded", Player.isGrounded);
 					Player.PlayerAnimation.SetTrigger("JumpPressed");
 					if (Player.isGrounded == false)
-						Player.rb.AddForce(0, 9, 0, ForceMode.Impulse);
+						Player.rb.AddForce(0, 8, 0, ForceMode.Impulse);
 				}
 				else if (!Player.isGrounded && Player.DoubleJump && !Player.isAttacking)
 				{
@@ -109,7 +109,7 @@ public class Movement : MonoBehaviour
 					Player.PlayerAnimation.SetTrigger("DoubleJump");
 
 					Player.rb.velocity = new Vector3(Player.rb.velocity.x, 0, Player.rb.velocity.z);
-					Player.rb.AddForce(0, 9, 0, ForceMode.Impulse);
+					Player.rb.AddForce(0, 8, 0, ForceMode.Impulse);
 				}
 			}
 				//secondsLeft -= Time.deltaTime;
