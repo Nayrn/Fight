@@ -79,8 +79,8 @@ public class PlayerValues : MonoBehaviour {
     public Image KOText;
     public Slider p1Slider;
     public Slider SoulSlider;
-    public ParticleSystem particle;
-    public ParticleSystem dust;
+    //public ParticleSystem particle;
+    //public ParticleSystem dust;
     //-----Stun Timer
     private float staticTime = 0.0f;
 
@@ -112,35 +112,15 @@ public class PlayerValues : MonoBehaviour {
 
         //------TESTING, DOES WORK ------
        
-          if(m_soulAmount > 100)
-          {
-              m_soulAmount = 100;
-          }            
-        
+        if(m_soulAmount > 100)
+        {
+            m_soulAmount = 100;
+        }
+		//-----INPUT FOR ELEMENTS-------
 
-		  /*
-          //-----INPUT FOR ELEMENTS-------
-    
-            
-          if(Input.GetKey(KeyCode.I)) // FIRE
-          {
-            //Attribute = ElemTrait.FIRE;
-          }
-          if(Input.GetKey(KeyCode.L)) // EARTH
-          {
-           //Attribute = ElemTrait.EARTH;
-          }
-          if(Input.GetKey(KeyCode.K)) //AIR
-          {
-              //Attribute = ElemTrait.AIR;
-          }
-          if(Input.GetKey(KeyCode.J)) // WATER
-          {
-          //Attribute = ElemTrait.WATER;
-          }
-		  */
+		ChangeElement();
 
-        if(isStunned)
+		if (isStunned)
         {
             staticTime -= Time.deltaTime;
             if (staticTime <= 0.0f)
@@ -188,4 +168,28 @@ public class PlayerValues : MonoBehaviour {
         isStunned = true;
         staticTime = time;
     }
+
+	private void ChangeElement()
+	{ 
+		if (Input.GetAxis(Joystick + "DpadVertical") > 0) // FIRE
+		{
+			Debug.Log("Element Change; Fire");
+			Attribute = ElemTrait.FIRE;
+		}
+		if (Input.GetAxis(Joystick + "DpadHorizontal") > 0) // EARTH
+		{
+			Debug.Log("Element Change; Earth");
+			Attribute = ElemTrait.EARTH;
+		}
+		if (Input.GetAxis(Joystick + "DpadVertical") < 0) //AIR
+		{
+			Debug.Log("Element Change; Air");
+			Attribute = ElemTrait.AIR;
+		}
+		if (Input.GetAxis(Joystick + "DpadHorizontal") < 0) // WATER
+		{
+			Debug.Log("Element Change; Water");
+			Attribute = ElemTrait.WATER;
+		}
+	}
 }

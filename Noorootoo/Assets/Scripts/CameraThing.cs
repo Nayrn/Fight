@@ -86,16 +86,9 @@ public class CameraThing : MonoBehaviour {
 	{
 		if (Mode == GameMode.SinglePlayer)
 		{
-			float tempFloat = cam.transform.position.y;
-
 			Vector3 dir = new Vector3(0, 0, -distance);
 			Quaternion rotation = Quaternion.Euler(yPos, xPos, 0);
 			camTransform.position = lookAt.position + rotation * dir;
-
-			if (Player.GetComponent<PlayerValues>().isGrounded == true)
-			{
-				tempFloat = cam.transform.position.y;
-			}
 
 			//camTransform.position = new Vector3(camTransform.position.x, tempFloat, camTransform.position.z);\
 			TargetPosition = (Player.transform.position + TargetObject.transform.position) / 2;
