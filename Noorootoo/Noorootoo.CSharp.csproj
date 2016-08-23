@@ -66,6 +66,7 @@
     <Compile Include="Assets\Falling leaves\Script\AutoDestory.cs" />
     <Compile Include="Assets\Falling leaves\Script\CameraOrbit.cs" />
     <Compile Include="Assets\Falling leaves\Script\SceneManager.cs" />
+    <Compile Include="Assets\PlungingStall.cs" />
     <Compile Include="Assets\Scripts\BehaviouralCode\AerialPlunge.cs" />
     <Compile Include="Assets\Scripts\BehaviouralCode\AerialStasis.cs" />
     <Compile Include="Assets\Scripts\BehaviouralCode\AttackCombo.cs" />
@@ -88,6 +89,9 @@
     <Compile Include="Assets\Scripts\MainCode\TimerThingyScript.cs" />
     <Compile Include="Assets\Scripts\MainCode\endMenu.cs" />
     <Compile Include="Assets\Scripts\MainCode\menu.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\EasyRoadsMeshGen\ReadMe.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
