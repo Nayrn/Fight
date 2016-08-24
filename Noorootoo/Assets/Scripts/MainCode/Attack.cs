@@ -9,6 +9,7 @@ public struct Move
     public ElemTrait element;
 
 	public Collider strikeBox;
+  
 };
 
 public class Attack : MonoBehaviour
@@ -25,7 +26,7 @@ public class Attack : MonoBehaviour
 
 	public float leewayTime = 4.5f;
 	public float colliderTime;
-
+    public float blockTime;
     // Use this for initialization
     void Start()
     {
@@ -50,7 +51,7 @@ public class Attack : MonoBehaviour
 			if (colliderTime > 0 && (Player.PrimaryAttack == true || Player.SecondaryAttack == true))
 				colliderTime -= Time.deltaTime;
 			else if (colliderTime <= 0.0f)
-				colliderTime = 0;
+				colliderTime = 0.5f;
 			
 			if(colliderTime == 0)
 			{
@@ -65,22 +66,23 @@ public class Attack : MonoBehaviour
 				SecondaryCount = 0;
 			}
 		}
+        
+
     }
 
 	void ActionUpdate()
 	{
+      
         //-----BLOCK CODE-----//
-        if(Player.isGrounded && Input.GetButtonDown(Player.Joystick + "Block"))
-        {
+        if (Player.isGrounded && Input.GetButtonDown(Player.Joystick + "Block"))
+        {      
             Player.isBlocking = true;
-
-			Player.PlayerAnimation.SetBool("isBlocking", Player.isBlocking);
-			Player.PlayerAnimation.SetTrigger("Block");
-		}
+            Player.PlayerAnimation.SetBool("isBlocking", Player.isBlocking);
+            Player.PlayerAnimation.SetTrigger("Block");
+        }
 		else if (Input.GetButtonUp(Player.Joystick + "Block"))
 		{
             Player.isBlocking = false;
-
             Player.PlayerAnimation.SetBool("isBlocking", Player.isBlocking);
         }
 		else if(!Player.isGrounded && Input.GetButtonDown(Player.Joystick + "Block"))
