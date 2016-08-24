@@ -682,9 +682,6 @@ AnimatorStateMachine:
       first: {fileID: 0}
       second: []
     data:
-      first: {fileID: 110733008}
-      second: []
-    data:
       first: {fileID: 110754594}
       second:
       - {fileID: 1109000013607753184}
@@ -693,6 +690,9 @@ AnimatorStateMachine:
       second:
       - {fileID: 1109000012288716492}
       - {fileID: 1109000011545445954}
+    data:
+      first: {fileID: 110733008}
+      second: []
     data:
       first: {fileID: 110786894}
       second:
@@ -3181,12 +3181,12 @@ AnimatorState:
   m_Mirror: 0
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
+  m_CycleOffsetParameterActive: 1
   m_Motion: {fileID: 206000014207653032}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
-  m_CycleOffsetParameter: 
+  m_CycleOffsetParameter: MovingX
 --- !u!1102 &1102000013150185806
 AnimatorState:
   serializedVersion: 5

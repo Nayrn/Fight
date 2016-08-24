@@ -81,6 +81,11 @@ public class PlayerValues : MonoBehaviour {
     public Slider SoulSlider;
     public ParticleSystem particle;
     public ParticleSystem dust;
+    public ParticleSystem Fire;
+    public ParticleSystem Water;
+    public ParticleSystem Earth;
+    public ParticleSystem Air;
+    public ParticleSystem Soul;
     //-----Stun Timer
     private float staticTime = 0.0f;
 
@@ -170,26 +175,42 @@ public class PlayerValues : MonoBehaviour {
     }
 
 	private void ChangeElement()
-	{ 
-		if (Input.GetAxis(Joystick + "DpadVertical") > 0) // FIRE
-		{
-			Debug.Log("Element Change; Fire");
-			Attribute = ElemTrait.FIRE;
-		}
-		if (Input.GetAxis(Joystick + "DpadHorizontal") > 0) // EARTH
-		{
-			Debug.Log("Element Change; Earth");
-			Attribute = ElemTrait.EARTH;
-		}
-		if (Input.GetAxis(Joystick + "DpadVertical") < 0) //AIR
-		{
-			Debug.Log("Element Change; Air");
-			Attribute = ElemTrait.AIR;
-		}
-		if (Input.GetAxis(Joystick + "DpadHorizontal") < 0) // WATER
-		{
-			Debug.Log("Element Change; Water");
-			Attribute = ElemTrait.WATER;
-		}
+	{
+        if (Input.GetAxis(Joystick + "DpadVertical") > 0) // FIRE
+        {
+            ResetElement();
+            Debug.Log("Element Change; Fire");
+            Attribute = ElemTrait.FIRE;
+            Fire.gameObject.SetActive(true);
+        }
+        if (Input.GetAxis(Joystick + "DpadHorizontal") > 0) // EARTH
+        {
+            ResetElement();
+            Debug.Log("Element Change; Earth");
+            Attribute = ElemTrait.EARTH;
+            Earth.gameObject.SetActive(true);
+        }
+        if (Input.GetAxis(Joystick + "DpadVertical") < 0) //AIR
+        {
+            ResetElement();
+            Debug.Log("Element Change; Air");
+            Attribute = ElemTrait.AIR;
+            Air.gameObject.SetActive(true);
+        }
+        if (Input.GetAxis(Joystick + "DpadHorizontal") < 0) // WATER
+        {
+            ResetElement();
+            Debug.Log("Element Change; Water");
+            Attribute = ElemTrait.WATER;
+            Water.gameObject.SetActive(true);
+        }
 	}
+
+    private void ResetElement()
+    {
+        Fire.gameObject.SetActive(false);
+        Earth.gameObject.SetActive(false);
+        Air.gameObject.SetActive(false);
+        Water.gameObject.SetActive(false);
+    }
 }
