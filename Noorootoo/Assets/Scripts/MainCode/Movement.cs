@@ -38,7 +38,30 @@ public class Movement : MonoBehaviour
 	{
 		if (!Player.isStasis)
 		{
+			MoveCode();
 
+			if (Input.GetButtonDown(Player.Joystick + "Jump"))
+			{
+				if (Player.isGrounded == true)
+				{
+					Player.isGrounded = false;
+					Player.PlayerAnimation.SetBool("isGrounded", Player.isGrounded);
+					Player.PlayerAnimation.SetTrigger("JumpPressed");
+					if (Player.isGrounded == false)
+						Player.rb.AddForce(0, 8, 0, ForceMode.Impulse);
+				}
+				else if (!Player.isGrounded && Player.DoubleJump && !Player.isAttacking)
+				{
+					//Update to only activate on Normal Jump loop
+
+					Player.DoubleJump = false;
+
+					Player.PlayerAnimation.SetTrigger("DoubleJump");
+
+					Player.rb.velocity = new Vector3(Player.rb.velocity.x, 0, Player.rb.velocity.z);
+					Player.rb.AddForce(0, 8, 0, ForceMode.Impulse);
+				}
+			}
 		}
 		else
 		{
@@ -46,19 +69,6 @@ public class Movement : MonoBehaviour
 		}
 	}
 
-	void InputCheck()
-	{
-		MoveCode();
-
-		if (Input.GetButtonDown(Player.Joystick + "Jump"))
-		{
-			JumpCode();
-		}
-	}
-	void BlockCode()
-	{
-
-	}
 	void MoveCode()
 	{
 		//-----Animation Code-----//
@@ -109,7 +119,7 @@ public class Movement : MonoBehaviour
 
 			//-----Force player to look at opponent
 			if (Player.Targeted)
-			Player.rb.transform.LookAt(new Vector3(Player.Opponent.transform.position.x, transform.position.y, Player.Opponent.transform.position.z));
+				Player.rb.transform.LookAt(new Vector3(Player.Opponent.transform.position.x, transform.position.y, Player.Opponent.transform.position.z));
 		}
 
 		if (Physics.Raycast(transform.position, Vector3.down, 3) == false && Player.isGrounded == true)
@@ -118,28 +128,6 @@ public class Movement : MonoBehaviour
 			Player.PlayerAnimation.SetBool("isGrounded", false);
 
 			Player.PlayerAnimation.SetTrigger("FallTrigger");
-		}
-	}
-	void JumpCode()
-	{
-		if (Player.isGrounded == true)
-		{
-			Player.isGrounded = false;
-			Player.PlayerAnimation.SetBool("isGrounded", Player.isGrounded);
-			Player.PlayerAnimation.SetTrigger("JumpPressed");
-			if (Player.isGrounded == false)
-				Player.rb.AddForce(0, 8, 0, ForceMode.Impulse);
-		}
-		else if (!Player.isGrounded && Player.DoubleJump && !Player.isAttacking)
-		{
-			//Update to only activate on Normal Jump loop
-
-			Player.DoubleJump = false;
-
-			Player.PlayerAnimation.SetTrigger("DoubleJump");
-
-			Player.rb.velocity = new Vector3(Player.rb.velocity.x, 0, Player.rb.velocity.z);
-			Player.rb.AddForce(0, 8, 0, ForceMode.Impulse);
 		}
 	}
 

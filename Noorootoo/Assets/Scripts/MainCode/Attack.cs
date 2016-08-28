@@ -51,12 +51,12 @@ public class Attack : MonoBehaviour
 			if (colliderTime > 0 && (Player.PrimaryAttack == true || Player.SecondaryAttack == true))
 				colliderTime -= Time.deltaTime;
 			else if (colliderTime <= 0.0f)
-				colliderTime = 0.5f;
+				colliderTime = 0;
 			
 			if(colliderTime == 0)
 			{
-				for (int i = 0; i < colliders.Length; i++)
-					colliders[i].GetComponent<BoxCollider>().enabled = false;
+				//for (int i = 0; i < colliders.Length; i++)
+				//	colliders[i].GetComponent<BoxCollider>().enabled = false;
 
 				Player.SecondaryAttack = false;
 				Player.PrimaryAttack = false;
@@ -128,10 +128,10 @@ public class Attack : MonoBehaviour
             colliders[0].GetComponent<BoxCollider>().enabled = true;
             colliders[0].tag = "PrimaryAttack";
 
-            if(this.Player.gameObject.tag == "Player2")
-            {
-                colliders[0].tag = "PrimaryP2";
-            }
+            //if(this.Player.gameObject.tag == "Player2")
+            //{
+            //    colliders[0].tag = "PrimaryP2";
+            //}
         }
         else if (Player.SecondaryAttack)
         {
@@ -139,21 +139,22 @@ public class Attack : MonoBehaviour
             colliders[0].tag = "SecondaryAttack";
 
 
-            if (this.Player.gameObject.tag == "Player2")
-            {
-                colliders[0].tag = "SecondaryP2";
-            }
+            //if (this.Player.gameObject.tag == "Player2")
+            //{
+            //    colliders[0].tag = "SecondaryP2";
+            //}
         }
         // switch colliders on for this amount of time
     }
 
     public void CollidersOff()
     {
+		Player.SecondaryAttack = false;
+		Player.PrimaryAttack = false;
+		Player.isAttacking = false;
+
 		Debug.Log("Colliders Off");
-		if (Player.PrimaryAttack)
-            colliders[0].GetComponent<BoxCollider>().enabled = false;
-        else if (Player.SecondaryAttack)
-            colliders[0].GetComponent<BoxCollider>().enabled = false;
-        // switch colliders on for this amount of time
+
+        colliders[0].GetComponent<BoxCollider>().enabled = false;
     }
 }

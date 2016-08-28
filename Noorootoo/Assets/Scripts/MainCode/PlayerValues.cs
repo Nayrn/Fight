@@ -146,7 +146,8 @@ public class PlayerValues : MonoBehaviour {
 			{
 				m_Health -=  5;
                 isAttacking = true;
-				col.enabled = false;
+
+				//col.enabled = false;
 				PlayerAnimation.SetTrigger("TempHit");
 				Debug.Log("Colliders Off from hit");
 
@@ -155,7 +156,7 @@ public class PlayerValues : MonoBehaviour {
 			{
 				m_Health -= 10;
                 isAttacking = true;
-				col.enabled = false;
+				//col.enabled = false;
 				PlayerAnimation.SetTrigger("TempHit");
 
 				Debug.Log("Colliders Off from hit");
