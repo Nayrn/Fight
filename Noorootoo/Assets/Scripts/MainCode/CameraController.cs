@@ -118,13 +118,12 @@ public class CameraController : MonoBehaviour {
             freeViewY += Input.GetAxis(Player.Joystick + "CameraVertical") * Sensitivity.y;
         }
 
-        freeViewY = Mathf.Clamp(freeViewY, 10, 55);
+        freeViewY = Mathf.Clamp(freeViewY, 4, 55);
 
         Quaternion rotation = Quaternion.Euler(freeViewY, freeViewX, 0);
         transform.position = FollowedObject.transform.position + rotation * direction;
-
-		Quaternion lookAt = Quaternion.LookRotation(FollowedObject.transform.position);
-		transform.rotation = Quaternion.Slerp(transform.rotation, lookAt, Time.deltaTime * 5.0f);
+		
+		//-----Lookat Player position
 		transform.LookAt(FollowedObject.transform.position);
 	}
 }
