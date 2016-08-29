@@ -24,7 +24,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 436330}
   m_Layer: 0
-  m_Name: polySurface4_polySurface83
+  m_Name: Vines (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,7 +39,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 468016}
   m_Layer: 0
-  m_Name: polySurface4_polySurface60
+  m_Name: Vines (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,7 +84,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 432122}
   m_Layer: 0
-  m_Name: polySurface4_polySurface69
+  m_Name: Vines (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -348,7 +348,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 448226}
   m_Layer: 0
-  m_Name: polySurface4_polySurface71
+  m_Name: Vines (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -363,7 +363,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 421358}
   m_Layer: 0
-  m_Name: polySurface16_polySurface4
+  m_Name: Vines (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -378,7 +378,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 439516}
   m_Layer: 0
-  m_Name: polySurface4_polySurface50
+  m_Name: Vines (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -423,7 +423,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 477210}
   m_Layer: 0
-  m_Name: polySurface4_polySurface92
+  m_Name: Vines (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -438,7 +438,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 441306}
   m_Layer: 0
-  m_Name: polySurface4_polySurface81
+  m_Name: Vines (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -453,7 +453,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 477508}
   m_Layer: 0
-  m_Name: polySurface4_polySurface80
+  m_Name: Vines (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

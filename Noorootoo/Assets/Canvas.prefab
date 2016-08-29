@@ -845,6 +845,11 @@ MonoBehaviour:
   SoulSlider: {fileID: 0}
   particle: {fileID: 0}
   dust: {fileID: 0}
+  Fire: {fileID: 0}
+  Water: {fileID: 0}
+  Earth: {fileID: 0}
+  Air: {fileID: 0}
+  Soul: {fileID: 0}
 --- !u!114 &114000011311565158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1476,7 +1481,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 6
+  m_Text: 0
 --- !u!114 &114000013539651226
 MonoBehaviour:
   m_ObjectHideFlags: 1
