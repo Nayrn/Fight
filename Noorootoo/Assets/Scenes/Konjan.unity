@@ -1006,6 +1006,11 @@ Prefab:
       propertyPath: SecondaryAttack
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 65000014087896176, guid: 6744995274784154fada32bd0193175e,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6744995274784154fada32bd0193175e, type: 2}
   m_IsPrefabParent: 0
@@ -2091,6 +2096,11 @@ Prefab:
       propertyPath: dust
       value: 
       objectReference: {fileID: 1554427896}
+    - target: {fileID: 65000014087896176, guid: 6744995274784154fada32bd0193175e,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6744995274784154fada32bd0193175e, type: 2}
   m_IsPrefabParent: 0
