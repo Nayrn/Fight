@@ -37,22 +37,6 @@ public class CollisionSoul : MonoBehaviour
         }
 
 
-        //if (soulUp2 == true)
-        //{
-        //    soulTime2 -= Time.deltaTime;
-        //    player2.m_soulAmount = player2.m_soulAmount + 30.0f * Time.deltaTime;
-        //}
-
-
-        //if (soulTime2 <= 0)
-        //{
-        //    soulUp2 = false;
-        //    soulTime = 0.5f;
-        //}
-
-
-
-
     }
 
     void FixedUpdate()
@@ -71,8 +55,7 @@ public class CollisionSoul : MonoBehaviour
         // fill up soul for p1 and stop p2 movement
         if (col.gameObject.tag == "PrimaryAttack")
         {
-            soulUp = true;
-          
+            soulUp = true;          
             player2.MakePlayerStunned(0.5f);
         }
      
