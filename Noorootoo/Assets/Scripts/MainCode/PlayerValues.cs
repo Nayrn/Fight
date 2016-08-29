@@ -20,25 +20,25 @@ public class PlayerValues : MonoBehaviour {
 	private const float MAX_HEALTH = 100;
 
 	public Rigidbody rb;
-
+   
     //-----Status Variables, Damage to be moved to upcoming "Move Struct" in "Attack.cs"
-	public float m_Health;
+    public float m_Health;
 
     public ElemTrait Attribute;
 
 	public bool isStunned = false;
     public bool isStasis = false;
     public bool isBlocking = false;
-
+    public float m_damage;
 	//Opponent Variable
 	public GameObject Opponent;
 
     //-----SOUL VARIABLES-----//
     public float m_soulAmount;
+    private float timeThing;
+    //-----CONTROLLER VARIABLES-----//
 
-	//-----CONTROLLER VARIABLES-----//
-
-	public JoystickNum Joystick = JoystickNum.Keyboard;
+    public JoystickNum Joystick = JoystickNum.Keyboard;
 	public bool Targeted = false;
 
     //----------MOVEMENT VARIABLES-----//
@@ -79,8 +79,7 @@ public class PlayerValues : MonoBehaviour {
     public Image KOText;
     public Slider PlayerSlider;
     public Slider SoulSlider;
-    public ParticleSystem particle;
-    public ParticleSystem dust;
+
     public ParticleSystem Fire;
     public ParticleSystem Water;
     public ParticleSystem Earth;
@@ -96,13 +95,15 @@ public class PlayerValues : MonoBehaviour {
         m_soulAmount = 0;
         SoulSlider.maxValue = 100;
         Attribute = ElemTrait.UNASPECTED;
+        timeThing = 5.0f;
+        m_damage = 5.0f;
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate ()
     {
         rb.AddForce(Physics.gravity * gravityEdit * rb.mass);
-
+       
 		PlayerSlider.value = m_Health;
 		SoulSlider.value = m_soulAmount;
 
@@ -121,11 +122,29 @@ public class PlayerValues : MonoBehaviour {
         {
             m_soulAmount = 100;
         }
-		//-----INPUT FOR ELEMENTS-------
+        //-----INPUT FOR ELEMENTS-------
 
-		ChangeElement();
+        if (m_soulAmount > 33.3f)
+        {
+            ChangeElement();
 
-		if (isStunned)
+        }
+
+        if (Attribute != ElemTrait.UNASPECTED)
+        {
+            timeThing -= Time.deltaTime;        
+        }
+        if (timeThing <= 0.0f)
+        {
+            Attribute = ElemTrait.UNASPECTED;
+            Fire.gameObject.SetActive(false);
+            Earth.gameObject.SetActive(false);
+            Air.gameObject.SetActive(false);
+            Water.gameObject.SetActive(false);
+            timeThing = 5.0f;
+        }
+
+        if (isStunned)
         {
             staticTime -= Time.deltaTime;
             if (staticTime <= 0.0f)
@@ -134,8 +153,10 @@ public class PlayerValues : MonoBehaviour {
 
         if(isGrounded)
         {
-            dust.Play();
+     
         }
+
+
 	}
 
 	void OnTriggerEnter(Collider col)
@@ -144,7 +165,7 @@ public class PlayerValues : MonoBehaviour {
 		{
 			if (col.gameObject.tag == "PrimaryAttack")
 			{
-				m_Health -=  5;
+				m_Health -= m_damage;
                 isAttacking = true;
 
 				//col.enabled = false;
@@ -154,7 +175,8 @@ public class PlayerValues : MonoBehaviour {
 			}
 			if (col.gameObject.tag == "SecondaryAttack")
 			{
-				m_Health -= 10;
+                m_damage = 10.0f;
+				m_Health -= m_damage;
                 isAttacking = true;
 				//col.enabled = false;
 				PlayerAnimation.SetTrigger("TempHit");
@@ -177,28 +199,28 @@ public class PlayerValues : MonoBehaviour {
 
 	private void ChangeElement()
 	{
-        if (Input.GetAxis(Joystick + "DpadVertical") > 0) // FIRE
+        if (Input.GetAxis(Joystick + "DpadVertical") > 0 && Attribute != ElemTrait.FIRE) // FIRE
         {
             ResetElement();
             Debug.Log("Element Change; Fire");
             Attribute = ElemTrait.FIRE;
             Fire.gameObject.SetActive(true);
         }
-        if (Input.GetAxis(Joystick + "DpadHorizontal") > 0) // EARTH
+        if (Input.GetAxis(Joystick + "DpadHorizontal") > 0 && Attribute != ElemTrait.EARTH) // EARTH
         {
             ResetElement();
             Debug.Log("Element Change; Earth");
             Attribute = ElemTrait.EARTH;
             Earth.gameObject.SetActive(true);
         }
-        if (Input.GetAxis(Joystick + "DpadVertical") < 0) //AIR
+        if (Input.GetAxis(Joystick + "DpadVertical") < 0 && Attribute != ElemTrait.AIR) //AIR
         {
             ResetElement();
             Debug.Log("Element Change; Air");
             Attribute = ElemTrait.AIR;
             Air.gameObject.SetActive(true);
         }
-        if (Input.GetAxis(Joystick + "DpadHorizontal") < 0) // WATER
+        if (Input.GetAxis(Joystick + "DpadHorizontal") < 0 && Attribute != ElemTrait.WATER) // WATER
         {
             ResetElement();
             Debug.Log("Element Change; Water");
@@ -213,5 +235,7 @@ public class PlayerValues : MonoBehaviour {
         Earth.gameObject.SetActive(false);
         Air.gameObject.SetActive(false);
         Water.gameObject.SetActive(false);
+        m_soulAmount -= 33.3f;
+
     }
 }

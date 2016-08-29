@@ -15,6 +15,7 @@ public struct Move
 public class Attack : MonoBehaviour
 {
 	public PlayerValues Player;
+    public CollisionSoul soulAttack;
 	public GameObject[] colliders;
 
 	public string[] PrimaryCombos;
@@ -36,6 +37,7 @@ public class Attack : MonoBehaviour
         Player.isAttacking = false;
         for (int i = 0; i < colliders.Length; i++ )
 			colliders[i].GetComponent<BoxCollider>().enabled = false;
+        soulAttack.GetComponent<CollisionSoul>();
     }
 
     // Update is called once per frame
@@ -67,6 +69,10 @@ public class Attack : MonoBehaviour
 			}
 		}
         
+
+        // --- ELEMENT ATTACK CODE ----
+
+
 
     }
 
@@ -128,10 +134,10 @@ public class Attack : MonoBehaviour
             colliders[0].GetComponent<BoxCollider>().enabled = true;
             colliders[0].tag = "PrimaryAttack";
 
-            //if(this.Player.gameObject.tag == "Player2")
-            //{
-            //    colliders[0].tag = "PrimaryP2";
-            //}
+            if(this.Player.gameObject.tag == "Player2")
+            {
+                colliders[0].tag = "PrimaryP2";
+            }
         }
         else if (Player.SecondaryAttack)
         {
