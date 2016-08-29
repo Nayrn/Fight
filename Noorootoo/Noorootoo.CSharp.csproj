@@ -82,12 +82,12 @@
     <Compile Include="Assets\Scripts\MainCode\CollisionSoul.cs" />
     <Compile Include="Assets\Scripts\MainCode\GameManager.cs" />
     <Compile Include="Assets\Scripts\MainCode\LevelSelection.cs" />
+    <Compile Include="Assets\Scripts\MainCode\MenuScript.cs" />
     <Compile Include="Assets\Scripts\MainCode\Movement.cs" />
     <Compile Include="Assets\Scripts\MainCode\PauseGame.cs" />
     <Compile Include="Assets\Scripts\MainCode\PlayerValues.cs" />
     <Compile Include="Assets\Scripts\MainCode\TimerThingyScript.cs" />
     <Compile Include="Assets\Scripts\MainCode\endMenu.cs" />
-    <Compile Include="Assets\Scripts\MainCode\menu.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\EasyRoadsMeshGen\ReadMe.txt" />
