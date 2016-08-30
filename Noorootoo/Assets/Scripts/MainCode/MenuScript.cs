@@ -4,11 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour
 {
-
-    public bool bStart;
-    public bool bQuit;
-
-
     // Use this for initialization
     void Start()
     {
@@ -19,11 +14,6 @@ public class MenuScript : MonoBehaviour
     void Update()
     {
         
-    }
-
-    public void OnClick()
-    {
-
     }
 
 	public void LoadLevel(string Level)

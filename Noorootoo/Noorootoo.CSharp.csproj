@@ -66,6 +66,7 @@
     <Compile Include="Assets\Falling leaves\Script\AutoDestory.cs" />
     <Compile Include="Assets\Falling leaves\Script\CameraOrbit.cs" />
     <Compile Include="Assets\Falling leaves\Script\SceneManager.cs" />
+    <Compile Include="Assets\GemScript.cs" />
     <Compile Include="Assets\Scripts\BehaviouralCode\AerialPlunge.cs" />
     <Compile Include="Assets\Scripts\BehaviouralCode\AerialStasis.cs" />
     <Compile Include="Assets\Scripts\BehaviouralCode\AttackCombo.cs" />
@@ -75,7 +76,6 @@
     <Compile Include="Assets\Scripts\BehaviouralCode\BlockStart.cs" />
     <Compile Include="Assets\Scripts\BehaviouralCode\JumpScript.cs" />
     <Compile Include="Assets\Scripts\BehaviouralCode\JumpState.cs" />
-    <Compile Include="Assets\Scripts\CameraThing.cs" />
     <Compile Include="Assets\Scripts\MainCode\AIScript.cs" />
     <Compile Include="Assets\Scripts\MainCode\Attack.cs" />
     <Compile Include="Assets\Scripts\MainCode\CameraController.cs" />

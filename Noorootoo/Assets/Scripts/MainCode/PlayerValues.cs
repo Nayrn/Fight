@@ -85,6 +85,8 @@ public class PlayerValues : MonoBehaviour {
     public ParticleSystem Air;
 	public ParticleSystem Water;
 	public ParticleSystem Soul;
+
+	public float changescene = 5;
     //-----Stun Timer
     private float staticTime = 0.0f;
 
@@ -110,7 +112,14 @@ public class PlayerValues : MonoBehaviour {
         if (m_Health <= 0)
         {
             KOText.gameObject.SetActive(true);
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
+
+			changescene -= Time.deltaTime;
+
+			if(changescene <= 0)
+			{
+				Application.LoadLevel("ResetMenu");
+			}
             // death or KO
             //play.gameObject.SetActive(true);
             m_Health = 0;
@@ -150,13 +159,6 @@ public class PlayerValues : MonoBehaviour {
             if (staticTime <= 0.0f)
                 isStunned = false;
         }
-
-        if(isGrounded)
-        {
-     
-        }
-
-
 	}
 
 	void OnTriggerEnter(Collider col)
