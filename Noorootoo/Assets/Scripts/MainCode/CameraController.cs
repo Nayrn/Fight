@@ -31,6 +31,8 @@ public class CameraController : MonoBehaviour {
 		CameraPivot = transform.parent;
 		UpdatePivotRotation();
 
+		transform.position = FollowedObject.transform.forward.normalized + direction;
+
 		Player = FollowedObject.GetComponent<PlayerValues>();
 	}
 
@@ -103,6 +105,7 @@ public class CameraController : MonoBehaviour {
 
 		Quaternion lookAt = Quaternion.LookRotation(MidpointDirection);
 		transform.rotation = Quaternion.Slerp(transform.rotation, lookAt, Time.deltaTime * 5.0f);
+		//transform.LookAt(MidpointDirection);
 	}
 	void FreeView()
 	{

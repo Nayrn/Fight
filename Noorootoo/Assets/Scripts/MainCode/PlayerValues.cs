@@ -81,10 +81,10 @@ public class PlayerValues : MonoBehaviour {
     public Slider SoulSlider;
 
     public ParticleSystem Fire;
-    public ParticleSystem Water;
     public ParticleSystem Earth;
     public ParticleSystem Air;
-    public ParticleSystem Soul;
+	public ParticleSystem Water;
+	public ParticleSystem Soul;
     //-----Stun Timer
     private float staticTime = 0.0f;
 

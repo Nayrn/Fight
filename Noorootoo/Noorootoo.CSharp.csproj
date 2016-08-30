@@ -86,7 +86,6 @@
     <Compile Include="Assets\Scripts\MainCode\Movement.cs" />
     <Compile Include="Assets\Scripts\MainCode\PauseGame.cs" />
     <Compile Include="Assets\Scripts\MainCode\PlayerValues.cs" />
-    <Compile Include="Assets\Scripts\MainCode\TimerThingyScript.cs" />
     <Compile Include="Assets\Scripts\MainCode\endMenu.cs" />
   </ItemGroup>
   <ItemGroup>
