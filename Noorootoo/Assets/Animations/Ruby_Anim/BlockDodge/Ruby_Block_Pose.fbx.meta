@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 1627b989d1d4ee34883b9d744957cdcd
-timeCreated: 1470988049
+guid: 7ab109719f11a9447831280989ed357f
+timeCreated: 1472661393
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -102,22 +102,19 @@ ModelImporter:
     100188: //RootNode
     100190: Ruby_Root
     100192: rubysword:Swish_Sword_JNT_1
-    100194: rubysword:Swish_Sword_JNT_2
-    100196: rubysword:Swish_Sword_JNT_3
-    100198: rubysword:Sword_end_2
-    100200: rubysword:Sword_end_3
-    100202: rubysword:Sword_end_4
-    100204: rubysword:Sword_End_5
-    100206: rubysword:Sword_end_JNT_1
-    100208: rubysword:Sword_end_nub
-    100210: rubysword:Sword_JNT_1
-    100212: rubysword:Sword_JNT_2
-    100214: rubysword:Upper_Sword_JNT_1
-    100216: rubysword:Upper_Sword_JNT_2
-    100218: rubysword:Upper_Sword_JNT_3
-    100220: rubysword:Upper_Sword_JNT_4
-    100222: rubysword:Upper_Sword_JNT_5
-    100224: rubysword:Upper_Sword_JNT_nub
+    100194: rubysword:Sword_end_2
+    100196: rubysword:Sword_end_3
+    100198: rubysword:Sword_end_4
+    100200: rubysword:Sword_End_5
+    100202: rubysword:Sword_end_JNT_1
+    100204: rubysword:Sword_end_nub
+    100206: rubysword:Sword_JNT_1
+    100208: rubysword:Sword_JNT_2
+    100210: rubysword:Upper_Sword_JNT_1
+    100212: rubysword:Upper_Sword_JNT_2
+    100214: rubysword:Upper_Sword_JNT_3
+    100216: rubysword:Upper_Sword_JNT_4
+    100218: rubysword:Upper_Sword_JNT_5
     400000: Back_Head_Squash_JNT
     400002: Back_Lower_Body_Sqush_JNT
     400004: Back_Middle_Body_Sqush_JNT
@@ -215,22 +212,19 @@ ModelImporter:
     400188: //RootNode
     400190: Ruby_Root
     400192: rubysword:Swish_Sword_JNT_1
-    400194: rubysword:Swish_Sword_JNT_2
-    400196: rubysword:Swish_Sword_JNT_3
-    400198: rubysword:Sword_end_2
-    400200: rubysword:Sword_end_3
-    400202: rubysword:Sword_end_4
-    400204: rubysword:Sword_End_5
-    400206: rubysword:Sword_end_JNT_1
-    400208: rubysword:Sword_end_nub
-    400210: rubysword:Sword_JNT_1
-    400212: rubysword:Sword_JNT_2
-    400214: rubysword:Upper_Sword_JNT_1
-    400216: rubysword:Upper_Sword_JNT_2
-    400218: rubysword:Upper_Sword_JNT_3
-    400220: rubysword:Upper_Sword_JNT_4
-    400222: rubysword:Upper_Sword_JNT_5
-    400224: rubysword:Upper_Sword_JNT_nub
+    400194: rubysword:Sword_end_2
+    400196: rubysword:Sword_end_3
+    400198: rubysword:Sword_end_4
+    400200: rubysword:Sword_End_5
+    400202: rubysword:Sword_end_JNT_1
+    400204: rubysword:Sword_end_nub
+    400206: rubysword:Sword_JNT_1
+    400208: rubysword:Sword_JNT_2
+    400210: rubysword:Upper_Sword_JNT_1
+    400212: rubysword:Upper_Sword_JNT_2
+    400214: rubysword:Upper_Sword_JNT_3
+    400216: rubysword:Upper_Sword_JNT_4
+    400218: rubysword:Upper_Sword_JNT_5
     7400000: Block_Pose
     9500000: //RootNode
   materials:
