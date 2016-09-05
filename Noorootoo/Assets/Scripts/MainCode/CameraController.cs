@@ -10,7 +10,7 @@ public class CameraController : MonoBehaviour {
 	private float xOffsetMin = -50;
 	private float yOffsetMax = 18;
 	private float yOffsetMin = -0.5f;
-
+    private float distCheck;
     float freeViewX = 0.0f;
     float freeViewY = 0.0f;
     Vector3 direction = new Vector3(0, 0, -5);
@@ -18,7 +18,7 @@ public class CameraController : MonoBehaviour {
     public GameObject FollowedObject;
 	public GameObject TrackedObject;
 	public GameManager Game;
-
+    public GameObject haxCam;
 	private Transform CameraPivot;
 
 	public Vector3 CameraOffset = new Vector3();
@@ -27,7 +27,8 @@ public class CameraController : MonoBehaviour {
 
 	public Vector3 Sensitivity = new Vector3(4.0f, 3.0f, 1.0f);
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
 		CameraPivot = transform.parent;
 		UpdatePivotRotation();
 
@@ -38,8 +39,9 @@ public class CameraController : MonoBehaviour {
 
 	void Update()
 	{
-
-	}
+     
+   
+    }
 
 	// Update is called once per frame
 	void LateUpdate()
@@ -60,7 +62,19 @@ public class CameraController : MonoBehaviour {
 		}
 		else
 			FreeView();
-	}
+
+        // camera lock on based on distance
+
+        distCheck = Vector3.Distance(Player.transform.position, TrackedObject.transform.position);
+        if (distCheck <= 5)
+        {
+            haxCam.transform.position = new Vector3(Player.transform.position.x + TrackedObject.transform.position.x, Player.transform.position.y + TrackedObject.transform.position.y + 0.01f, Player.transform.position.z + TrackedObject.transform.position.z + 2.3f);
+            haxCamera();
+            Debug.Log("This is rude");
+        }
+        else
+            haxCam.gameObject.SetActive(false);
+    }
 
 	private void UpdatePivotRotation()
 	{
@@ -129,4 +143,9 @@ public class CameraController : MonoBehaviour {
 		//-----Lookat Player position
 		transform.LookAt(FollowedObject.transform.position);
 	}
+
+    void haxCamera() 
+    {
+        haxCam.gameObject.SetActive(true);    
+    }
 }

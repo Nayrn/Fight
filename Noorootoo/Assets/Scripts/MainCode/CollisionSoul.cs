@@ -5,9 +5,9 @@ public class CollisionSoul : MonoBehaviour
 {
 	public PlayerValues Player;
 	public PlayerValues Opponent;
-
     private bool soulUp;
     private float soulTime = 0.5f;
+    private float distCheck;
     // Use this for initialization
     void Start ()
     {
@@ -30,6 +30,9 @@ public class CollisionSoul : MonoBehaviour
             soulUp = false;
             soulTime = 0.5f;
         }
+
+        
+
     }
 
     void FixedUpdate()
@@ -44,14 +47,19 @@ public class CollisionSoul : MonoBehaviour
         {
             soulUp = true;          
             Player.MakePlayerStunned(0.5f);
+ 
         }
         if (col.gameObject.tag == "SecondaryAttack")
         {
             soulUp = true;
             Player.MakePlayerStunned(0.5f);
+
         }
 	}
 
+
+
+    // ELEMENT STUFF
     ElemTrait Check(ElemTrait elem2, ElemTrait elem1)
     {
         //-----Water > Fire > Earth > Air > Water-----//
