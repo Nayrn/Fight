@@ -93,8 +93,11 @@ public class Attack : MonoBehaviour
 			//-----LIGHT ATTACK CODE-----//
 			if (Input.GetButtonDown(Player.Joystick + "Primary") && Player.SecondaryAttack == false)// punch
             {
-                //Setting Attack bool to true
-                Player.isAttacking = true;
+
+
+				//Player.rb.transform.LookAt(new Vector3(Player.Opponent.transform.position.x, transform.position.y, Player.Opponent.transform.position.z));
+				//Setting Attack bool to true
+				Player.isAttacking = true;
                 Player.PrimaryAttack = true;
 
 				//Activating the animation trigger
