@@ -10,7 +10,10 @@ public class CameraController : MonoBehaviour {
 	private float xOffsetMin = -50;
 	private float yOffsetMax = 18;
 	private float yOffsetMin = -0.5f;
-    private float distCheck;
+
+	private float yOffset = 9;
+	private float xOffset = -7;
+
     float freeViewX = 0.0f;
     float freeViewY = 0.0f;
     Vector3 direction = new Vector3(0, 0, -5);
@@ -63,12 +66,13 @@ public class CameraController : MonoBehaviour {
 		else
 			FreeView();
 
-        // camera lock on based on distance
-
-        distCheck = Vector3.Distance(Player.transform.position, TrackedObject.transform.position);
-        if (distCheck <= 5)
+		// camera lock on based on distance
+		float distance = Vector3.Distance(Player.transform.position, TrackedObject.transform.position);
+		if (distance <= 5)
         {
-            haxCam.transform.position = new Vector3(Player.transform.position.x + TrackedObject.transform.position.x, Player.transform.position.y + TrackedObject.transform.position.y + 0.01f, Player.transform.position.z + TrackedObject.transform.position.z + 2.3f);
+
+			Vector3 Pos = ((Player.transform.position + TrackedObject.transform.position) * 0.25f);
+			haxCam.transform.position = new Vector3(Pos.x, 2, -5); // new Vector3(Player.transform.position.x + TrackedObject.transform.position.x, Player.transform.position.y + TrackedObject.transform.position.y + 0.01f, Player.transform.position.z + TrackedObject.transform.position.z + 2.3f);
             haxCamera();
             Debug.Log("This is rude");
         }
@@ -92,7 +96,7 @@ public class CameraController : MonoBehaviour {
 		Quaternion offsetRot = Quaternion.AngleAxis(CameraOffset.x, Vector3.up);
 		offsetRot *= Quaternion.AngleAxis(CameraOffset.y, Vector3.right);
 
-		transform.rotation = Quaternion.Lerp(transform.rotation, rot * offsetRot, Time.deltaTime * 3.0f);
+		transform.rotation = Quaternion.Lerp(transform.rotation, rot * offsetRot, Time.deltaTime * 1.0f);
 	}
 
 	void TargetView()
