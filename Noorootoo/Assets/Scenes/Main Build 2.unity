@@ -16736,85 +16736,6 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 0
   m_Mesh: {fileID: 4300000, guid: 5bc32da94c53dd6478c8c7dbe62dee46, type: 3}
---- !u!1 &915102370
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 915102371}
-  - 20: {fileID: 915102375}
-  - 124: {fileID: 915102374}
-  - 92: {fileID: 915102373}
-  m_Layer: 0
-  m_Name: HaxCamera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &915102371
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 915102370}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.03, y: 3.33, z: -15.934705}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 1338887253}
-  m_RootOrder: 2
---- !u!92 &915102373
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 915102370}
-  m_Enabled: 1
---- !u!124 &915102374
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 915102370}
-  m_Enabled: 1
---- !u!20 &915102375
-Camera:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 915102370}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 48
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
-  m_StereoMirrorMode: 0
 --- !u!1 &916021681
 GameObject:
   m_ObjectHideFlags: 0
@@ -17701,7 +17622,7 @@ MonoBehaviour:
   m_damage: 0
   Opponent: {fileID: 729724705}
   m_soulAmount: 0
-  Joystick: 4
+  Joystick: 0
   Targeted: 0
   isGrounded: 0
   DoubleJump: 1
@@ -17984,7 +17905,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1054829046}
-  m_LocalRotation: {x: 0.7347428, y: 0.0023509609, z: -0.67833835, w: 0.0021704864}
+  m_LocalRotation: {x: 0.73474276, y: 0.0023509606, z: -0.6783383, w: 0.0021704861}
   m_LocalPosition: {x: 0.06514208, y: 0.0017648762, z: -1.9118417e-11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -21296,7 +21217,6 @@ Transform:
   m_Children:
   - {fileID: 1792809749}
   - {fileID: 1994062518}
-  - {fileID: 915102371}
   m_Father: {fileID: 0}
   m_RootOrder: 5
 --- !u!1 &1349204524 stripped
@@ -23278,7 +23198,6 @@ MonoBehaviour:
   FollowedObject: {fileID: 729724705}
   TrackedObject: {fileID: 1018337185}
   Game: {fileID: 589028096}
-  haxCam: {fileID: 915102370}
   CameraOffset: {x: 0, y: 0, z: 0}
   Sensitivity: {x: 4, y: 3, z: 1}
 --- !u!92 &1381870149
@@ -28657,7 +28576,6 @@ MonoBehaviour:
   FollowedObject: {fileID: 1018337185}
   TrackedObject: {fileID: 729724705}
   Game: {fileID: 589028096}
-  haxCam: {fileID: 915102370}
   CameraOffset: {x: 0, y: 0, z: 0}
   Sensitivity: {x: 4, y: 3, z: 1}
 --- !u!81 &2045742742

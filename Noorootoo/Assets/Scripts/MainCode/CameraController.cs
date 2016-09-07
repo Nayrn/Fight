@@ -21,7 +21,6 @@ public class CameraController : MonoBehaviour {
     public GameObject FollowedObject;
 	public GameObject TrackedObject;
 	public GameManager Game;
-    public GameObject haxCam;
 	private Transform CameraPivot;
 
 	public Vector3 CameraOffset = new Vector3();
@@ -65,20 +64,7 @@ public class CameraController : MonoBehaviour {
 		}
 		else
 			FreeView();
-
-		// camera lock on based on distance
-		float distance = Vector3.Distance(Player.transform.position, TrackedObject.transform.position);
-		if (distance <= 5)
-        {
-
-			Vector3 Pos = ((Player.transform.position + TrackedObject.transform.position) * 0.25f);
-			haxCam.transform.position = new Vector3(Pos.x, 2, -5); // new Vector3(Player.transform.position.x + TrackedObject.transform.position.x, Player.transform.position.y + TrackedObject.transform.position.y + 0.01f, Player.transform.position.z + TrackedObject.transform.position.z + 2.3f);
-            haxCamera();
-            Debug.Log("This is rude");
-        }
-        else
-            haxCam.gameObject.SetActive(false);
-    }
+	}
 
 	private void UpdatePivotRotation()
 	{
@@ -116,14 +102,42 @@ public class CameraController : MonoBehaviour {
 		CameraOffset.y = Mathf.Clamp(CameraOffset.y, yOffsetMin, yOffsetMax);
 
 
-		Vector3 Midpoint = (TrackedObject.transform.position - FollowedObject.transform.position) / 2;
-		Vector3 MidpointDirection = ((FollowedObject.transform.position + Midpoint) - transform.position).normalized;
-
 		UpdatePivotRotation();
 
-		Quaternion lookAt = Quaternion.LookRotation(MidpointDirection);
-		transform.rotation = Quaternion.Slerp(transform.rotation, lookAt, Time.deltaTime * 5.0f);
-		//transform.LookAt(MidpointDirection);
+		//Camera lock on based on distance
+		Vector3 myPosition = Player.transform.position;
+		Vector3 theirPosition = TrackedObject.transform.position;
+
+		Vector3 Midpoint = new Vector3();
+		Vector3 MidpointDirection = new Vector3();
+
+		float distance = Vector3.Distance(myPosition, theirPosition);
+		Vector3 playerDir = theirPosition - myPosition;
+		if (distance <= 5)
+		{
+			playerDir.Normalize();
+
+			Midpoint = myPosition + (playerDir * (distance * 0.5f));
+
+			Vector3 cameraDir = Vector3.Cross(playerDir, Vector3.up);
+
+			Vector3 cameraPosition = Midpoint + (cameraDir * 5.0f);
+
+			transform.position = cameraPosition;// Vector3.Lerp(transform.position, cameraPosition, Time.deltaTime * 10);
+			//transform.LookAt(Midpoint, Vector3.up);
+			//haxCamera();
+
+			//Debug.Log("This is rude");
+		}
+		else
+		{
+			Midpoint = myPosition + (playerDir * (distance * 0.5f));
+			MidpointDirection = ((FollowedObject.transform.position + Midpoint) - transform.position).normalized;
+		}
+
+		//Quaternion lookAt = Quaternion.LookRotation(MidpointDirection);
+		//transform.rotation = Quaternion.Slerp(transform.rotation, lookAt, Time.deltaTime * 5.0f);
+		transform.LookAt(Midpoint, Vector3.up);
 	}
 	void FreeView()
 	{
@@ -147,9 +161,4 @@ public class CameraController : MonoBehaviour {
 		//-----Lookat Player position
 		transform.LookAt(FollowedObject.transform.position);
 	}
-
-    void haxCamera() 
-    {
-        haxCam.gameObject.SetActive(true);    
-    }
 }
