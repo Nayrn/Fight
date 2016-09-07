@@ -79,7 +79,7 @@ public class PlayerValues : MonoBehaviour {
     public Image KOText;
     public Slider PlayerSlider;
     public Slider SoulSlider;
-
+    public bool isKO;
     public ParticleSystem Fire;
     public ParticleSystem Earth;
     public ParticleSystem Air;
@@ -112,6 +112,7 @@ public class PlayerValues : MonoBehaviour {
         if (m_Health <= 0)
         {
             KOText.gameObject.SetActive(true);
+            isKO = true;
             //Time.timeScale = 0;
 
 			changescene -= Time.deltaTime;

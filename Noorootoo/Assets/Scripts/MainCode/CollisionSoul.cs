@@ -1,38 +1,53 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class CollisionSoul : MonoBehaviour
 {
 	public PlayerValues Player;
+    public PlayerValues P2;
 	public PlayerValues Opponent;
     private bool soulUp;
     private float soulTime = 0.5f;
     private float distCheck;
+    public Text p1Win;
+    public Text p2Win;
     // Use this for initialization
     void Start ()
     {
         soulUp = false;
+        p1Win.gameObject.SetActive(false);
+        p2Win.gameObject.SetActive(false);
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
         Check(Opponent.Attribute, Player.Attribute);
 
-         if (soulUp == true)
-         {
-             soulTime -= Time.deltaTime;
-             Opponent.m_soulAmount = Opponent.m_soulAmount + 20.0f * Time.deltaTime;     
-         }
-		     
+        if (soulUp == true)
+        {
+            soulTime -= Time.deltaTime;
+            Opponent.m_soulAmount = Opponent.m_soulAmount + 20.0f * Time.deltaTime;
+        }
+
         if (soulTime < 0)
         {
             soulUp = false;
             soulTime = 0.5f;
         }
 
-        
+        if (Player.isKO == true)
+        {
+            if (Player.m_Health < P2.m_Health)
+            {
+                p1Win.gameObject.SetActive(true);
+            }
+            else
+                p2Win.gameObject.SetActive(true);
 
+
+        }
     }
 
     void FixedUpdate()
