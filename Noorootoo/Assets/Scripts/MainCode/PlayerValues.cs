@@ -85,7 +85,7 @@ public class PlayerValues : MonoBehaviour {
     public ParticleSystem Air;
 	public ParticleSystem Water;
 	public ParticleSystem Soul;
-
+    public GameObject pow;
 	public float changescene = 5;
     //-----Stun Timer
     private float staticTime = 0.0f;
@@ -174,6 +174,8 @@ public class PlayerValues : MonoBehaviour {
 				//col.enabled = false;
 				PlayerAnimation.SetTrigger("TempHit");
 				Debug.Log("Colliders Off from hit");
+                pow.transform.position = col.transform.position;
+                pow.gameObject.SetActive(true);
 
 			}
 			if (col.gameObject.tag == "SecondaryAttack")

@@ -39,15 +39,10 @@ public class CollisionSoul : MonoBehaviour
 
         if (Player.isKO == true)
         {
-            if (Player.m_Health < P2.m_Health)
-            {
-                p1Win.gameObject.SetActive(true);
-            }
-            else
-                p2Win.gameObject.SetActive(true);
-
-
+            p2Win.gameObject.SetActive(true);
         }
+        else if (P2.isKO)
+            p1Win.gameObject.SetActive(true);
     }
 
     void FixedUpdate()
