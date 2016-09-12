@@ -167,7 +167,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1119683983}
-        m_MethodName: LoadLevel
+        m_MethodName: VSMatch
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -289,7 +289,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1119683983}
-        m_MethodName: LoadLevel
+        m_MethodName: VSMatch
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -640,7 +640,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1119683983}
-        m_MethodName: LoadLevel
+        m_MethodName: SinglePlayer
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

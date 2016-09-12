@@ -4,10 +4,15 @@ using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour
 {
-    // Use this for initialization
-    void Start()
+	MenuData md;
+	// Use this for initialization
+	void Start()
     {
-
+		GameObject MenuDataObject = new GameObject();
+		MenuDataObject.transform.position = Vector3.zero;
+		MenuDataObject.name = "MenuData";
+		MenuDataObject.AddComponent<MenuData>();
+		md = MenuDataObject.GetComponent<MenuData>();
     }
 
     // Update is called once per frame
@@ -16,23 +21,24 @@ public class MenuScript : MonoBehaviour
         
     }
 
-	public void LoadLevel(string Level)
+	private void LoadLevel(string Level)
 	{
 		Application.LoadLevel(Level);
 	}
-	public void PlayerLoadLevel(int PlayerCount, string Level)
-	{
-		//Playercount for GameManager
 
-		//Application.LoadLevel(Level);
+	public void SinglePlayer(string Level)
+	{
+		md.Players = new playerData[1];
+
+		Debug.Log("No Singleplayer for you.");
+
+		VSMatch(Level);
 	}
-	public void SinglePlayer()
+	public void VSMatch(string Level)
 	{
+		md.Players = new playerData[2];
 
-	}
-	public void VSMatch()
-	{
-
+		LoadLevel(Level);
 	}
 	public void GameExit()
 	{

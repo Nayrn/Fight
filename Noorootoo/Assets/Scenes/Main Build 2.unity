@@ -17855,11 +17855,11 @@ GameObject:
   - 136: {fileID: 1018337193}
   - 23: {fileID: 1018337192}
   - 54: {fileID: 1018337189}
-  - 95: {fileID: 1018337187}
   - 114: {fileID: 1018337188}
   - 114: {fileID: 1018337191}
   - 114: {fileID: 1018337190}
   - 114: {fileID: 1018337195}
+  - 95: {fileID: 1018337187}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Player1
@@ -17891,8 +17891,7 @@ Transform:
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 95000010420808650, guid: 6744995274784154fada32bd0193175e,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1018337185}
   m_Enabled: 1
@@ -17926,7 +17925,7 @@ MonoBehaviour:
   m_damage: 0
   Opponent: {fileID: 729724705}
   m_soulAmount: 0
-  Joystick: 4
+  Joystick: 0
   Targeted: 0
   isGrounded: 0
   DoubleJump: 1

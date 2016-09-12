@@ -73,6 +73,7 @@
     <Compile Include="Assets\Falling leaves\Script\CameraOrbit.cs" />
     <Compile Include="Assets\Falling leaves\Script\SceneManager.cs" />
     <Compile Include="Assets\GemScript.cs" />
+    <Compile Include="Assets\MenuData.cs" />
     <Compile Include="Assets\Scripts\BehaviouralCode\AerialPlunge.cs" />
     <Compile Include="Assets\Scripts\BehaviouralCode\AerialStasis.cs" />
     <Compile Include="Assets\Scripts\BehaviouralCode\AttackCombo.cs" />
