@@ -39,10 +39,14 @@ public class CollisionSoul : MonoBehaviour
 
         if (Player.isKO == true)
         {
-            p2Win.gameObject.SetActive(true);
+            p1Win.text = Player.tag.ToString();
+            p1Win.gameObject.SetActive(true);
         }
         else if (P2.isKO)
-            p1Win.gameObject.SetActive(true);
+        {
+            p2Win.text = P2.tag.ToString();
+            p2Win.gameObject.SetActive(true);
+        }
     }
 
     void FixedUpdate()
