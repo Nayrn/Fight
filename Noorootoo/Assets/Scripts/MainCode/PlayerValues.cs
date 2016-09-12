@@ -86,7 +86,9 @@ public class PlayerValues : MonoBehaviour {
 	public ParticleSystem Water;
 	public ParticleSystem Soul;
     public GameObject pow;
+    private float powActive;
 	public float changescene = 5;
+
     //-----Stun Timer
     private float staticTime = 0.0f;
 
@@ -99,6 +101,7 @@ public class PlayerValues : MonoBehaviour {
         Attribute = ElemTrait.UNASPECTED;
         timeThing = 5.0f;
         m_damage = 5.0f;
+        powActive = 0.2f;
 	}
 	
 	// Update is called once per frame
@@ -160,11 +163,23 @@ public class PlayerValues : MonoBehaviour {
             if (staticTime <= 0.0f)
                 isStunned = false;
         }
+
+        if(pow.activeSelf == true)
+        {
+      
+            powActive -= Time.deltaTime;
+            if (powActive < 0)
+            {
+                pow.SetActive(false);
+                powActive = 0.2f;
+            }
+        }
 	}
 
 	void OnTriggerEnter(Collider col)
 	{
-		if (!isBlocking)
+       
+        if (!isBlocking)
 		{
 			if (col.gameObject.tag == "PrimaryAttack")
 			{
@@ -175,9 +190,8 @@ public class PlayerValues : MonoBehaviour {
 				PlayerAnimation.SetTrigger("TempHit");
 				Debug.Log("Colliders Off from hit");
                 pow.transform.position = col.transform.position;
-                pow.gameObject.SetActive(true);
-
-			}
+                pow.SetActive(true);
+            }
 			if (col.gameObject.tag == "SecondaryAttack")
 			{
                 m_damage = 10.0f;
@@ -190,6 +204,8 @@ public class PlayerValues : MonoBehaviour {
 			}
 		}
 	}
+
+
 
    ElemTrait Strength(ElemTrait elem)
     {

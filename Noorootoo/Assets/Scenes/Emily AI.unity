@@ -89,7 +89,7 @@ NavMeshSettings:
     minRegionArea: 2
     cellSize: 0.16666667
     manualCellSize: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 5ed99f29b2d6a974f80d7f82dc6b6dd8, type: 2}
 --- !u!1 &4095199
 GameObject:
   m_ObjectHideFlags: 0
@@ -2361,22 +2361,6 @@ Prefab:
     - target: {fileID: 100002, guid: aa9a1fbfe4f5be54ba17f134f1516bbd, type: 3}
       propertyPath: m_Name
       value: TempleWallLarge
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: aa9a1fbfe4f5be54ba17f134f1516bbd, type: 3}
-      propertyPath: m_TagString
-      value: Ground
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: aa9a1fbfe4f5be54ba17f134f1516bbd, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: aa9a1fbfe4f5be54ba17f134f1516bbd, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2300000, guid: aa9a1fbfe4f5be54ba17f134f1516bbd, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa9a1fbfe4f5be54ba17f134f1516bbd, type: 3}
@@ -4668,8 +4652,8 @@ GameObject:
   m_Name: polySurface61_polySurface23 (1)
   m_TagString: Ground
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 2
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &196199352
 Transform:
@@ -4750,7 +4734,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &204284255 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: f3a41aacfbe096d48bab44ac9e11295d, type: 3}
@@ -15348,7 +15332,7 @@ Prefab:
     - target: {fileID: 114000012388074550, guid: 6744995274784154fada32bd0193175e,
         type: 2}
       propertyPath: Joystick
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114000012388074550, guid: 6744995274784154fada32bd0193175e,
         type: 2}
@@ -15763,6 +15747,40 @@ CapsuleCollider:
   m_Height: 1.46
   m_Direction: 1
   m_Center: {x: 0, y: -0.19, z: 0}
+--- !u!195 &729724717
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 729724705}
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &729724718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 729724705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d513e8f5c24f6594f880d3ff91a4948c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  navAgent: {fileID: 729724717}
+  player: {fileID: 1018337185}
+  p1: {fileID: 1018337188}
 --- !u!20 &731950703
 Camera:
   m_ObjectHideFlags: 0
@@ -16535,10 +16553,6 @@ Prefab:
     - target: {fileID: 400002, guid: aab90bfb99a08b14ab083534612ffd41, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 65.453
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: aab90bfb99a08b14ab083534612ffd41, type: 3}
-      propertyPath: m_TagString
-      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aab90bfb99a08b14ab083534612ffd41, type: 3}
@@ -18234,7 +18248,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1054829046}
-  m_LocalRotation: {x: 0.7347428, y: 0.0023509609, z: -0.67833835, w: 0.0021704864}
+  m_LocalRotation: {x: 0.73474276, y: 0.0023509606, z: -0.6783383, w: 0.0021704861}
   m_LocalPosition: {x: 0.06514208, y: 0.0017648762, z: -1.9118417e-11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -20405,10 +20419,6 @@ Prefab:
     - target: {fileID: 1000013150210174, guid: 3c554877798c6ef4e80500c4548be3a0, type: 2}
       propertyPath: m_Name
       value: Tree_Base2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000013150210174, guid: 3c554877798c6ef4e80500c4548be3a0, type: 2}
-      propertyPath: m_TagString
-      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c554877798c6ef4e80500c4548be3a0, type: 2}
@@ -26038,7 +26048,7 @@ GameObject:
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1554468858
 Transform:
@@ -26821,10 +26831,6 @@ Prefab:
     - target: {fileID: 400002, guid: aab90bfb99a08b14ab083534612ffd41, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 6.4440002
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: aab90bfb99a08b14ab083534612ffd41, type: 3}
-      propertyPath: m_TagString
-      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aab90bfb99a08b14ab083534612ffd41, type: 3}
@@ -29021,30 +29027,6 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 0
   m_Mesh: {fileID: 4300000, guid: aa9a1fbfe4f5be54ba17f134f1516bbd, type: 3}
---- !u!65 &2047546521
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2047546516}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 63.9, y: 20.101202, z: 54.3}
-  m_Center: {x: -52.1, y: 10.6, z: 69.7}
---- !u!65 &2047546522
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2047546516}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 8.341358, y: 20.77, z: 39.38}
-  m_Center: {x: -59.5, y: 9.224589, z: 27.32}
 --- !u!1 &2047680712
 GameObject:
   m_ObjectHideFlags: 0

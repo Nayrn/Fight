@@ -7,7 +7,8 @@ public enum JoystickNum
 		Joystick2,
 		Joystick3,
 		Joystick4,
-		Keyboard
+		Keyboard, 
+        AI
 };
 
 public class Movement : MonoBehaviour
@@ -18,13 +19,14 @@ public class Movement : MonoBehaviour
 
     private bool isMoving;
 	private Quaternion desiredDirection;
-
+    private int jumpAmount;
 	float idleSwitch = 0;
 	// Use this for initialization
 	void Start()
 	{
 		Player.isGrounded = true;
         isMoving = false;
+        jumpAmount = 0;
     }
 
 	// Update is called once per frame
@@ -47,6 +49,7 @@ public class Movement : MonoBehaviour
 					Player.isGrounded = false;
 					Player.PlayerAnimation.SetBool("isGrounded", Player.isGrounded);
 					Player.PlayerAnimation.SetTrigger("JumpPressed");
+                    jumpAmount++;
 					if (Player.isGrounded == false)
 						Player.rb.AddForce(0, 8, 0, ForceMode.Impulse);
 				}
@@ -55,7 +58,7 @@ public class Movement : MonoBehaviour
 					//Update to only activate on Normal Jump loop
 
 					Player.DoubleJump = false;
-
+                    jumpAmount++;
 					Player.PlayerAnimation.SetTrigger("DoubleJump");
 
 					Player.rb.velocity = new Vector3(Player.rb.velocity.x, 0, Player.rb.velocity.z);
@@ -67,6 +70,19 @@ public class Movement : MonoBehaviour
 		{
 			transform.position = transform.position;
 		}
+
+        if (jumpAmount <= 2)
+            Player.DoubleJump = true;
+        else
+        {
+            Player.DoubleJump = false;
+        }
+
+        if (Player.isGrounded)
+            jumpAmount = 0;
+        
+
+
 	}
 
 	void MoveCode()
@@ -129,6 +145,11 @@ public class Movement : MonoBehaviour
 
 			Player.PlayerAnimation.SetTrigger("FallTrigger");
 		}
+
+        if(Player.Joystick == JoystickNum.AI)
+        {
+            isMoving = true;
+        }
 	}
 
 	void OnCollisionEnter(Collision col)
