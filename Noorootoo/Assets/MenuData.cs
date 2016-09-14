@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public struct playerData
 {
@@ -23,4 +24,10 @@ public class MenuData : MonoBehaviour {
 	{
 
 	}
+
+    public void OnClick()
+    {
+        SceneManager.LoadScene("Main Build 2", LoadSceneMode.Single);
+    }
+
 }
