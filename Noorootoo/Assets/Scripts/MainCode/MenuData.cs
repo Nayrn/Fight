@@ -4,12 +4,13 @@ using UnityEngine.SceneManagement;
 
 public struct playerData
 {
-	int characterSelected;
+	GameObject characterSelected;
 	int skinSelected;
 }
 public class MenuData : MonoBehaviour {
 
 	public playerData[] Players = new playerData[1];
+	private GameObject[] CharacterList;
 
 	public string levelSelected = "Main Build 2"; // farting goose
 
@@ -27,7 +28,7 @@ public class MenuData : MonoBehaviour {
 
     public void OnClick()
     {
-        SceneManager.LoadScene("Main Build 2", LoadSceneMode.Single);
+        SceneManager.LoadScene(levelSelected, LoadSceneMode.Single);
     }
 
 }

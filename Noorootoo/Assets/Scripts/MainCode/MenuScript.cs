@@ -23,7 +23,7 @@ public class MenuScript : MonoBehaviour
 
 	private void LoadLevel(string Level)
 	{
-		Application.LoadLevel(Level);
+		SceneManager.LoadScene(Level, LoadSceneMode.Single);
 	}
 
 	public void SinglePlayer(string Level)

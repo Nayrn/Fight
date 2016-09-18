@@ -18,6 +18,7 @@
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.4.0f3</UnityVersion>
     <RootNamespace></RootNamespace>
+    <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -65,8 +66,6 @@
     <Compile Include="Assets\Falling leaves\Script\AutoDestory.cs" />
     <Compile Include="Assets\Falling leaves\Script\CameraOrbit.cs" />
     <Compile Include="Assets\Falling leaves\Script\SceneManager.cs" />
-    <Compile Include="Assets\GemScript.cs" />
-    <Compile Include="Assets\MenuData.cs" />
     <Compile Include="Assets\Scripts\BehaviouralCode\AerialPlunge.cs" />
     <Compile Include="Assets\Scripts\BehaviouralCode\AerialStasis.cs" />
     <Compile Include="Assets\Scripts\BehaviouralCode\AttackCombo.cs" />
@@ -74,6 +73,7 @@
     <Compile Include="Assets\Scripts\BehaviouralCode\AttackState.cs" />
     <Compile Include="Assets\Scripts\BehaviouralCode\BlockEnd.cs" />
     <Compile Include="Assets\Scripts\BehaviouralCode\BlockStart.cs" />
+    <Compile Include="Assets\Scripts\BehaviouralCode\GemScript.cs" />
     <Compile Include="Assets\Scripts\BehaviouralCode\JumpScript.cs" />
     <Compile Include="Assets\Scripts\BehaviouralCode\JumpState.cs" />
     <Compile Include="Assets\Scripts\MainCode\AIScript.cs" />
@@ -82,6 +82,7 @@
     <Compile Include="Assets\Scripts\MainCode\CollisionSoul.cs" />
     <Compile Include="Assets\Scripts\MainCode\GameManager.cs" />
     <Compile Include="Assets\Scripts\MainCode\LevelSelection.cs" />
+    <Compile Include="Assets\Scripts\MainCode\MenuData.cs" />
     <Compile Include="Assets\Scripts\MainCode\MenuScript.cs" />
     <Compile Include="Assets\Scripts\MainCode\Move.cs" />
     <Compile Include="Assets\Scripts\MainCode\Movement.cs" />
