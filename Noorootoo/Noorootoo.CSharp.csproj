@@ -82,6 +82,7 @@
     <Compile Include="Assets\Scripts\BehaviouralCode\GemScript.cs" />
     <Compile Include="Assets\Scripts\BehaviouralCode\JumpScript.cs" />
     <Compile Include="Assets\Scripts\BehaviouralCode\JumpState.cs" />
+    <Compile Include="Assets\Scripts\BehaviouralCode\TrailSwords.cs" />
     <Compile Include="Assets\Scripts\MainCode\AIScript.cs" />
     <Compile Include="Assets\Scripts\MainCode\Attack.cs" />
     <Compile Include="Assets\Scripts\MainCode\CameraController.cs" />

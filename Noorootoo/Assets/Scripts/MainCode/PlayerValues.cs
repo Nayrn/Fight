@@ -203,8 +203,8 @@ public class PlayerValues : MonoBehaviour {
 				Debug.Log("Colliders Off from hit");
 			}
 
-            if (col.gameObject.tag == "projectile")
-                m_Health -= m_damage;
+           // if (col.gameObject.tag == "projectile")
+                
 		}
 	}
 
