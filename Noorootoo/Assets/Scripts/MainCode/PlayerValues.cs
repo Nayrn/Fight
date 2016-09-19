@@ -46,7 +46,7 @@ public class PlayerValues : MonoBehaviour {
 	//-----Variable used in jump, is turned off if above 3u above the ground, or if Jump is pressed
     public bool isGrounded;
     //-----DoubleJump variable used in determining how many jumps have been used up
-    //-----True if player HAS NOT used up their double jump
+    //-----True if Player HAS NOT used up their double jump
     public bool DoubleJump = true;
 
     //-----Speed variable, 5 roughly matches the speed ad which the animations play
@@ -202,6 +202,9 @@ public class PlayerValues : MonoBehaviour {
 
 				Debug.Log("Colliders Off from hit");
 			}
+
+           // if (col.gameObject.tag == "projectile")
+                
 		}
 	}
 

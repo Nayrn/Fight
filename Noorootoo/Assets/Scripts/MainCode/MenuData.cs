@@ -2,14 +2,14 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public struct playerData
+public struct PlayerData
 {
 	GameObject characterSelected;
 	int skinSelected;
 }
 public class MenuData : MonoBehaviour {
 
-	public playerData[] Players = new playerData[1];
+	public PlayerData[] Players = new PlayerData[1];
 	private GameObject[] CharacterList;
 
 	public string levelSelected = "Main Build 2"; // farting goose

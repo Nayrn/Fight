@@ -17,6 +17,7 @@ TagManager:
   - SecondaryP2
   - AI
   - projectile
+  - projDest
   layers:
   - Default
   - TransparentFX

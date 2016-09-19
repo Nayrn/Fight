@@ -28,7 +28,7 @@ public class CollisionSoul : MonoBehaviour
         if (soulUp == true)
         {
             soulTime -= Time.deltaTime;
-            Opponent.m_soulAmount = Opponent.m_soulAmount + 20.0f * Time.deltaTime;
+            Opponent.m_soulAmount = Opponent.m_soulAmount + 25.0f * Time.deltaTime;
         }
 
         if (soulTime < 0)
@@ -109,7 +109,7 @@ public class CollisionSoul : MonoBehaviour
         }
 
 
-        // checking player 2
+        // checking Player 2
         if (elem2 == ElemTrait.FIRE)
         {
             if (elem1 == ElemTrait.WATER)

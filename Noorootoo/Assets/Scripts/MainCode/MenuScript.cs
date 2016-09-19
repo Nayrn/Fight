@@ -23,20 +23,21 @@ public class MenuScript : MonoBehaviour
 
 	private void LoadLevel(string Level)
 	{
-		SceneManager.LoadScene(Level, LoadSceneMode.Single);
+        Application.LoadLevel("Main Build 2");
+		//SceneManager.LoadScene(Level, LoadSceneMode.Single);
 	}
 
 	public void SinglePlayer(string Level)
 	{
-		md.Players = new playerData[1];
+		md.Players = new PlayerData[1];
 
-		Debug.Log("No Singleplayer for you.");
+		Debug.Log("No SinglePlayer for you.");
 
 		VSMatch(Level);
 	}
 	public void VSMatch(string Level)
 	{
-		md.Players = new playerData[2];
+		md.Players = new PlayerData[2];
 
 		LoadLevel(Level);
 	}
