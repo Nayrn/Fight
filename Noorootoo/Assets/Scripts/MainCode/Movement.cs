@@ -44,25 +44,23 @@ public class Movement : MonoBehaviour
 
 			if (Input.GetButtonDown(Player.Joystick + "Jump"))
 			{
-				if (Player.isGrounded == true)
-				{
-					Player.isGrounded = false;
-					Player.PlayerAnimation.SetBool("isGrounded", Player.isGrounded);
-					Player.PlayerAnimation.SetTrigger("JumpPressed");
-                    jumpAmount++;
-					if (Player.isGrounded == false)
-						Player.rb.AddForce(0, 8, 0, ForceMode.Impulse);
-				}
-				else if (!Player.isGrounded && Player.DoubleJump && !Player.isAttacking)
+				if (!Player.isGrounded && Player.DoubleJump && !Player.isAttacking)
 				{
 					//Update to only activate on Normal Jump loop
 
 					Player.DoubleJump = false;
-                    jumpAmount++;
 					Player.PlayerAnimation.SetTrigger("DoubleJump");
 
 					Player.rb.velocity = new Vector3(Player.rb.velocity.x, 0, Player.rb.velocity.z);
 					Player.rb.AddForce(0, 8, 0, ForceMode.Impulse);
+				}
+				else if (Player.isGrounded == true)
+				{
+					Player.rb.AddForce(0, 8, 0, ForceMode.Impulse);
+
+					Player.isGrounded = false;
+					Player.PlayerAnimation.SetBool("isGrounded", Player.isGrounded);
+					Player.PlayerAnimation.SetTrigger("JumpPressed");
 				}
 			}
 		}
@@ -70,13 +68,6 @@ public class Movement : MonoBehaviour
 		{
 			transform.position = transform.position;
 		}
-
-        if (jumpAmount <= 2)
-            Player.DoubleJump = true;
-        else
-        {
-            Player.DoubleJump = false;
-        }
 
         if (Player.isGrounded)
             jumpAmount = 0;

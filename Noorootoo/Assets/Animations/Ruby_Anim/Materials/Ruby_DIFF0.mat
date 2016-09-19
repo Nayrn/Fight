@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: RubyP2_DIFF
+  m_Name: Ruby_DIFF0
   m_Shader: {fileID: 4800000, guid: 62f85a71f86dc5949a8d2e0e8aff40e7, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -48,7 +48,7 @@ Material:
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 2800000, guid: 3be04dc1592da1747b73d208df19f3a2, type: 3}
+        m_Texture: {fileID: 2800000, guid: b6e133110afcc34479492c19b6f19615, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
