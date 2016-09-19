@@ -112,14 +112,14 @@ public class CameraController : MonoBehaviour {
 		Vector3 MidpointDirection = new Vector3();
 
 		float distance = Vector3.Distance(myPosition, theirPosition);
-		Vector3 playerDir = theirPosition - myPosition;
+		Vector3 PlayerDir = theirPosition - myPosition;
 		if (distance <= 5)
 		{
-			playerDir.Normalize();
+			PlayerDir.Normalize();
 
-			Midpoint = myPosition + (playerDir * (distance * 0.5f));
+			Midpoint = myPosition + (PlayerDir * (distance * 0.5f));
 
-			Vector3 cameraDir = Vector3.Cross(playerDir, Vector3.up);
+			Vector3 cameraDir = Vector3.Cross(PlayerDir, Vector3.up);
 
 			Vector3 cameraPosition = Midpoint + (cameraDir * 5.0f);
 
@@ -131,7 +131,7 @@ public class CameraController : MonoBehaviour {
 		}
 		else
 		{
-			Midpoint = myPosition + (playerDir * (distance * 0.5f));
+			Midpoint = myPosition + (PlayerDir * (distance * 0.5f));
 			MidpointDirection = ((FollowedObject.transform.position + Midpoint) - transform.position).normalized;
 		}
 

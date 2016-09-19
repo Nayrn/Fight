@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour {
 			Cursor.lockState = lockMode;
 		}
 
-		//----Swaps player mode -- Also changes screen view if necessary-----//
+		//----Swaps Player mode -- Also changes screen view if necessary-----//
 		if(Input.GetKeyDown(KeyCode.P))
 		{
 			if (Mode == GameMode.SinglePlayer)
@@ -91,12 +91,12 @@ public class GameManager : MonoBehaviour {
 	{
 		if(Mode == GameMode.SinglePlayer || Mode == GameMode.MultiPlayerConfined)
 		{
-			//Resets player screens for single player
+			//Resets Player screens for single Player
 			MainCamera.rect = new Rect(0, 0, 1, 1);
 		}
 		else if(Mode == GameMode.MultiPlayer)
 		{
-			//Updates player screens to show 2 players
+			//Updates Player screens to show 2 Players
 			MainCamera.rect = new Rect(0, 0, 0.5f, 1);
 			Player2Camera.rect = new Rect(0.5f, 0, 0.5f, 1);
 		}

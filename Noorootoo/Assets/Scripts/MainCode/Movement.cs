@@ -133,7 +133,7 @@ public class Movement : MonoBehaviour
 			//-----Rotate Player towards desired Joystick direction
 			Player.rb.transform.rotation = Quaternion.RotateTowards(Player.rb.transform.rotation, desiredDirection, Player.TurnSpeed * Time.deltaTime);
 
-			//-----Force player to look at opponent
+			//-----Force Player to look at opponent
 			if (Player.Targeted)
 				Player.rb.transform.LookAt(new Vector3(Player.Opponent.transform.position.x, transform.position.y, Player.Opponent.transform.position.z));
 		}
