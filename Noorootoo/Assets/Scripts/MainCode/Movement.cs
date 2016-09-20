@@ -44,25 +44,23 @@ public class Movement : MonoBehaviour
 
 			if (Input.GetButtonDown(Player.Joystick + "Jump"))
 			{
-				if (Player.isGrounded == true)
-				{
-					Player.isGrounded = false;
-					Player.PlayerAnimation.SetBool("isGrounded", Player.isGrounded);
-					Player.PlayerAnimation.SetTrigger("JumpPressed");
-                    jumpAmount++;
-					if (Player.isGrounded == false)
-						Player.rb.AddForce(0, 8, 0, ForceMode.Impulse);
-				}
-				else if (!Player.isGrounded && Player.DoubleJump && !Player.isAttacking)
+				if (!Player.isGrounded && Player.DoubleJump && !Player.isAttacking)
 				{
 					//Update to only activate on Normal Jump loop
 
 					Player.DoubleJump = false;
-                    jumpAmount++;
 					Player.PlayerAnimation.SetTrigger("DoubleJump");
 
 					Player.rb.velocity = new Vector3(Player.rb.velocity.x, 0, Player.rb.velocity.z);
 					Player.rb.AddForce(0, 8, 0, ForceMode.Impulse);
+				}
+				else if (Player.isGrounded == true)
+				{
+					Player.rb.AddForce(0, 8, 0, ForceMode.Impulse);
+
+					Player.isGrounded = false;
+					Player.PlayerAnimation.SetBool("isGrounded", Player.isGrounded);
+					Player.PlayerAnimation.SetTrigger("JumpPressed");
 				}
 			}
 		}
@@ -70,13 +68,6 @@ public class Movement : MonoBehaviour
 		{
 			transform.position = transform.position;
 		}
-
-        if (jumpAmount <= 2)
-            Player.DoubleJump = true;
-        else
-        {
-            Player.DoubleJump = false;
-        }
 
         if (Player.isGrounded)
             jumpAmount = 0;
@@ -115,7 +106,7 @@ public class Movement : MonoBehaviour
 
 		Vector3 inputDirection = new Vector3(Input.GetAxis(Player.Joystick + "Horizontal"), 0, -Input.GetAxis(Player.Joystick + "Vertical"));
 
-		if (inputDirection.magnitude > 0.0f)
+		if (inputDirection.magnitude > 0.1f)
 		{
 			inputDirection.Normalize();
 			desiredDirection = Quaternion.LookRotation(inputDirection, Vector3.up);
@@ -132,11 +123,11 @@ public class Movement : MonoBehaviour
 
 			//-----Rotate Player towards desired Joystick direction
 			Player.rb.transform.rotation = Quaternion.RotateTowards(Player.rb.transform.rotation, desiredDirection, Player.TurnSpeed * Time.deltaTime);
-
-			//-----Force Player to look at opponent
-			if (Player.Targeted)
-				Player.rb.transform.LookAt(new Vector3(Player.Opponent.transform.position.x, transform.position.y, Player.Opponent.transform.position.z));
 		}
+
+		////-----Force Player to look at opponent if Targeted
+		//if (Player.Targeted)
+		//	Player.rb.transform.LookAt(new Vector3(Player.Opponent.transform.position.x, transform.position.y, Player.Opponent.transform.position.z));
 
 		if (Physics.Raycast(transform.position, Vector3.down, 3) == false && Player.isGrounded == true)
 		{
@@ -157,7 +148,7 @@ public class Movement : MonoBehaviour
 		if (col.gameObject.tag == "Ground")
 			Player.PlayerAnimation.SetBool("isGrounded", true);
 	}
-	
+	//-----Idle ear twitch. Fully completed.
 	void IdleSwitch()
 	{
 		if(isMoving == false)

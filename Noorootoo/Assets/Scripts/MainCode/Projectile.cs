@@ -13,11 +13,12 @@ public class Projectile : MonoBehaviour
     private float dist;
     public GameObject projDest;
     private Vector3 getPos;
+    private float m_speed;
     // Use this for initialization
     void Start ()
     {
         projCollider = projBall.GetComponentInParent<Collider>();
-
+        m_speed = 2.5f;
         projBall.SetActive(false);    
     }
 	
@@ -69,9 +70,9 @@ public class Projectile : MonoBehaviour
 
         if (projBall.activeSelf)
         {
+            Debug.Log("Projectile");
             dist = Vector3.Distance(Player.transform.position, projBall.transform.position);
-            projBall.transform.position = Vector3.Lerp(projBall.transform.position, getPos, Time.deltaTime);
-
+            projBall.transform.position = Vector3.Lerp(projBall.transform.position, getPos, Time.deltaTime * m_speed);
             if (dist > 6.5f)
                 projBall.SetActive(false);
 
@@ -79,8 +80,13 @@ public class Projectile : MonoBehaviour
             if (dist2 <= 0)
             {
                 projBall.SetActive(false);
-                Debug.Log(dist2);
             }
+
+
+            float dist3 = Vector3.Distance(projBall.transform.position, getPos);
+            if (dist3 <= 0.5f)
+                projBall.SetActive(false);
+
         }
 
 
@@ -106,6 +112,6 @@ public class Projectile : MonoBehaviour
 
     private void GetPos()
     {
-        getPos = new Vector3(projDest.transform.position.x, 0.0f, projDest.transform.position.z);
+        getPos = new Vector3(projDest.transform.position.x, projDest.transform.position.y, projDest.transform.position.z);
     }
 }

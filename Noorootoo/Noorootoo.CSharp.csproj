@@ -82,10 +82,12 @@
     <Compile Include="Assets\Scripts\BehaviouralCode\GemScript.cs" />
     <Compile Include="Assets\Scripts\BehaviouralCode\JumpScript.cs" />
     <Compile Include="Assets\Scripts\BehaviouralCode\JumpState.cs" />
+    <Compile Include="Assets\Scripts\BehaviouralCode\TrailSwords.cs" />
     <Compile Include="Assets\Scripts\MainCode\AIScript.cs" />
     <Compile Include="Assets\Scripts\MainCode\Attack.cs" />
     <Compile Include="Assets\Scripts\MainCode\CameraController.cs" />
     <Compile Include="Assets\Scripts\MainCode\CollisionSoul.cs" />
+    <Compile Include="Assets\Scripts\MainCode\CursorScript.cs" />
     <Compile Include="Assets\Scripts\MainCode\GameManager.cs" />
     <Compile Include="Assets\Scripts\MainCode\LevelSelection.cs" />
     <Compile Include="Assets\Scripts\MainCode\MenuData.cs" />
@@ -93,6 +95,7 @@
     <Compile Include="Assets\Scripts\MainCode\Move.cs" />
     <Compile Include="Assets\Scripts\MainCode\Movement.cs" />
     <Compile Include="Assets\Scripts\MainCode\PauseGame.cs" />
+    <Compile Include="Assets\Scripts\MainCode\PlayerSelection.cs" />
     <Compile Include="Assets\Scripts\MainCode\PlayerValues.cs" />
     <Compile Include="Assets\Scripts\MainCode\Projectile.cs" />
     <Compile Include="Assets\Scripts\MainCode\endMenu.cs" />
