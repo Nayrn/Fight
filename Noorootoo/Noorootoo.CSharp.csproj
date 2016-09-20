@@ -72,7 +72,6 @@
     <Compile Include="Assets\Falling leaves\Script\AutoDestory.cs" />
     <Compile Include="Assets\Falling leaves\Script\CameraOrbit.cs" />
     <Compile Include="Assets\Falling leaves\Script\SceneManager.cs" />
-    <Compile Include="Assets\PlayerSelection.cs" />
     <Compile Include="Assets\Scripts\BehaviouralCode\AerialPlunge.cs" />
     <Compile Include="Assets\Scripts\BehaviouralCode\AerialStasis.cs" />
     <Compile Include="Assets\Scripts\BehaviouralCode\AttackCombo.cs" />
@@ -88,6 +87,7 @@
     <Compile Include="Assets\Scripts\MainCode\Attack.cs" />
     <Compile Include="Assets\Scripts\MainCode\CameraController.cs" />
     <Compile Include="Assets\Scripts\MainCode\CollisionSoul.cs" />
+    <Compile Include="Assets\Scripts\MainCode\CursorScript.cs" />
     <Compile Include="Assets\Scripts\MainCode\GameManager.cs" />
     <Compile Include="Assets\Scripts\MainCode\LevelSelection.cs" />
     <Compile Include="Assets\Scripts\MainCode\MenuData.cs" />
@@ -95,6 +95,7 @@
     <Compile Include="Assets\Scripts\MainCode\Move.cs" />
     <Compile Include="Assets\Scripts\MainCode\Movement.cs" />
     <Compile Include="Assets\Scripts\MainCode\PauseGame.cs" />
+    <Compile Include="Assets\Scripts\MainCode\PlayerSelection.cs" />
     <Compile Include="Assets\Scripts\MainCode\PlayerValues.cs" />
     <Compile Include="Assets\Scripts\MainCode\Projectile.cs" />
     <Compile Include="Assets\Scripts\MainCode\endMenu.cs" />

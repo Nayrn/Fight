@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour {
 	public Camera MainCamera;
 	public Camera Player2Camera;
 
+	private PlayerValues Player1;
+	private PlayerValues Player2;
+
 	//-----Timer Variables-----//
 	private float Timer;
 	public Text TimeText;
@@ -31,6 +34,9 @@ public class GameManager : MonoBehaviour {
 
 		MainCamera = GameObject.Find("Camera Pivot").GetComponentInChildren<Camera>();
 		Player2Camera = GameObject.Find("Camera 2 Pivot").GetComponentInChildren<Camera>();
+
+		Player1 = GameObject.Find("Player1").GetComponent<PlayerValues>();
+		Player2 = GameObject.Find("Player2").GetComponent<PlayerValues>();
 
 		Timer = maxTime;
 	}
@@ -48,6 +54,8 @@ public class GameManager : MonoBehaviour {
 		//-----Reset to 0 if it falls below
 		if (Timer < 0)
 			Timer = 0;
+
+
 	}
 	// Update is called once per frame
 	void FixedUpdate ()

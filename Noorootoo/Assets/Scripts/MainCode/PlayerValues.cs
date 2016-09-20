@@ -17,7 +17,7 @@ public enum ElemTrait
 public class PlayerValues : MonoBehaviour {
 
     //-----CONST VARIABLES-----//
-	private const float MAX_HEALTH = 150;
+	private const float MAX_HEALTH = 100;
 
 	public Rigidbody rb;
    
@@ -26,19 +26,24 @@ public class PlayerValues : MonoBehaviour {
 
     public ElemTrait Attribute;
 
-	public bool isStunned = false;
+	private bool isStunned = false;
+	[HideInInspector]
     public bool isStasis = false;
-    public bool isBlocking = false;
-    public float m_damage;
+	[HideInInspector]
+	public bool isBlocking = false;
+	[HideInInspector]
+    public float m_damage = 5.0f;
 	//Opponent Variable
 	public GameObject Opponent;
 
     //-----SOUL VARIABLES-----//
+	[HideInInspector]
     public float m_soulAmount;
     private float timeThing;
     //-----CONTROLLER VARIABLES-----//
 
     public JoystickNum Joystick = JoystickNum.Keyboard;
+	[HideInInspector]
 	public bool Targeted = false;
 
     //----------MOVEMENT VARIABLES-----//
@@ -48,14 +53,14 @@ public class PlayerValues : MonoBehaviour {
     //-----DoubleJump variable used in determining how many jumps have been used up
     //-----True if Player HAS NOT used up their double jump
     public bool DoubleJump = true;
-    //another jump thing
-    private GameObject[] ground;
+
     //-----Speed variable, 5 roughly matches the speed ad which the animations play
     //-----Characters skate if variable is higher
     [HideInInspector]
     public float m_Speed = 5;
 
     //-----Access to the animator, used for all animations
+	[HideInInspector]
 	public Animator PlayerAnimation = new Animator();
 
 
@@ -63,16 +68,21 @@ public class PlayerValues : MonoBehaviour {
 
 
     //-----Attack variables used in Attack.cs, stored here for cleanliness
+	[HideInInspector]
     public bool isAttacking = false;
+	[HideInInspector]
     public bool PrimaryAttack = false;
-    public bool SecondaryAttack = false;
+	[HideInInspector]
+	public bool SecondaryAttack = false;
 
 	//----------EXTRA VARIABLES-----//
 
 	//-----Gravity Variables
-	public float gravityEdit = 1;
+	//____Might be unneccessary_____//
+	private float gravityEdit = 1;
 
     //-----Turn Speed. Increase to hasten the rate at which a character turns on the spot. default is 780
+	[HideInInspector]
     public float TurnSpeed = 780.0f;
 
     //-----UI pieces
@@ -101,9 +111,9 @@ public class PlayerValues : MonoBehaviour {
         SoulSlider.maxValue = 100;
         Attribute = ElemTrait.UNASPECTED;
         timeThing = 5.0f;
-        m_damage = 5.0f;
         powActive = 0.2f;
-        ground = GameObject.FindGameObjectsWithTag("Ground");
+
+		PlayerAnimation = this.GetComponentInChildren<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -176,11 +186,11 @@ public class PlayerValues : MonoBehaviour {
                 powActive = 0.2f;
             }
         }
-
 	}
 
 	void OnTriggerEnter(Collider col)
 	{
+       
         if (!isBlocking)
 		{
 			if (col.gameObject.tag == "PrimaryAttack")
@@ -205,7 +215,8 @@ public class PlayerValues : MonoBehaviour {
 				Debug.Log("Colliders Off from hit");
 			}
 
-            
+           // if (col.gameObject.tag == "projectile")
+                
 		}
 	}
 
@@ -254,16 +265,6 @@ public class PlayerValues : MonoBehaviour {
         }
 	}
 
-    void OnCollisionEnter(Collision col)
-    {
-        if (col.gameObject.tag == "Ground")
-        {
-            PlayerAnimation.SetBool("isGrounded", true);
-            isGrounded = true;
-        }
-         
-
-    }
     private void ResetElement()
     {
         Fire.gameObject.SetActive(false);

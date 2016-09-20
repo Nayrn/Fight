@@ -15,12 +15,10 @@ public class Attack : MonoBehaviour
 	private AnimatorStateInfo CurrentState;
 
 	public float leewayTime = 4.5f;
-	public float colliderTime;
     public float blockTime;
     // Use this for initialization
     void Start()
     {
-        colliderTime = 0.5f;
         Player.SecondaryAttack = false;
         Player.PrimaryAttack = false;
         Player.isAttacking = false;
@@ -32,38 +30,13 @@ public class Attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		ActionUpdate();
+
     }
 
     void FixedUpdate()
     {
-		if (Player.SecondaryAttack || Player.PrimaryAttack)
-		{
-			if (colliderTime > 0 && (Player.PrimaryAttack == true || Player.SecondaryAttack == true))
-				colliderTime -= Time.deltaTime;
-			else if (colliderTime <= 0.0f)
-				colliderTime = 0;
-			
-			if(colliderTime == 0)
-			{
-				//for (int i = 0; i < colliders.Length; i++)
-				//	colliders[i].GetComponent<BoxCollider>().enabled = false;
-
-				Player.SecondaryAttack = false;
-				Player.PrimaryAttack = false;
-                Player.isAttacking = false;
-
-                PrimaryCount = 0;
-				SecondaryCount = 0;
-			}
-		}
-        
-
-        // --- ELEMENT ATTACK CODE ----
-
-
-
-    }
+		ActionUpdate();
+	}
 
 	void ActionUpdate()
 	{
@@ -93,9 +66,6 @@ public class Attack : MonoBehaviour
 			//-----LIGHT ATTACK CODE-----//
 			if (Input.GetButtonDown(Player.Joystick + "Primary") && Player.SecondaryAttack == false)// punch
             {
-
-
-				//Player.rb.transform.LookAt(new Vector3(Player.Opponent.transform.position.x, transform.position.y, Player.Opponent.transform.position.z));
 				//Setting Attack bool to true
 				Player.isAttacking = true;
                 Player.PrimaryAttack = true;
@@ -110,9 +80,11 @@ public class Attack : MonoBehaviour
 
 			if (Input.GetButtonDown(Player.Joystick + "Secondary") && Player.PrimaryAttack == false)// punch
 			{
-                Player.isAttacking = true;
+				//Setting Attack bool to true
+				Player.isAttacking = true;
                 Player.SecondaryAttack = true;
 
+				//Activating the animation trigger
 				Player.PlayerAnimation.SetTrigger("SecondaryTrigger");
 			}
         }
