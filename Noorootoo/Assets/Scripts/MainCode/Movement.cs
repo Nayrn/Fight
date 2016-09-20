@@ -106,7 +106,7 @@ public class Movement : MonoBehaviour
 
 		Vector3 inputDirection = new Vector3(Input.GetAxis(Player.Joystick + "Horizontal"), 0, -Input.GetAxis(Player.Joystick + "Vertical"));
 
-		if (inputDirection.magnitude > 0.0f)
+		if (inputDirection.magnitude > 0.1f)
 		{
 			inputDirection.Normalize();
 			desiredDirection = Quaternion.LookRotation(inputDirection, Vector3.up);
@@ -123,11 +123,11 @@ public class Movement : MonoBehaviour
 
 			//-----Rotate Player towards desired Joystick direction
 			Player.rb.transform.rotation = Quaternion.RotateTowards(Player.rb.transform.rotation, desiredDirection, Player.TurnSpeed * Time.deltaTime);
-
-			//-----Force Player to look at opponent
-			if (Player.Targeted)
-				Player.rb.transform.LookAt(new Vector3(Player.Opponent.transform.position.x, transform.position.y, Player.Opponent.transform.position.z));
 		}
+
+		////-----Force Player to look at opponent if Targeted
+		//if (Player.Targeted)
+		//	Player.rb.transform.LookAt(new Vector3(Player.Opponent.transform.position.x, transform.position.y, Player.Opponent.transform.position.z));
 
 		if (Physics.Raycast(transform.position, Vector3.down, 3) == false && Player.isGrounded == true)
 		{
@@ -148,7 +148,7 @@ public class Movement : MonoBehaviour
 		if (col.gameObject.tag == "Ground")
 			Player.PlayerAnimation.SetBool("isGrounded", true);
 	}
-	
+	//-----Idle ear twitch. Fully completed.
 	void IdleSwitch()
 	{
 		if(isMoving == false)
