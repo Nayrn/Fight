@@ -51,7 +51,7 @@ public class CameraController : MonoBehaviour {
 		//rotation + position lerp
 		CameraPivot.transform.position = FollowedObject.transform.position;// Vector3.Lerp(CameraPivot.transform.position, FollowedObject.transform.position, Time.deltaTime * 5);
 		CameraPivot.transform.LookAt(TrackedObject.transform.position);
-
+        //LOCK ON CAMERA BYE BYE
 		if (Input.GetButtonDown(Player.Joystick + "LockOn"))
 		{
 			Player.Targeted = !Player.Targeted;
@@ -113,27 +113,11 @@ public class CameraController : MonoBehaviour {
 
 		float distance = Vector3.Distance(myPosition, theirPosition);
 		Vector3 PlayerDir = theirPosition - myPosition;
-		if (distance <= 5)
-		{
-			PlayerDir.Normalize();
-
-			Midpoint = myPosition + (PlayerDir * (distance * 0.5f));
-
-			Vector3 cameraDir = Vector3.Cross(PlayerDir, Vector3.up);
-
-			Vector3 cameraPosition = Midpoint + (cameraDir * 5.0f);
-
-			transform.position = cameraPosition;// Vector3.Lerp(transform.position, cameraPosition, Time.deltaTime * 10);
-			//transform.LookAt(Midpoint, Vector3.up);
-			//haxCamera();
-
-			//Debug.Log("This is rude");
-		}
-		else
-		{
+        // MIDPOINT CAMERA BYE BYE
+		
 			Midpoint = myPosition + (PlayerDir * (distance * 0.5f));
 			MidpointDirection = ((FollowedObject.transform.position + Midpoint) - transform.position).normalized;
-		}
+		
 
 		//Quaternion lookAt = Quaternion.LookRotation(MidpointDirection);
 		//transform.rotation = Quaternion.Slerp(transform.rotation, lookAt, Time.deltaTime * 5.0f);

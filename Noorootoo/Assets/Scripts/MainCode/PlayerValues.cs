@@ -17,7 +17,7 @@ public enum ElemTrait
 public class PlayerValues : MonoBehaviour {
 
     //-----CONST VARIABLES-----//
-	private const float MAX_HEALTH = 100;
+	private const float MAX_HEALTH = 150;
 
 	public Rigidbody rb;
    
@@ -48,7 +48,8 @@ public class PlayerValues : MonoBehaviour {
     //-----DoubleJump variable used in determining how many jumps have been used up
     //-----True if Player HAS NOT used up their double jump
     public bool DoubleJump = true;
-
+    //another jump thing
+    private GameObject[] ground;
     //-----Speed variable, 5 roughly matches the speed ad which the animations play
     //-----Characters skate if variable is higher
     [HideInInspector]
@@ -102,6 +103,7 @@ public class PlayerValues : MonoBehaviour {
         timeThing = 5.0f;
         m_damage = 5.0f;
         powActive = 0.2f;
+        ground = GameObject.FindGameObjectsWithTag("Ground");
 	}
 	
 	// Update is called once per frame
@@ -174,11 +176,11 @@ public class PlayerValues : MonoBehaviour {
                 powActive = 0.2f;
             }
         }
+
 	}
 
 	void OnTriggerEnter(Collider col)
 	{
-       
         if (!isBlocking)
 		{
 			if (col.gameObject.tag == "PrimaryAttack")
@@ -203,8 +205,7 @@ public class PlayerValues : MonoBehaviour {
 				Debug.Log("Colliders Off from hit");
 			}
 
-           // if (col.gameObject.tag == "projectile")
-                
+            
 		}
 	}
 
@@ -253,6 +254,16 @@ public class PlayerValues : MonoBehaviour {
         }
 	}
 
+    void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.tag == "Ground")
+        {
+            PlayerAnimation.SetBool("isGrounded", true);
+            isGrounded = true;
+        }
+         
+
+    }
     private void ResetElement()
     {
         Fire.gameObject.SetActive(false);

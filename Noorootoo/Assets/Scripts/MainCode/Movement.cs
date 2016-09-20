@@ -148,7 +148,7 @@ public class Movement : MonoBehaviour
 		if (col.gameObject.tag == "Ground")
 			Player.PlayerAnimation.SetBool("isGrounded", true);
 	}
-	
+
 	void IdleSwitch()
 	{
 		if(isMoving == false)
