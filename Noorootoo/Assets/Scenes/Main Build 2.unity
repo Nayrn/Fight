@@ -28388,6 +28388,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 704042297}
+  - 96: {fileID: 704042298}
   m_Layer: 0
   m_Name: rubysword:Swish_Sword_JNT_1
   m_TagString: Untagged
@@ -28410,6 +28411,56 @@ Transform:
   - {fileID: 1702057268}
   m_Father: {fileID: 1365660644}
   m_RootOrder: 0
+--- !u!96 &704042298
+TrailRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 704042296}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_Materials:
+  - {fileID: 2100000, guid: b9b6db9217bbb5d4bb8188d912d956fc, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedWireframeHidden: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Time: 0.15
+  m_StartWidth: 0.3
+  m_EndWidth: 0.01
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4284966911
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 4278240255
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 4278240255
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 4278190335
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 193
+  m_MinVertexDistance: 0.1
+  m_Autodestruct: 0
 --- !u!1 &705449876
 GameObject:
   m_ObjectHideFlags: 0
@@ -30405,13 +30456,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b17b5eaf1acd33044986e220d7c36ca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projBall: {fileID: 1513674116}
-  Player: {fileID: 729724708}
-  Air: {fileID: 1595770718}
-  Earth: {fileID: 247895846}
-  Water: {fileID: 1599305744}
-  Fire: {fileID: 646369716}
-  projDest: {fileID: 1315183421}
 --- !u!20 &731950703
 Camera:
   m_ObjectHideFlags: 0
@@ -36444,13 +36488,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b17b5eaf1acd33044986e220d7c36ca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projBall: {fileID: 1350773870}
-  Player: {fileID: 1018337188}
-  Air: {fileID: 758534966}
-  Earth: {fileID: 1874705703}
-  Water: {fileID: 1133485917}
-  Fire: {fileID: 654580733}
-  projDest: {fileID: 770987105}
 --- !u!1 &1026201095
 GameObject:
   m_ObjectHideFlags: 0
@@ -36589,7 +36626,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1054829046}
-  m_LocalRotation: {x: 0.73474276, y: 0.0023509606, z: -0.6783383, w: 0.0021704861}
+  m_LocalRotation: {x: 0.7347428, y: 0.0023509609, z: -0.67833835, w: 0.0021704864}
   m_LocalPosition: {x: 0.06514208, y: 0.0017648762, z: -1.9118417e-11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -59729,6 +59766,61 @@ Transform:
   - {fileID: 310950582}
   m_Father: {fileID: 1148494597}
   m_RootOrder: 0
+--- !u!1 &1925032323 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000014157494398, guid: 6744995274784154fada32bd0193175e,
+    type: 2}
+  m_PrefabInternal: {fileID: 665169036}
+--- !u!96 &1925032325
+TrailRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1925032323}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_Materials:
+  - {fileID: 2100000, guid: b9b6db9217bbb5d4bb8188d912d956fc, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedWireframeHidden: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Time: 0.15
+  m_StartWidth: 0.3
+  m_EndWidth: 0.01
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4294928255
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 4294901906
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 4294901853
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 4294904832
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 12648479
+  m_MinVertexDistance: 0.1
+  m_Autodestruct: 0
 --- !u!1 &1926669018
 GameObject:
   m_ObjectHideFlags: 0
