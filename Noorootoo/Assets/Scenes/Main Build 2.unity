@@ -6293,11 +6293,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_Children:
+  - {fileID: 481207799}
   - {fileID: 1418958148}
   - {fileID: 876001904}
   - {fileID: 443591188}
   - {fileID: 1483960150}
-  - {fileID: 481207799}
   - {fileID: 745437881}
   - {fileID: 184813960}
   m_Father: {fileID: 0}
@@ -17902,7 +17902,7 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: cb7ee7eb954a18e4c82bc0bab3d08bd4, type: 2}
+      objectReference: {fileID: 2100000, guid: bf8e58c222540234da63cec284df0d77, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2664cf1517109334091f8a1f59e559a1, type: 2}
   m_IsPrefabParent: 0
@@ -18235,7 +18235,7 @@ GameObject:
   - 198: {fileID: 443591190}
   - 199: {fileID: 443591189}
   m_Layer: 0
-  m_Name: Air_Aura (1)
+  m_Name: Air_Aura
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18255,7 +18255,7 @@ Transform:
   m_Children:
   - {fileID: 1841976525}
   m_Father: {fileID: 112758628}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!199 &443591189
 ParticleSystemRenderer:
   m_ObjectHideFlags: 0
@@ -20385,7 +20385,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 38cd27814f5e18641b11d6bd19300fdf, type: 2}
+  - {fileID: 2100000, guid: cecd483d95a74724ba92b6bc6125b42d, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -20585,7 +20585,7 @@ Transform:
   - {fileID: 1351772484}
   - {fileID: 459855181}
   m_Father: {fileID: 112758628}
-  m_RootOrder: 4
+  m_RootOrder: 0
 --- !u!198 &483124221
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -35939,7 +35939,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 1eddfa59be789f94aa056fd8dbebcb90, type: 2}
+  - {fileID: 2100000, guid: 94ecd68f41ba8694d8bad295db02651e, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -36720,7 +36720,7 @@ GameObject:
   - 198: {fileID: 876001906}
   - 199: {fileID: 876001905}
   m_Layer: 0
-  m_Name: Earth_Aura (1)
+  m_Name: Earth_Aura
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36740,7 +36740,7 @@ Transform:
   m_Children:
   - {fileID: 2004642323}
   m_Father: {fileID: 112758628}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!199 &876001905
 ParticleSystemRenderer:
   m_ObjectHideFlags: 0
@@ -43475,7 +43475,7 @@ MonoBehaviour:
   m_damage: 0
   Opponent: {fileID: 112758617}
   m_soulAmount: 0
-  Joystick: 1
+  Joystick: 4
   Targeted: 0
   isGrounded: 0
   DoubleJump: 1
@@ -43852,7 +43852,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1050596440}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11250455a695f7b438f5db23953fbb37, type: 3}
+  m_Script: {fileID: 11500000, guid: baea3c3818e1c2b4bb329d0cd14da953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1052138129
@@ -55899,7 +55899,8 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 38cd27814f5e18641b11d6bd19300fdf, type: 2}
+  - {fileID: 2100000, guid: cecd483d95a74724ba92b6bc6125b42d, type: 2}
+  - {fileID: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -57915,7 +57916,7 @@ Transform:
   m_Children:
   - {fileID: 106682440}
   m_Father: {fileID: 112758628}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!1 &1420326679
 GameObject:
   m_ObjectHideFlags: 0
@@ -58062,7 +58063,7 @@ GameObject:
   - 198: {fileID: 1483960152}
   - 199: {fileID: 1483960151}
   m_Layer: 0
-  m_Name: Water_Aura (1)
+  m_Name: Water_Aura
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58082,7 +58083,7 @@ Transform:
   m_Children:
   - {fileID: 1605786366}
   m_Father: {fileID: 112758628}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!199 &1483960151
 ParticleSystemRenderer:
   m_ObjectHideFlags: 0
@@ -59988,7 +59989,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 1eddfa59be789f94aa056fd8dbebcb90, type: 2}
+  - {fileID: 2100000, guid: 20c51d210f94b5f48a1ed7ec8a7e566f, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -60358,22 +60359,22 @@ Prefab:
     - target: {fileID: 224000011303311166, guid: ca47b1d8591e2d3439601bf00717ad5d,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224000011303311166, guid: ca47b1d8591e2d3439601bf00717ad5d,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224000012412079482, guid: ca47b1d8591e2d3439601bf00717ad5d,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224000012412079482, guid: ca47b1d8591e2d3439601bf00717ad5d,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114000012652236114, guid: ca47b1d8591e2d3439601bf00717ad5d,
         type: 2}
@@ -60878,6 +60879,16 @@ Prefab:
         type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -159.45401
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011900801196, guid: ca47b1d8591e2d3439601bf00717ad5d,
+        type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: d41ae19cfc0452344a9a8ac2879e9973, type: 2}
+    - target: {fileID: 114000014040823116, guid: ca47b1d8591e2d3439601bf00717ad5d,
+        type: 2}
+      propertyPath: m_Material
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ca47b1d8591e2d3439601bf00717ad5d, type: 2}
@@ -69324,7 +69335,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 1eddfa59be789f94aa056fd8dbebcb90, type: 2}
+  - {fileID: 2100000, guid: 94ecd68f41ba8694d8bad295db02651e, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -72661,7 +72672,7 @@ GameObject:
   - 198: {fileID: 1808832505}
   - 199: {fileID: 1808832504}
   m_Layer: 0
-  m_Name: Earth_Aura (1)
+  m_Name: Earth_Aura
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
