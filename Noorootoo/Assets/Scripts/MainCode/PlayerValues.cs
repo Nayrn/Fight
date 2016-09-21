@@ -17,7 +17,7 @@ public enum ElemTrait
 public class PlayerValues : MonoBehaviour {
 
     //-----CONST VARIABLES-----//
-	private const float MAX_HEALTH = 100;
+	private const float MAX_HEALTH = 150;
 
 	public Rigidbody rb;
    
@@ -220,6 +220,14 @@ public class PlayerValues : MonoBehaviour {
 		}
 	}
 
+    void OnCollisionEnter(Collision col)
+    {
+        if(col.gameObject.tag == "Ground")
+        {
+            PlayerAnimation.SetBool("isGrounded", true);
+            isGrounded = true;
+        }
+    }
 
 
    ElemTrait Strength(ElemTrait elem)
