@@ -6093,13 +6093,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b17b5eaf1acd33044986e220d7c36ca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projBall: {fileID: 1513674116}
-  Player: {fileID: 112758623}
-  Air: {fileID: 1595770718}
-  Earth: {fileID: 247895846}
-  Water: {fileID: 1599305744}
-  Fire: {fileID: 646369716}
-  projDest: {fileID: 184813959}
 --- !u!95 &112758619
 Animator:
   serializedVersion: 3
@@ -6163,7 +6156,6 @@ MonoBehaviour:
   PrimaryCount: 0
   SecondaryCount: 0
   leewayTime: 4.5
-  colliderTime: 0
   blockTime: 0
 --- !u!114 &112758622
 MonoBehaviour:
@@ -6194,7 +6186,6 @@ MonoBehaviour:
   rb: {fileID: 112758624}
   m_Health: 0
   Attribute: 0
-  isStunned: 0
   isStasis: 0
   isBlocking: 0
   m_damage: 0
@@ -6209,7 +6200,6 @@ MonoBehaviour:
   isAttacking: 0
   PrimaryAttack: 0
   SecondaryAttack: 0
-  gravityEdit: 1
   TurnSpeed: 780
   KOText: {fileID: 450119884}
   PlayerSlider: {fileID: 2019664668}
@@ -17911,7 +17901,7 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: cc494ef582ad24c4f9335f8756ef2c1d, type: 2}
+      objectReference: {fileID: 2100000, guid: cb7ee7eb954a18e4c82bc0bab3d08bd4, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2664cf1517109334091f8a1f59e559a1, type: 2}
   m_IsPrefabParent: 0
@@ -20394,7 +20384,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: c8c455707a4bc3147898f6674979fc36, type: 2}
+  - {fileID: 2100000, guid: 38cd27814f5e18641b11d6bd19300fdf, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -27248,6 +27238,34 @@ Transform:
   - {fileID: 474478722}
   m_Father: {fileID: 178790544}
   m_RootOrder: 6
+--- !u!1 &595702464
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 532959677}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 595702465}
+  m_Layer: 0
+  m_Name: Missing Prefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &595702465
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 532959677}
+  m_GameObject: {fileID: 595702464}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
 --- !u!1001 &599501902
 Prefab:
   m_ObjectHideFlags: 0
@@ -33241,7 +33259,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013271465770, guid: 9de8cdf19b9dc154fb726b312c394f36, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1000011182931334, guid: 9de8cdf19b9dc154fb726b312c394f36, type: 2}
       propertyPath: m_Name
@@ -35920,7 +35938,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 738ac111b3b7441499358d384377b05b, type: 2}
+  - {fileID: 2100000, guid: 1eddfa59be789f94aa056fd8dbebcb90, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -43451,13 +43469,12 @@ MonoBehaviour:
   rb: {fileID: 1018337189}
   m_Health: 0
   Attribute: 0
-  isStunned: 0
   isStasis: 0
   isBlocking: 0
   m_damage: 0
   Opponent: {fileID: 112758617}
   m_soulAmount: 0
-  Joystick: 4
+  Joystick: 1
   Targeted: 0
   isGrounded: 0
   DoubleJump: 1
@@ -43466,7 +43483,6 @@ MonoBehaviour:
   isAttacking: 0
   PrimaryAttack: 0
   SecondaryAttack: 0
-  gravityEdit: 1
   TurnSpeed: 780
   KOText: {fileID: 450119884}
   PlayerSlider: {fileID: 545082749}
@@ -43523,7 +43539,6 @@ MonoBehaviour:
   PrimaryCount: 0
   SecondaryCount: 0
   leewayTime: 4.5
-  colliderTime: 0
   blockTime: 0
 --- !u!114 &1018337191
 MonoBehaviour:
@@ -43618,13 +43633,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b17b5eaf1acd33044986e220d7c36ca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projBall: {fileID: 1350773870}
-  Player: {fileID: 1018337188}
-  Air: {fileID: 758534966}
-  Earth: {fileID: 1874705703}
-  Water: {fileID: 1133485917}
-  Fire: {fileID: 654580733}
-  projDest: {fileID: 770987105}
 --- !u!65 &1018337197
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -43899,7 +43907,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1054829046}
-  m_LocalRotation: {x: 0.73474276, y: 0.0023509606, z: -0.6783383, w: 0.0021704861}
+  m_LocalRotation: {x: 0.7347428, y: 0.0023509609, z: -0.67833835, w: 0.0021704864}
   m_LocalPosition: {x: 0.06514208, y: 0.0017648762, z: -1.9118417e-11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -55838,7 +55846,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: c8c455707a4bc3147898f6674979fc36, type: 2}
+  - {fileID: 2100000, guid: 38cd27814f5e18641b11d6bd19300fdf, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -59927,7 +59935,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 20c51d210f94b5f48a1ed7ec8a7e566f, type: 2}
+  - {fileID: 2100000, guid: 1eddfa59be789f94aa056fd8dbebcb90, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -68287,7 +68295,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1607090952}
-  m_LocalRotation: {x: 0.73474276, y: 0.0023509606, z: -0.6783383, w: 0.0021704861}
+  m_LocalRotation: {x: 0.7347428, y: 0.0023509609, z: -0.67833835, w: 0.0021704864}
   m_LocalPosition: {x: 0.06514208, y: 0.0017648762, z: -1.9118417e-11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -68797,7 +68805,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 738ac111b3b7441499358d384377b05b, type: 2}
+  - {fileID: 2100000, guid: 1eddfa59be789f94aa056fd8dbebcb90, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -79062,7 +79070,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!1 &2047546516 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: aa9a1fbfe4f5be54ba17f134f1516bbd, type: 3}

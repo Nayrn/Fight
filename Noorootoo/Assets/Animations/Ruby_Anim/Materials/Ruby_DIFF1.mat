@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Ruby_DIFF1
-  m_Shader: {fileID: 4800000, guid: 62f85a71f86dc5949a8d2e0e8aff40e7, type: 3}
+  m_Shader: {fileID: 4800000, guid: e570c2adf90d6a24b8634788025bb2bb, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
@@ -37,6 +37,12 @@ Material:
         name: _DetailNormalMap
       second:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _Diffuse
+      second:
+        m_Texture: {fileID: 2800000, guid: 3be04dc1592da1747b73d208df19f3a2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -71,6 +77,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - first:
+        name: _Bands
+      second: 4
+    - first:
         name: _BumpScale
       second: 1
     - first:
@@ -101,6 +110,9 @@ Material:
         name: _OcclusionStrength
       second: 1
     - first:
+        name: _OutlineWidth
+      second: 5.25
+    - first:
         name: _Parallax
       second: 0.02
     - first:
@@ -118,10 +130,16 @@ Material:
     - first:
         name: _ZWrite
       second: 1
+    - first:
+        name: _node_8050
+      second: 1
     m_Colors:
     - first:
         name: _Color
       second: {r: 1, g: 1, b: 1, a: 1}
     - first:
         name: _EmissionColor
+      second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _OutlineColour
       second: {r: 0, g: 0, b: 0, a: 1}
