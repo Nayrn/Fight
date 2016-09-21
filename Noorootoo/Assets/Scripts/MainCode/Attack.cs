@@ -6,7 +6,7 @@ public class Attack : MonoBehaviour
 	public PlayerValues Player;
     public CollisionSoul soulAttack;
 	public GameObject[] colliders;
-
+    public TrailRenderer trail;
 	public string[] PrimaryCombos;
 	public string[] SecondaryCombos;
 	public int PrimaryCount = 0;
@@ -25,6 +25,7 @@ public class Attack : MonoBehaviour
         for (int i = 0; i < colliders.Length; i++ )
 			colliders[i].GetComponent<BoxCollider>().enabled = false;
         soulAttack.GetComponent<CollisionSoul>();
+        trail.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -71,7 +72,7 @@ public class Attack : MonoBehaviour
                 Player.PrimaryAttack = true;
 
 				//Activating the animation trigger
-				Player.PlayerAnimation.SetTrigger("PrimaryTrigger");
+				Player.PlayerAnimation.SetTrigger("PrimaryTrigger");                
 			}
 
 
@@ -97,12 +98,14 @@ public class Attack : MonoBehaviour
 		{
 			colliders[0].GetComponent<BoxCollider>().enabled = true;
 			colliders[0].tag = "PrimaryAttack";
-		}
+            trail.gameObject.SetActive(true);
+        }
 		else if (Player.SecondaryAttack)
 		{
 			colliders[0].GetComponent<BoxCollider>().enabled = true;
 			colliders[0].tag = "SecondaryAttack";
-		}
+            trail.gameObject.SetActive(true);
+        }
     }
 
     public void CollidersOff()
@@ -114,5 +117,6 @@ public class Attack : MonoBehaviour
 		Debug.Log("Colliders Off");
 
         colliders[0].GetComponent<BoxCollider>().enabled = false;
+        trail.gameObject.SetActive(false);
     }
 }
