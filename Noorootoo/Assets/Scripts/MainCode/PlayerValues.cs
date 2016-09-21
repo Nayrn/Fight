@@ -112,7 +112,6 @@ public class PlayerValues : MonoBehaviour {
         Attribute = ElemTrait.UNASPECTED;
         timeThing = 5.0f;
         powActive = 0.2f;
-
 		PlayerAnimation = this.GetComponentInChildren<Animator>();
 	}
 	
@@ -195,6 +194,7 @@ public class PlayerValues : MonoBehaviour {
 		{
 			if (col.gameObject.tag == "PrimaryAttack")
 			{
+                m_damage = 2.0f;
 				m_Health -= m_damage;
                 isAttacking = true;
 
@@ -206,7 +206,7 @@ public class PlayerValues : MonoBehaviour {
             }
 			if (col.gameObject.tag == "SecondaryAttack")
 			{
-                m_damage = 10.0f;
+                m_damage = 5.0f;
 				m_Health -= m_damage;
                 isAttacking = true;
 				//col.enabled = false;
