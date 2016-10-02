@@ -24,7 +24,7 @@ public class PlayerValues : MonoBehaviour {
     //-----Status Variables, Damage to be moved to upcoming "Move Struct" in "Attack.cs"
     public float m_Health;
 
-    public ElemTrait Attribute;
+    public ElemTrait Attribute = ElemTrait.UNASPECTED;
 
 	private bool isStunned = false;
 	[HideInInspector]
@@ -38,11 +38,11 @@ public class PlayerValues : MonoBehaviour {
 
     //-----SOUL VARIABLES-----//
 	[HideInInspector]
-    public float m_soulAmount;
-    private float timeThing;
-    //-----CONTROLLER VARIABLES-----//
+    public float m_soulAmount = 0.0f;
+    private float timeThing = 5.0f;
+	//-----CONTROLLER VARIABLES-----//
 
-    public JoystickNum Joystick = JoystickNum.Keyboard;
+	public JoystickNum Joystick = JoystickNum.Keyboard;
 	[HideInInspector]
 	public bool Targeted = false;
 
@@ -88,6 +88,7 @@ public class PlayerValues : MonoBehaviour {
     //-----UI pieces
   
     public Image KOText;
+	public Text Win;
     public Slider PlayerSlider;
     public Slider SoulSlider;
     public bool isKO;
@@ -97,8 +98,11 @@ public class PlayerValues : MonoBehaviour {
 	public ParticleSystem Water;
 	public ParticleSystem Soul;
     public GameObject pow;
-    private float powActive;
+    private float powActive = 0.2f;
 	public float changescene = 5;
+
+	private float SoulTime = 0.5f;
+	private bool SoulRaise = false;
 
     //-----Stun Timer
     private float staticTime = 0.0f;
@@ -107,12 +111,11 @@ public class PlayerValues : MonoBehaviour {
     void Start ()
     {
 		m_Health = MAX_HEALTH;
-        m_soulAmount = 0;
         SoulSlider.maxValue = 100;
-        Attribute = ElemTrait.UNASPECTED;
-        timeThing = 5.0f;
-        powActive = 0.2f;
+
 		PlayerAnimation = this.GetComponentInChildren<Animator>();
+
+		Win.gameObject.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -123,7 +126,15 @@ public class PlayerValues : MonoBehaviour {
 		PlayerSlider.value = m_Health;
 		SoulSlider.value = m_soulAmount;
 
-        if (m_Health <= 0)
+		Check(Attribute, Opponent.GetComponent<PlayerValues>().Attribute);
+
+		if (isKO == true)
+		{
+			Win.text = tag.ToString();
+			Win.gameObject.SetActive(true);
+		}
+
+		if (m_Health <= 0)
         {
             KOText.gameObject.SetActive(true);
             isKO = true;
@@ -140,9 +151,21 @@ public class PlayerValues : MonoBehaviour {
             m_Health = 0;
         }
 
-        //------TESTING, DOES WORK ------
-       
-        if(m_soulAmount > 100)
+		if (SoulRaise == true)
+		{
+			SoulTime -= Time.deltaTime;
+			Opponent.GetComponent<PlayerValues>().m_soulAmount += 25.0f * Time.deltaTime;
+
+			if (SoulTime < 0)
+			{
+				SoulRaise = false;
+				SoulTime = 0.5f;
+			}
+		}
+
+		//------TESTING, DOES WORK ------
+
+		if (m_soulAmount > 100)
         {
             m_soulAmount = 100;
         }
@@ -203,6 +226,8 @@ public class PlayerValues : MonoBehaviour {
 				Debug.Log("Colliders Off from hit");
                 pow.transform.position = col.transform.position;
                 pow.SetActive(true);
+
+				SoulRaise = true;
             }
 			if (col.gameObject.tag == "SecondaryAttack")
 			{
@@ -213,6 +238,8 @@ public class PlayerValues : MonoBehaviour {
 				PlayerAnimation.SetTrigger("TempHit");
 
 				Debug.Log("Colliders Off from hit");
+
+				SoulRaise = true;
 			}
 
            // if (col.gameObject.tag == "projectile")
@@ -272,7 +299,6 @@ public class PlayerValues : MonoBehaviour {
             Water.gameObject.SetActive(true);
         }
 	}
-
     private void ResetElement()
     {
         Fire.gameObject.SetActive(false);
@@ -282,4 +308,50 @@ public class PlayerValues : MonoBehaviour {
         m_soulAmount -= 33.3f;
 
     }
+
+	// ELEMENT STUFF
+	public void Check(ElemTrait Trait1, ElemTrait Trait2)
+	{
+		//-----Water > Fire > Earth > Air > Water-----//
+		if (Trait1 == ElemTrait.FIRE)
+		{
+			if (Trait2 == ElemTrait.WATER)
+				m_damage = 2.5f;
+			else if (Trait2 == ElemTrait.EARTH)
+				m_damage = 10.0f;
+			else
+				m_damage = 5.0f;
+		}
+		else if (Trait1 == ElemTrait.EARTH)
+		{
+			if (Trait2 == ElemTrait.FIRE)
+				m_damage = 2.5f;
+			else if (Trait2 == ElemTrait.AIR)
+				m_damage = 10.0f;
+			else
+				m_damage = 5.0f;
+		}
+		else if (Trait1 == ElemTrait.AIR)
+		{
+			if (Trait2 == ElemTrait.EARTH)
+				m_damage = 2.5f;
+			else if (Trait2 == ElemTrait.WATER)
+				m_damage = 10.0f;
+			else
+				m_damage = 5.0f;
+		}
+		else if (Trait1 == ElemTrait.WATER)
+		{
+			if (Trait2 == ElemTrait.AIR)
+				m_damage = 2.5f;
+			else if (Trait2 == ElemTrait.FIRE)
+				m_damage = 10.0f;
+			else
+				m_damage = 5.0f;
+		}
+		else if (Trait1 == ElemTrait.UNASPECTED)
+			m_damage = 5.0f;
+		else if (Trait1 == ElemTrait.SOUL)
+			m_damage = 7.5f;
+	}
 }

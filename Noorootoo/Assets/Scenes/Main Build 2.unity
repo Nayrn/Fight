@@ -6203,6 +6203,7 @@ MonoBehaviour:
   SecondaryAttack: 0
   TurnSpeed: 780
   KOText: {fileID: 450119884}
+  Win: {fileID: 753047423}
   PlayerSlider: {fileID: 2019664668}
   SoulSlider: {fileID: 1108978072}
   isKO: 0
@@ -43486,6 +43487,7 @@ MonoBehaviour:
   SecondaryAttack: 0
   TurnSpeed: 780
   KOText: {fileID: 450119884}
+  Win: {fileID: 574794216}
   PlayerSlider: {fileID: 545082749}
   SoulSlider: {fileID: 382419581}
   isKO: 0
@@ -43909,7 +43911,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1054829046}
-  m_LocalRotation: {x: 0.7347428, y: 0.0023509609, z: -0.67833835, w: 0.0021704864}
+  m_LocalRotation: {x: 0.73474276, y: 0.0023509606, z: -0.6783383, w: 0.0021704861}
   m_LocalPosition: {x: 0.06514208, y: 0.0017648762, z: -1.9118417e-11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -68825,7 +68827,7 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1607090952}
-  m_LocalRotation: {x: 0.7347428, y: 0.0023509609, z: -0.67833835, w: 0.0021704864}
+  m_LocalRotation: {x: 0.73474276, y: 0.0023509606, z: -0.6783383, w: 0.0021704861}
   m_LocalPosition: {x: 0.06514208, y: 0.0017648762, z: -1.9118417e-11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
