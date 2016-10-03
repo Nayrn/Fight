@@ -155,7 +155,7 @@ public class PlayerValues : MonoBehaviour {
 		{
 			SoulTime -= Time.deltaTime;
 			Opponent.GetComponent<PlayerValues>().m_soulAmount += 25.0f * Time.deltaTime;
-
+            GetComponent<PlayerValues>().m_Health -= 10.0f * Time.deltaTime;
 			if (SoulTime < 0)
 			{
 				SoulRaise = false;

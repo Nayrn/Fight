@@ -4,7 +4,7 @@ using System.Collections;
 public class Attack : MonoBehaviour
 {
 	public PlayerValues Player;
-    public CollisionSoul soulAttack;
+   // public CollisionSoul soulAttack;
 	public GameObject[] colliders;
     public TrailRenderer trail;
 	public string[] PrimaryCombos;
@@ -24,7 +24,7 @@ public class Attack : MonoBehaviour
         Player.isAttacking = false;
         for (int i = 0; i < colliders.Length; i++ )
 			colliders[i].GetComponent<BoxCollider>().enabled = false;
-        soulAttack.GetComponent<CollisionSoul>();
+   //     soulAttack.GetComponent<CollisionSoul>();
         trail.gameObject.SetActive(false);
     }
 
@@ -62,33 +62,37 @@ public class Attack : MonoBehaviour
         //-----------------------//
         //-----ATTACK SCRIPT-----//
         //-----------------------//
-		if (!Player.isBlocking)
+        if (!Player.isBlocking)
         {
-			//-----LIGHT ATTACK CODE-----//
-			if (Input.GetButtonDown(Player.Joystick + "Primary") && Player.SecondaryAttack == false)// punch
+            //-----LIGHT ATTACK CODE-----//
+            if (Input.GetButtonDown(Player.Joystick + "Primary") && Player.SecondaryAttack == false)// punch
             {
-				//Setting Attack bool to true
-				Player.isAttacking = true;
+                //Setting Attack bool to true
+                Player.isAttacking = true;
                 Player.PrimaryAttack = true;
-
-				//Activating the animation trigger
-				Player.PlayerAnimation.SetTrigger("PrimaryTrigger");                
-			}
-
-
-			//-----HEAVY ATTACK CODE-----//
+                CollidersOn();
+                //Activating the animation trigger
+                Player.PlayerAnimation.SetTrigger("PrimaryTrigger");
+            }
 
 
-			if (Input.GetButtonDown(Player.Joystick + "Secondary") && Player.PrimaryAttack == false)// punch
-			{
-				//Setting Attack bool to true
-				Player.isAttacking = true;
+
+            //-----HEAVY ATTACK CODE-----//
+
+
+            if (Input.GetButtonDown(Player.Joystick + "Secondary") && Player.PrimaryAttack == false)// punch
+            {
+                //Setting Attack bool to true
+                Player.isAttacking = true;
                 Player.SecondaryAttack = true;
+                CollidersOn();
+                //Activating the animation trigger
+                Player.PlayerAnimation.SetTrigger("SecondaryTrigger");
+            }
 
-				//Activating the animation trigger
-				Player.PlayerAnimation.SetTrigger("SecondaryTrigger");
-			}
         }
+        else
+            CollidersOff();
 	}
 
     public void CollidersOn()

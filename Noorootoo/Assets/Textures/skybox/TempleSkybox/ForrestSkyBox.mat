@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Temple_DIFF
-  m_Shader: {fileID: 4800000, guid: 62f85a71f86dc5949a8d2e0e8aff40e7, type: 3}
+  m_Name: ForrestSkyBox
+  m_Shader: {fileID: 104, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -15,6 +15,12 @@ Material:
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
+    - first:
+        name: _BackTex
+      second:
+        m_Texture: {fileID: 2800000, guid: ccbe6c08b75f7114ead67289a1a21097, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - first:
         name: _BumpMap
       second:
@@ -40,9 +46,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
-        name: _Diffuse
+        name: _DownTex
       second:
-        m_Texture: {fileID: 2800000, guid: 1cda858aed2e8344ebb3760c16e5bed6, type: 3}
+        m_Texture: {fileID: 2800000, guid: fdfcb8692e3d8264cb6cd14bee26a81d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -52,9 +58,21 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
+        name: _FrontTex
+      second:
+        m_Texture: {fileID: 2800000, guid: 06ef4818833b0b440bd3b206fea99b11, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _LeftTex
+      second:
+        m_Texture: {fileID: 2800000, guid: 1cf8179d050fab94daf8821f6fb30d62, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 2800000, guid: 1cda858aed2e8344ebb3760c16e5bed6, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -75,10 +93,19 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Floats:
     - first:
-        name: _Bands
-      second: 4
+        name: _RightTex
+      second:
+        m_Texture: {fileID: 2800000, guid: 1885a2e043623954d8ff0518c39d25d5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _UpTex
+      second:
+        m_Texture: {fileID: 2800000, guid: 55cb3ee62d3fe25478398c5075e5adfb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
     - first:
         name: _BumpScale
       second: 1
@@ -91,6 +118,9 @@ Material:
     - first:
         name: _DstBlend
       second: 0
+    - first:
+        name: _Exposure
+      second: 1
     - first:
         name: _GlossMapScale
       second: 1
@@ -110,11 +140,11 @@ Material:
         name: _OcclusionStrength
       second: 1
     - first:
-        name: _OutlineWidth
-      second: 10
-    - first:
         name: _Parallax
       second: 0.02
+    - first:
+        name: _Rotation
+      second: 0
     - first:
         name: _SmoothnessTextureChannel
       second: 0
@@ -130,9 +160,6 @@ Material:
     - first:
         name: _ZWrite
       second: 1
-    - first:
-        name: _node_8050
-      second: 1
     m_Colors:
     - first:
         name: _Color
@@ -141,5 +168,5 @@ Material:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
-        name: _OutlineColour
-      second: {r: 0, g: 0, b: 0, a: 1}
+        name: _Tint
+      second: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
