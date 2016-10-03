@@ -17,7 +17,7 @@ public enum ElemTrait
 public class PlayerValues : MonoBehaviour {
 
     //-----CONST VARIABLES-----//
-	private const float MAX_HEALTH = 150;
+	private const float MAX_HEALTH = 200;
 
 	public Rigidbody rb;
    
@@ -75,8 +75,7 @@ public class PlayerValues : MonoBehaviour {
 	[HideInInspector]
 	public bool SecondaryAttack = false;
 
-	//----------EXTRA VARIABLES-----//
-
+    //----------EXTRA VARIABLES-----//
 	//-----Gravity Variables
 	//____Might be unneccessary_____//
 	private float gravityEdit = 1;
@@ -112,8 +111,8 @@ public class PlayerValues : MonoBehaviour {
     {
 		m_Health = MAX_HEALTH;
         SoulSlider.maxValue = 100;
-
-		PlayerAnimation = this.GetComponentInChildren<Animator>();
+        PlayerSlider.value = m_Health;
+        PlayerAnimation = this.GetComponentInChildren<Animator>();
 
 		Win.gameObject.SetActive(false);
 	}
@@ -155,7 +154,7 @@ public class PlayerValues : MonoBehaviour {
 		{
 			SoulTime -= Time.deltaTime;
 			Opponent.GetComponent<PlayerValues>().m_soulAmount += 25.0f * Time.deltaTime;
-            GetComponent<PlayerValues>().m_Health -= 10.0f * Time.deltaTime;
+            GetComponent<PlayerValues>().m_Health -= GetComponent<PlayerValues>().m_damage * Time.deltaTime;
 			if (SoulTime < 0)
 			{
 				SoulRaise = false;
@@ -215,32 +214,35 @@ public class PlayerValues : MonoBehaviour {
        
         if (!isBlocking)
 		{
-			if (col.gameObject.tag == "PrimaryAttack")
-			{
+            if (col.gameObject.tag == "PrimaryAttack")
+            {
                 m_damage = 2.0f;
-				m_Health -= m_damage;
+                m_Health -= m_damage;
                 isAttacking = true;
 
-				//col.enabled = false;
-				PlayerAnimation.SetTrigger("TempHit");
-				Debug.Log("Colliders Off from hit");
+                //col.enabled = false;
+                PlayerAnimation.SetTrigger("TempHit");
+                Debug.Log("Colliders Off from hit");
                 pow.transform.position = col.transform.position;
                 pow.SetActive(true);
-
-				SoulRaise = true;
+                SoulRaise = true;
             }
-			if (col.gameObject.tag == "SecondaryAttack")
-			{
+            else
+                isAttacking = false;
+            if (col.gameObject.tag == "SecondaryAttack")
+            {
                 m_damage = 5.0f;
-				m_Health -= m_damage;
+                m_Health -= m_damage;
                 isAttacking = true;
-				//col.enabled = false;
-				PlayerAnimation.SetTrigger("TempHit");
+                //col.enabled = false;
+                PlayerAnimation.SetTrigger("TempHit");
+                Debug.Log("Colliders Off from hit");
 
-				Debug.Log("Colliders Off from hit");
+                SoulRaise = true;
+            }
+            else
+                isAttacking = false;
 
-				SoulRaise = true;
-			}
 
            // if (col.gameObject.tag == "projectile")
                 

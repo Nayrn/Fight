@@ -37,6 +37,7 @@ public class Attack : MonoBehaviour
     void FixedUpdate()
     {
 		ActionUpdate();
+        Debug.Log(Player.isAttacking);
 	}
 
 	void ActionUpdate()
@@ -64,6 +65,7 @@ public class Attack : MonoBehaviour
         //-----------------------//
         if (!Player.isBlocking)
         {
+            
             //-----LIGHT ATTACK CODE-----//
             if (Input.GetButtonDown(Player.Joystick + "Primary") && Player.SecondaryAttack == false)// punch
             {
@@ -74,6 +76,7 @@ public class Attack : MonoBehaviour
                 //Activating the animation trigger
                 Player.PlayerAnimation.SetTrigger("PrimaryTrigger");
             }
+            
 
 
 
@@ -89,10 +92,13 @@ public class Attack : MonoBehaviour
                 //Activating the animation trigger
                 Player.PlayerAnimation.SetTrigger("SecondaryTrigger");
             }
+   
+
 
         }
-        else
+        if (!Player.isAttacking)
             CollidersOff();
+        
 	}
 
     public void CollidersOn()
